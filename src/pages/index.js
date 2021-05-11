@@ -7,6 +7,7 @@ export default function Home() {
       <Helmet>
         <html lang="en" />
         <meta charSet="utf-8" />
+        <meta name="description" content="public site" />
         <title>West-100</title>
       </Helmet>
       Hello world!
