@@ -20,6 +20,7 @@ module.exports = {
         display: `standalone`,
       },
     },
-    `gatsby-plugin-offline`
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-offline`,
   ],
 }
