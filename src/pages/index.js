@@ -13,9 +13,9 @@ export default function Home() {
         <meta name="description" content="public site" />
         <title>West-100</title>
       </Helmet>
-      <Header/>
-      <Content/>
-      <Footer/>
+      <Header classes="bg-green-50"/>
+      <Content classes="bg-red-50"/>
+      <Footer classes="bg-blue-50"/>
     </div>
   )
 }
