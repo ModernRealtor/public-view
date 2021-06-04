@@ -6,16 +6,16 @@ import Content from "./inner/landing"
 
 export default function Home() {
   return (
-    <div>
+    <div class="max-w-6xl mx-auto">
       <Helmet>
-        <html lang="en" class="bg-gray-50"/>
+        <html lang="en" class="bg-gray-50 min-h-screen"/>
         <meta charSet="utf-8" />
         <meta name="description" content="public site" />
         <title>West-100</title>
       </Helmet>
-      <Header classes="bg-green-50"/>
-      <Content classes="bg-red-50"/>
-      <Footer classes="bg-blue-50"/>
+      <Header classes="bg-green-100 h-20"/>
+      <Content classes="bg-red-100 h-screen"/>
+      <Footer classes="bg-blue-100 h-40"/>
     </div>
   )
 }
