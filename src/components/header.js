@@ -4,7 +4,7 @@ import Menu from "./menu"
 
 export default function Header(props) {
   return (
-    <nav class="bg-green-100 tablet:bg-green-300 desktop:bg-green-900 mx-auto flex p-3 justify-between isolate">
+    <nav className="bg-green-100 tablet:bg-green-300 desktop:bg-green-900 mx-auto flex p-3 justify-between isolate">
       <Logo />
       <Menu/>
     </nav>
