@@ -5,8 +5,8 @@ import MailingList from "../../components/mailingList"
 export default function LandingPage(props) {
   return (
     <div className="flex flex-col gap-16 mb-5">
-      <Hero/>
-      <MailingList/>
+      <Hero />
+      <MailingList />
     </div>
   )
 }

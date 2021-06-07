@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const colors = require("tailwindcss/colors")
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -12,8 +12,8 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
     },
     colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
+      transparent: "transparent",
+      current: "currentColor",
       black: colors.black,
       white: colors.white,
       gray: colors.trueGray,
@@ -22,10 +22,10 @@ module.exports = {
       yellow: colors.amber,
       green: colors.emerald,
       orange: {
-        light: '##fdd086',
-        DEFAULT: '#FBB33B',
-        dark: '#e59105',
-      }
+        light: "##fdd086",
+        DEFAULT: "#FBB33B",
+        dark: "#e59105",
+      },
     },
     extend: {},
   },
