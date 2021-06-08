@@ -9,8 +9,12 @@ export default function Home() {
     <div className="max-w-6xl mx-auto bg-white shadow">
       <Helmet>
         <html lang="en" className="bg-gray-100 min-h-screen" />
+        <body className="overflow-hidden scroll tablet:scroll" />
         <meta charSet="utf-8" />
-        <meta name="description" content="public site" />
+        <meta
+          name="description"
+          content="West-100 Capital Reality Public Site"
+        />
         <title>West-100</title>
       </Helmet>
       <Header />

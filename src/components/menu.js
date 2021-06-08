@@ -1,13 +1,5 @@
 import React, { useState } from "react"
 
-function disableScroll() {
-  document.body.setAttribute("style", "overflow: hidden;")
-}
-
-function enableScroll() {
-  document.body.setAttribute("style", "overflow: auto;")
-}
-
 export default function Menu(props) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -16,7 +8,7 @@ export default function Menu(props) {
       <button
         className="w-11 h-11 tablet:hidden border border-orange"
         onClick={() => {
-          isOpen ? enableScroll() : disableScroll()
+          document.body.classList.toggle("scroll")
           setIsOpen(!isOpen)
         }}
       >
