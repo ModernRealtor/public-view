@@ -1,12 +1,6 @@
 import React, { useState } from "react"
-
-function disableScroll() {
-  document.body.setAttribute("style", "overflow: hidden;")
-}
-
-function enableScroll() {
-  document.body.setAttribute("style", "overflow: auto;")
-}
+import MenuIcon from "../assets/icons/menu-icon.svg"
+import CloseIcon from "../assets/icons/close.svg"
 
 export default function Menu(props) {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,13 +8,16 @@ export default function Menu(props) {
   return (
     <div className={`flex flex-row-reverse ${props.className}`}>
       <button
-        className="w-11 h-11 tablet:hidden border border-orange"
+        className="w-11 h-11 p-2 tablet:hidden"
         onClick={() => {
-          isOpen ? enableScroll() : disableScroll()
+          document.body.classList.toggle("scroll")
           setIsOpen(!isOpen)
         }}
       >
-        {isOpen ? "Close" : "Open"}
+        <img
+          alt={isOpen ? "Close Menu" : "Open Menu"}
+          src={isOpen ? CloseIcon : MenuIcon}
+        />
       </button>
       <div
         className={`bg-white w-screen h-screen ${
