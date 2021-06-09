@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors")
+const plugin = require("tailwindcss/plugin")
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -30,7 +31,21 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      position: ["important"],
+    },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    plugin(function ({ addVariant }) {
+      addVariant("important", ({ container }) => {
+        container.walkRules(rule => {
+          rule.selector = `.\\!${rule.selector.slice(1)}`
+          rule.walkDecls(decl => {
+            decl.important = true
+          })
+        })
+      })
+    }),
+  ],
 }
