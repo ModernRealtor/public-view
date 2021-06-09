@@ -1,6 +1,50 @@
 import React, { useState } from "react"
-import MenuIcon from "../assets/icons/menu-icon.svg"
-import CloseIcon from "../assets/icons/close.svg"
+
+function MenuIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby="title"
+      class="h-6 w-6 m-auto"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <title id="title" lang="en">
+        Open Menu
+      </title>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16m-7 6h7"
+      />
+    </svg>
+  )
+}
+
+function CloseIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby="title"
+      class="h-6 w-6 m-auto"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <title id="title" lang="en">
+        Close Menu
+      </title>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  )
+}
 
 export default function Menu(props) {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,10 +58,7 @@ export default function Menu(props) {
           setIsOpen(!isOpen)
         }}
       >
-        <img
-          alt={isOpen ? "Close Menu" : "Open Menu"}
-          src={isOpen ? CloseIcon : MenuIcon}
-        />
+        {isOpen ? <CloseIcon /> : <MenuIcon />}
       </button>
       <div
         className={`z-50 bg-white w-screen h-screen ${
