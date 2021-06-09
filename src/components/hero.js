@@ -7,12 +7,13 @@ function HeroImage(props) {
     alt: "Hero Image",
     layout: "fullWidth",
     placeholder: "blurred",
+    className: "filter brightness-95",
   }
   return (
     <>
       <span className="block tablet:hidden">
         <StaticImage
-          aspectRatio={2 / 3}
+          aspectRatio={1}
           transformOptions={{
             cropFocus: "center",
           }}
@@ -28,16 +29,23 @@ function HeroImage(props) {
 
 export default function Hero(props) {
   return (
-    <span>
-      <div className="z-10 absolute">
-        <span className="border border-yellow-700 block text-5xl capitalize font-black mb-5">
-          Your next home is a click away.
-        </span>
-        <span className="block mt-5">Description</span>
+    <span className="relative">
+      <div className="z-10 w-full aspect-w-1 aspect-h-1 tablet:aspect-none !absolute bg-indigo-100 bg-opacity-50">
+        <div className="flex flex-col p-10 tablet:gap-5 laptop:flex-row">
+          <h1 className="flex-grow block text-4xl tablet:text-5xl tablet:gap-16 capitalize font-black text-white filter drop-shadow flex flex-col justify-around bg-green-100 bg-opacity-50">
+            <span className="border border-black">Your next</span>
+            <span className="border border-black">home</span>
+            <span className="flex flex-col relative ">
+              <span className="border border-black">is a</span>
+              <span className="border border-black">click away.</span>
+            </span>
+          </h1>
+          <div className="self-end tablet:absolute tablet:bottom-10 laptop:static laptop:flex-grow">
+            <button className="px-5 py-3 bg-white ">Get Started</button>
+          </div>
+        </div>
       </div>
-      <div>
-        <HeroImage />
-      </div>
+      <HeroImage />
     </span>
   )
 }
