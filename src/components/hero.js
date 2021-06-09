@@ -31,8 +31,8 @@ export default function Hero(props) {
   return (
     <span className="relative">
       <div className="z-10 w-full aspect-w-1 aspect-h-1 tablet:aspect-none !absolute bg-indigo-100 bg-opacity-50">
-        <div className="flex flex-col px-10 py-10">
-          <h1 className="flex-grow block text-4xl tablet:text-5xl capitalize font-black text-white filter drop-shadow flex flex-col justify-around">
+        <div className="flex flex-col p-10 tablet:gap-5 laptop:flex-row">
+          <h1 className="flex-grow block text-4xl tablet:text-5xl tablet:gap-16 capitalize font-black text-white filter drop-shadow flex flex-col justify-around bg-green-100 bg-opacity-50">
             <span className="border border-black">Your next</span>
             <span className="border border-black">home</span>
             <span className="flex flex-col relative ">
@@ -40,7 +40,9 @@ export default function Hero(props) {
               <span className="border border-black">click away.</span>
             </span>
           </h1>
-          <button className="px-5 py-3 border border-black self-end">Get Started</button>
+          <div className="self-end tablet:absolute tablet:bottom-10 laptop:static laptop:flex-grow">
+            <button className="px-5 py-3 bg-white ">Get Started</button>
+          </div>
         </div>
       </div>
       <HeroImage />
