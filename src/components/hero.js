@@ -12,7 +12,7 @@ function HeroImage(props) {
     <>
       <span className="block tablet:hidden">
         <StaticImage
-          aspectRatio={2 / 3}
+          aspectRatio={1}
           transformOptions={{
             cropFocus: "center",
           }}
