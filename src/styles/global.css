@@ -7,19 +7,5 @@
         .scroll {
             overflow: auto;
         }
-
-        .p-inherit {
-            padding: inherit;
-        }
-
-        .px-inherit {
-            padding-left: inherit;
-            padding-right: inherit;
-        }
-
-        .py-inherit {
-            padding-top: inherit;
-            padding-bottom: inherit;
-        }
     }
 }

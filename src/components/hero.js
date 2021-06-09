@@ -30,23 +30,14 @@ function HeroImage(props) {
 export default function Hero(props) {
   return (
     <span>
-      <div className="z-10 absolute w-full pt-10">
-        <h1 className="block text-3xl tablet:text-5xl w-full capitalize font-black py-10 px-5 text-white filter drop-shadow">
-          <span className="absolute top-0">
-            <span className="relative">Your</span>
-            <span className="relative right-8 top-6 inline-block">next</span>
-          </span>
-          <span className="absolute top-14 right-0 px-inherit">
-            <span className="relative ">home</span>
-            <span className="relative top-6 right-3">is</span>
-          </span>
-          <span className="absolute top-36">
-            <span className="">a</span>
-            <span className="relative top-8 right-6 inline-block">
-              click away.
-            </span>
-          </span>
+      <div className="z-10 absolute w-full ">
+        <h1 className="block text-4xl tablet:text-5xl w-full capitalize font-black py-10 px-10 text-white filter drop-shadow flex flex-col bg-indigo-400">
+          <span className="border border-black">Your next</span>
+          <span className="border border-black">home</span>
+          <span className="border border-black">is a</span>
+          <span className="border border-black">click away.</span>
         </h1>
+        <button className="p-5 bg-red-100">Get Started</button>
       </div>
       <div>
         <HeroImage />
