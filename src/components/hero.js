@@ -37,12 +37,12 @@ export default function Hero(props) {
             <span className="relative right-8 top-6 inline-block">next</span>
           </span>
           <span className="absolute top-14 right-0 px-inherit">
-            <span className="relative left-2">home</span>
-            <span className="relative top-6">is</span>
+            <span className="relative ">home</span>
+            <span className="relative top-6 right-3">is</span>
           </span>
-          <span className="absolute top-40">
+          <span className="absolute top-36">
             <span className="">a</span>
-            <span className="relative top-6 left-2 inline-block">
+            <span className="relative top-8 right-6 inline-block">
               click away.
             </span>
           </span>
