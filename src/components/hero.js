@@ -29,7 +29,7 @@ function HeroText(props) {
     <div className="z-10 w-full aspect-w-1 aspect-h-1 tablet:aspect-w-16 tablet:aspect-h-9 !absolute">
       <div className="flex flex-col p-10 tablet:p-20 justify-between tablet:flex-row">
         <h1 className="flex-grow flex flex-col justify-center text-4xl tablet:text-5xl capitalize font-black text-white filter drop-shadow">
-          <div className="">
+          <div>
             Your next
             <span className="block w-auto h-5" />
             home
@@ -39,8 +39,8 @@ function HeroText(props) {
             click away.
           </div>
         </h1>
-        <div className="self-end tablet:flex-grow">
-          <button className="px-5 py-3 bg-white ">Get Started</button>
+        <div className="self-end flex-grow relative tablet:flex tablet:justify-end laptop:bottom-28 laptop:pr-32">
+          <button className="px-5 py-3 bg-white">Get Started</button>
         </div>
       </div>
     </div>
