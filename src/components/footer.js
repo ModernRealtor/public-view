@@ -60,7 +60,7 @@ const footerData = {
     ],
   },
   language: {
-    title: "language",
+    title: "Language",
     description: "Choose a language.",
     entries: [
       {
@@ -135,11 +135,11 @@ function ContactUs(props) {
 }
 
 function LanguageSelector(props) {
-  return <div>Language</div>
+  return <div>{props.title}</div>
 }
 
 function ThemeSelector(props) {
-  return <div>Choose Theme</div>
+  return <div>{props.title}</div>
 }
 
 function Preferences(props) {
@@ -181,9 +181,9 @@ export default function Footer(props) {
       <div className="border border-red-300 h-full">
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
-        <hr className="my-10" />
+        <hr className="my-5" />
         <Socials {...footerData.socials} />
-        <hr className="my-10" />
+        <hr className="my-5" />
         <Copyright {...footerData.copyright} />
       </div>
     </div>
