@@ -66,8 +66,10 @@ const footerData = {
 
 export default function Footer(props) {
   return (
-    <div className="pt-5">
-      <div className="bg-gray-300 shadow-inner h-96">Footer</div>
+    <div className="bg-gray-300 shadow-inner h-96 mt-16 p-10">
+      <div className="border border-red-300 h-full">
+        
+      </div>
     </div>
   )
 }
