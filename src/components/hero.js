@@ -7,21 +7,18 @@ function HeroImage(props) {
     alt: "Hero Image",
     layout: "fullWidth",
     placeholder: "blurred",
+    transformOptions: {
+      cropFocus: "center",
+    },
     className: "filter brightness-95",
   }
   return (
     <>
       <span className="block tablet:hidden">
-        <StaticImage
-          aspectRatio={1}
-          transformOptions={{
-            cropFocus: "center",
-          }}
-          {...attrs}
-        />
+        <StaticImage aspectRatio={1} {...attrs} />
       </span>
       <span className="hidden tablet:block">
-        <StaticImage {...attrs} />
+        <StaticImage aspectRatio={16 / 9} {...attrs} />
       </span>
     </>
   )
@@ -30,7 +27,7 @@ function HeroImage(props) {
 export default function Hero(props) {
   return (
     <span className="relative">
-      <div className="z-10 w-full aspect-w-1 aspect-h-1 tablet:aspect-none !absolute bg-indigo-100 bg-opacity-50">
+      <div className="z-10 w-full aspect-w-1 aspect-h-1 tablet:aspect-w-16 tablet:aspect-h-9 !absolute bg-indigo-100 bg-opacity-50">
         <div className="flex flex-col p-10 tablet:gap-5 laptop:flex-row">
           <h1 className="flex-grow block text-4xl tablet:text-5xl tablet:gap-16 capitalize font-black text-white filter drop-shadow flex flex-col justify-around bg-green-100 bg-opacity-50">
             <span className="border border-black">Your next</span>
