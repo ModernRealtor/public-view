@@ -168,7 +168,16 @@ function Preferences(props) {
 }
 
 function Socials(props) {
-  return <div className="border border-black">Socials</div>
+  return (
+    <div className="text-center">
+      {props.title}
+      <div className="flex justify-around">
+        {props.entries.map(item => (
+          <div key={item.short}>{item.short}</div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 function Copyright(props) {
