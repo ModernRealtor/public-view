@@ -91,20 +91,25 @@ const footerData = {
     title: "Copyright",
     value: "this is the copyright",
   },
-  affiliations: [
-    {
-      icon: null,
-      title: "Trusted listings from REALTOR® Agents.",
-      description:
-        "The MLS® mark and associated logos identify professional services rendered by REALTOR® members of CREA to effect the purchase, sale and lease of real estate as part of a cooperative selling system.",
-    },
-    {
-      icon: null,
-      title: null,
-      description:
-        "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
-    },
-  ],
+  affiliations: {
+    title: "Affiliates",
+    entries: [
+      {
+        icon: null,
+        id: 0,
+        title: "Trusted listings from REALTOR® Agents.",
+        description:
+          "The MLS® mark and associated logos identify professional services rendered by REALTOR® members of CREA to effect the purchase, sale and lease of real estate as part of a cooperative selling system.",
+      },
+      {
+        icon: null,
+        id: 1,
+        title: "",
+        description:
+          "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
+      },
+    ],
+  },
 }
 
 function ContactUs(props) {
@@ -120,7 +125,7 @@ function ContactUs(props) {
               } w-5 h-5 text-purple-500`}
             />
           </Disclosure.Button>
-          <Disclosure.Panel className="text-gray-500">
+          <Disclosure.Panel>
             {props.description}
             {props.entries.map(item => (
               <div key={item.short}>
@@ -155,7 +160,7 @@ function Preferences(props) {
               } w-5 h-5 text-purple-500`}
             />
           </Disclosure.Button>
-          <Disclosure.Panel className="text-gray-500">
+          <Disclosure.Panel>
             {props.description}
             {props.entries.map(item => {
               return <item.tag key={item.key} {...footerData[item.key]} />
@@ -184,6 +189,18 @@ function Copyright(props) {
   return <div>{props.value}</div>
 }
 
+function Affiliates(props) {
+  return (
+    <div className="flex flex-col">
+      {props.entries.map(item => (
+        <div key={item.id}>
+          {item.title} {item.description}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function Footer(props) {
   return (
     <div className="bg-gray-300 shadow-inner mt-16 p-10">
@@ -194,6 +211,7 @@ export default function Footer(props) {
         <Socials {...footerData.socials} />
         <hr className="my-5" />
         <Copyright {...footerData.copyright} />
+        <Affiliates {...footerData.affiliations} />
       </div>
     </div>
   )
