@@ -1,6 +1,13 @@
 import React from "react"
-import { ChevronUpIcon } from "@heroicons/react/solid"
+import { CaretIcon } from "../assets/icons/controls"
 import { Disclosure } from "@headlessui/react"
+import MLSIcon from "../assets/icons/mls"
+import RealtorIcon from "../assets/icons/realtor"
+import {
+  FacebookLogo,
+  InstagramLogo,
+  LinkedInLogo,
+} from "../assets/icons/socials"
 
 const footerData = {
   contact: {
@@ -28,19 +35,19 @@ const footerData = {
       {
         title: "Facebook",
         short: "FB",
-        icon: null,
+        icon: <FacebookLogo />,
         value: "example.com",
       },
       {
         title: "Instagram",
         short: "IG",
-        icon: null,
+        icon: <InstagramLogo />,
         value: "example.com",
       },
       {
         title: "LinkedIn",
         short: "IN",
-        icon: null,
+        icon: <LinkedInLogo />,
         value: "example.com",
       },
     ],
@@ -89,20 +96,20 @@ const footerData = {
   },
   copyright: {
     title: "Copyright",
-    value: "this is the copyright",
+    value: "©2021 West-100 Capital Realty, Inc.",
   },
   affiliations: {
     title: "Affiliates",
     entries: [
       {
-        icon: null,
+        icon: <MLSIcon />,
         id: 0,
         title: "Trusted listings from REALTOR® Agents.",
         description:
           "The MLS® mark and associated logos identify professional services rendered by REALTOR® members of CREA to effect the purchase, sale and lease of real estate as part of a cooperative selling system.",
       },
       {
-        icon: null,
+        icon: <RealtorIcon />,
         id: 1,
         title: "",
         description:
@@ -112,63 +119,50 @@ const footerData = {
   },
 }
 
-function ContactUs(props) {
+function FooterDropdown(props) {
   return (
     <Disclosure>
       {({ open }) => (
         <>
-          <Disclosure.Button className="py-2  w-full flex justify-between">
+          <Disclosure.Button className="flex justify-between w-full py-2">
             <span>{props.title}</span>
-            <ChevronUpIcon
-              className={`${
-                open ? "transform rotate-180" : ""
-              } w-5 h-5 text-purple-500`}
-            />
+            <CaretIcon className={`${open ? "" : "transform rotate-180"} `} />
           </Disclosure.Button>
-          <Disclosure.Panel>
-            {props.description}
-            {props.entries.map(item => (
-              <div key={item.short}>
-                {item.short}: {item.value}
-              </div>
-            ))}
-          </Disclosure.Panel>
+          <Disclosure.Panel>{props.children}</Disclosure.Panel>
         </>
       )}
     </Disclosure>
   )
 }
 
+function ContactUs(props) {
+  return (
+    <FooterDropdown {...props}>
+      {props.description}
+      {props.entries.map(item => (
+        <div key={item.short}>
+          {item.short}: {item.value}
+        </div>
+      ))}
+    </FooterDropdown>
+  )
+}
+
 function LanguageSelector(props) {
   return <div>{props.title}</div>
 }
-
 function ThemeSelector(props) {
   return <div>{props.title}</div>
 }
 
 function Preferences(props) {
   return (
-    <Disclosure>
-      {({ open }) => (
-        <>
-          <Disclosure.Button className="py-2  w-full flex justify-between">
-            <span>{props.title}</span>
-            <ChevronUpIcon
-              className={`${
-                open ? "transform rotate-180" : ""
-              } w-5 h-5 text-purple-500`}
-            />
-          </Disclosure.Button>
-          <Disclosure.Panel>
-            {props.description}
-            {props.entries.map(item => {
-              return <item.tag key={item.key} {...footerData[item.key]} />
-            })}
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+    <FooterDropdown {...props}>
+      {props.description}
+      {props.entries.map(item => {
+        return <item.tag key={item.key} {...footerData[item.key]} />
+      })}
+    </FooterDropdown>
   )
 }
 
@@ -176,38 +170,45 @@ function Socials(props) {
   return (
     <div className="text-center">
       {props.title}
-      <div className="flex justify-around">
+      <div className="flex justify-around p-5">
         {props.entries.map(item => (
-          <div key={item.short}>{item.short}</div>
+          <a
+            key={item.short}
+            href={item.value}
+            target="blank"
+            aria-label={`Visit our ${item.title} page`}
+          >
+            {item.icon}
+          </a>
         ))}
       </div>
     </div>
   )
 }
-
 function Copyright(props) {
-  return <div>{props.value}</div>
+  return <div className="py-5 text-center">{props.value}</div>
 }
-
 function Affiliates(props) {
   return (
-    <div className="flex flex-col">
+    <div className="text-2xs flex flex-col gap-2 mt-5">
       {props.entries.map(item => (
-        <div key={item.id}>
-          {item.title} {item.description}
+        <div key={item.id} className="flex gap-2">
+          <div className="self-center">{item.icon}</div>
+          <div className="self-center">
+            {item.title} <br /> {item.description}
+          </div>
         </div>
       ))}
     </div>
   )
 }
-
 export default function Footer(props) {
   return (
-    <div className="bg-gray-300 shadow-inner mt-16 p-10">
-      <div className="border border-red-300 h-full">
+    <div className="p-10 mt-16 bg-gray-300 shadow-inner">
+      <div className="h-full text-sm">
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
-        <hr className="my-5" />
+        <hr className="my-5 mt-16" />
         <Socials {...footerData.socials} />
         <hr className="my-5" />
         <Copyright {...footerData.copyright} />

@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="max-w-6xl mx-auto bg-white shadow">
       <Helmet>
-        <html lang="en" className="bg-gray-100 bg-texture min-h-screen" />
-        <body className="overflow-hidden scroll tablet:scroll" />
+        <html lang="en" className="bg-texture min-h-screen bg-gray-100" />
+        <body className="scroll tablet:scroll overflow-hidden" />
         <meta charSet="utf-8" />
         <meta
           name="description"

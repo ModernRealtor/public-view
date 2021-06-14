@@ -31,7 +31,11 @@ module.exports = {
         dark: "#e59105",
       },
     },
-    extend: {},
+    extend: {
+      fontSize: {
+        "2xs": "0.625rem",
+      },
+    },
   },
   variants: {
     extend: {
