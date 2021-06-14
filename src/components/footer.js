@@ -179,7 +179,7 @@ function Socials(props) {
   )
 }
 function Copyright(props) {
-  return <div className="text-center">{props.value}</div>
+  return <div className="py-5 text-center">{props.value}</div>
 }
 function Affiliates(props) {
   return (
@@ -198,7 +198,7 @@ function Affiliates(props) {
 export default function Footer(props) {
   return (
     <div className="p-10 mt-16 bg-gray-300 shadow-inner">
-      <div className="h-full text-sm border border-red-300">
+      <div className="h-full text-sm">
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
         <hr className="my-5 mt-16" />
