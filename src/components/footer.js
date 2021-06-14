@@ -1,6 +1,8 @@
 import React from "react"
 import { ChevronUpIcon } from "@heroicons/react/solid"
 import { Disclosure } from "@headlessui/react"
+import MLSIcon from "../assets/icons/mls"
+import RealtorIcon from "../assets/icons/realtor"
 
 const footerData = {
   contact: {
@@ -95,14 +97,14 @@ const footerData = {
     title: "Affiliates",
     entries: [
       {
-        icon: null,
+        icon: <MLSIcon />,
         id: 0,
         title: "Trusted listings from REALTOR® Agents.",
         description:
           "The MLS® mark and associated logos identify professional services rendered by REALTOR® members of CREA to effect the purchase, sale and lease of real estate as part of a cooperative selling system.",
       },
       {
-        icon: null,
+        icon: <RealtorIcon />,
         id: 1,
         title: "",
         description:
@@ -187,8 +189,11 @@ function Affiliates(props) {
   return (
     <div className="flex flex-col">
       {props.entries.map(item => (
-        <div key={item.id}>
-          {item.title} {item.description}
+        <div key={item.id} className="flex gap-2">
+          <div className="self-center">{item.icon}</div>
+          <div>
+            {item.title} <br /> {item.description}
+          </div>
         </div>
       ))}
     </div>
