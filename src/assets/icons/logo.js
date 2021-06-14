@@ -7,7 +7,6 @@ export default function LogoIcon(props) {
       viewBox="0 0 24 24"
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
-      aria-labelledby="title"
       className={`m-auto ${props.className}`}
       fill="currentColor"
       stroke="currentColor"
