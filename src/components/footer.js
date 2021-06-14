@@ -91,7 +91,7 @@ const footerData = {
   },
   copyright: {
     title: "Copyright",
-    value: "this is the copyright",
+    value: "©2021 West-100 Capital Realty, Inc.",
   },
   affiliations: {
     title: "Affiliates",
@@ -183,7 +183,7 @@ function Socials(props) {
   )
 }
 function Copyright(props) {
-  return <div>{props.value}</div>
+  return <div className="text-center">{props.value}</div>
 }
 function Affiliates(props) {
   return (
@@ -202,7 +202,7 @@ function Affiliates(props) {
 export default function Footer(props) {
   return (
     <div className="p-10 mt-16 bg-gray-300 shadow-inner">
-      <div className="h-full border border-red-300">
+      <div className="h-full text-sm border border-red-300">
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
         <hr className="my-5" />
