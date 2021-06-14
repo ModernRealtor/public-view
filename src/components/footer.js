@@ -187,11 +187,11 @@ function Copyright(props) {
 }
 function Affiliates(props) {
   return (
-    <div className="flex flex-col">
+    <div className="text-2xs flex flex-col gap-2 mt-5">
       {props.entries.map(item => (
         <div key={item.id} className="flex gap-2">
           <div className="self-center">{item.icon}</div>
-          <div>
+          <div className="self-center">
             {item.title} <br /> {item.description}
           </div>
         </div>
