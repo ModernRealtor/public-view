@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { MenuAlt3Icon, XIcon } from "@heroicons/react/solid"
+import { MenuIcon, CloseIcon } from "../assets/icons/controls"
 
 const menuData = {
   entries: [
@@ -24,11 +24,7 @@ export default function Menu(props) {
           setIsOpen(!isOpen)
         }}
       >
-        {isOpen ? (
-          <XIcon className="w-6 h-6 m-auto" />
-        ) : (
-          <MenuAlt3Icon className="w-6 h-6 m-auto" />
-        )}
+        {isOpen ? <CloseIcon /> : <MenuIcon />}
       </button>
       <div
         className={`bg-white w-full h-screen ${
