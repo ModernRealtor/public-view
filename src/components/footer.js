@@ -114,7 +114,7 @@ const footerData = {
   },
 }
 
-function ContactUs(props) {
+function FooterDropdown(props) {
   return (
     <Disclosure>
       {({ open }) => (
@@ -123,45 +123,44 @@ function ContactUs(props) {
             <span>{props.title}</span>
             <CaretIcon className={`${open ? "" : "transform rotate-180"} `} />
           </Disclosure.Button>
-          <Disclosure.Panel>
-            {props.description}
-            {props.entries.map(item => (
-              <div key={item.short}>
-                {item.short}: {item.value}
-              </div>
-            ))}
-          </Disclosure.Panel>
+          <Disclosure.Panel>{props.children}</Disclosure.Panel>
         </>
       )}
     </Disclosure>
   )
 }
+
+function ContactUs(props) {
+  return (
+    <FooterDropdown {...props}>
+      {props.description}
+      {props.entries.map(item => (
+        <div key={item.short}>
+          {item.short}: {item.value}
+        </div>
+      ))}
+    </FooterDropdown>
+  )
+}
+
 function LanguageSelector(props) {
   return <div>{props.title}</div>
 }
 function ThemeSelector(props) {
   return <div>{props.title}</div>
 }
+
 function Preferences(props) {
   return (
-    <Disclosure>
-      {({ open }) => (
-        <>
-          <Disclosure.Button className="flex justify-between w-full py-2">
-            <span>{props.title}</span>
-            <CaretIcon className={`${open ? "" : "transform rotate-180"}`} />
-          </Disclosure.Button>
-          <Disclosure.Panel>
-            {props.description}
-            {props.entries.map(item => {
-              return <item.tag key={item.key} {...footerData[item.key]} />
-            })}
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+    <FooterDropdown {...props}>
+      {props.description}
+      {props.entries.map(item => {
+        return <item.tag key={item.key} {...footerData[item.key]} />
+      })}
+    </FooterDropdown>
   )
 }
+
 function Socials(props) {
   return (
     <div className="text-center">
