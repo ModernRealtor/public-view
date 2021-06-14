@@ -35,11 +35,11 @@ function HeroText(props) {
             home
             <span className="block w-auto h-5" />
             is a
-            <span className="block w-auto h-0" />
+            <span className="block w-auto h-5" />
             click away.
           </div>
         </h1>
-        <div className="tablet:flex tablet:justify-end laptop:bottom-28 laptop:pr-32 relative self-end flex-grow">
+        <div className="self-end">
           <button className="px-5 py-3 bg-white">Get Started</button>
         </div>
       </div>
