@@ -3,6 +3,11 @@ import { CaretIcon } from "../assets/icons/controls"
 import { Disclosure } from "@headlessui/react"
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
+import {
+  FacebookLogo,
+  InstagramLogo,
+  LinkedInLogo,
+} from "../assets/icons/socials"
 
 const footerData = {
   contact: {
@@ -30,19 +35,19 @@ const footerData = {
       {
         title: "Facebook",
         short: "FB",
-        icon: null,
+        icon: <FacebookLogo />,
         value: "example.com",
       },
       {
         title: "Instagram",
         short: "IG",
-        icon: null,
+        icon: <InstagramLogo />,
         value: "example.com",
       },
       {
         title: "LinkedIn",
         short: "IN",
-        icon: null,
+        icon: <LinkedInLogo />,
         value: "example.com",
       },
     ],
@@ -165,9 +170,9 @@ function Socials(props) {
   return (
     <div className="text-center">
       {props.title}
-      <div className="flex justify-around">
+      <div className="flex justify-around p-5">
         {props.entries.map(item => (
-          <div key={item.short}>{item.short}</div>
+          <div key={item.short}>{item.icon}</div>
         ))}
       </div>
     </div>
@@ -196,7 +201,7 @@ export default function Footer(props) {
       <div className="h-full text-sm border border-red-300">
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
-        <hr className="my-5" />
+        <hr className="my-5 mt-16" />
         <Socials {...footerData.socials} />
         <hr className="my-5" />
         <Copyright {...footerData.copyright} />
