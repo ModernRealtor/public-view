@@ -1,5 +1,5 @@
 import React from "react"
-import { ChevronUpIcon } from "@heroicons/react/solid"
+import { CaretIcon } from "../assets/icons/controls"
 import { Disclosure } from "@headlessui/react"
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
@@ -121,11 +121,7 @@ function ContactUs(props) {
         <>
           <Disclosure.Button className="flex justify-between w-full py-2">
             <span>{props.title}</span>
-            <ChevronUpIcon
-              className={`${
-                open ? "transform rotate-180" : ""
-              } w-5 h-5 text-purple-500`}
-            />
+            <CaretIcon className={`${open ? "" : "transform rotate-180"} `} />
           </Disclosure.Button>
           <Disclosure.Panel>
             {props.description}
@@ -153,11 +149,7 @@ function Preferences(props) {
         <>
           <Disclosure.Button className="flex justify-between w-full py-2">
             <span>{props.title}</span>
-            <ChevronUpIcon
-              className={`${
-                open ? "transform rotate-180" : ""
-              } w-5 h-5 text-purple-500`}
-            />
+            <CaretIcon className={`${open ? "" : "transform rotate-180"}`} />
           </Disclosure.Button>
           <Disclosure.Panel>
             {props.description}
