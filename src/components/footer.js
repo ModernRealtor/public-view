@@ -117,7 +117,7 @@ function ContactUs(props) {
     <Disclosure>
       {({ open }) => (
         <>
-          <Disclosure.Button className="py-2  w-full flex justify-between">
+          <Disclosure.Button className="flex justify-between w-full py-2">
             <span>{props.title}</span>
             <ChevronUpIcon
               className={`${
@@ -138,21 +138,18 @@ function ContactUs(props) {
     </Disclosure>
   )
 }
-
 function LanguageSelector(props) {
   return <div>{props.title}</div>
 }
-
 function ThemeSelector(props) {
   return <div>{props.title}</div>
 }
-
 function Preferences(props) {
   return (
     <Disclosure>
       {({ open }) => (
         <>
-          <Disclosure.Button className="py-2  w-full flex justify-between">
+          <Disclosure.Button className="flex justify-between w-full py-2">
             <span>{props.title}</span>
             <ChevronUpIcon
               className={`${
@@ -171,7 +168,6 @@ function Preferences(props) {
     </Disclosure>
   )
 }
-
 function Socials(props) {
   return (
     <div className="text-center">
@@ -184,11 +180,9 @@ function Socials(props) {
     </div>
   )
 }
-
 function Copyright(props) {
   return <div>{props.value}</div>
 }
-
 function Affiliates(props) {
   return (
     <div className="flex flex-col">
@@ -200,11 +194,10 @@ function Affiliates(props) {
     </div>
   )
 }
-
 export default function Footer(props) {
   return (
-    <div className="bg-gray-300 shadow-inner mt-16 p-10">
-      <div className="border border-red-300 h-full">
+    <div className="p-10 mt-16 bg-gray-300 shadow-inner">
+      <div className="h-full border border-red-300">
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
         <hr className="my-5" />

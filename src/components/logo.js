@@ -66,9 +66,9 @@ export default function Logo(props) {
       <button className="w-11 h-11">
         <LogoIcon />
       </button>
-      <div className="h-full flex flex-row flex-wrap place-content-center ml-1 justify-start">
-        <span className="text-lg font-bold tablet:mr-3 ">West-100</span>
-        <span className="hidden text-sm leading-loose tablet:inline-block">
+      <div className="place-content-center flex flex-row flex-wrap justify-start h-full ml-1">
+        <span className="tablet:mr-3  text-lg font-bold">West-100</span>
+        <span className="tablet:inline-block hidden text-sm leading-loose">
           Capital Reality Inc., Brokerage
         </span>
       </div>

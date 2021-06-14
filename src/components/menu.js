@@ -18,16 +18,16 @@ export default function Menu(props) {
   return (
     <div className={`flex flex-row-reverse ${props.className}`}>
       <button
-        className="w-11 h-11 p-2 tablet:hidden"
+        className="w-11 h-11 tablet:hidden p-2"
         onClick={() => {
           document.body.classList.toggle("scroll")
           setIsOpen(!isOpen)
         }}
       >
         {isOpen ? (
-          <XIcon className="h-6 w-6 m-auto" />
+          <XIcon className="w-6 h-6 m-auto" />
         ) : (
-          <MenuAlt3Icon className="h-6 w-6 m-auto" />
+          <MenuAlt3Icon className="w-6 h-6 m-auto" />
         )}
       </button>
       <div
@@ -38,7 +38,7 @@ export default function Menu(props) {
         {menuData.entries.map(item => (
           <button
             key={item.title}
-            className="border border-yellow-700 w-full text-left py-3 px-5 mt-5 tablet:w-auto tablet:text-center tablet:py-0 tablet:my-0"
+            className="tablet:w-auto tablet:text-center tablet:py-0 tablet:my-0 w-full px-5 py-3 mt-5 text-left border border-yellow-700"
           >
             {item.title}
           </button>
