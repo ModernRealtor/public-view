@@ -33,7 +33,7 @@ export default function Menu(props) {
       <div
         className={`z-50 bg-white w-full h-screen ${
           isOpen ? "absolute" : "hidden"
-        } flex-grow flex-col-reverse flex-wrap right-0 mt-11 pt-5 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:static tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:bg-transparent gap-5 laptop:gap-10 isolate`}
+        } flex-grow flex-col-reverse flex-wrap right-0 mt-11 pt-5 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:static tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:bg-transparent gap-5 laptop:gap-10`}
       >
         {menuData.entries.map(item => (
           <button
