@@ -26,7 +26,9 @@ function HeroImage(props) {
 
 function HeroText(props) {
   return (
-    <div className="z-10 w-full aspect-w-1 aspect-h-1 tablet:aspect-w-16 tablet:aspect-h-9 !absolute">
+    <div
+      className={`w-full aspect-w-1 aspect-h-1 tablet:aspect-w-16 tablet:aspect-h-9 !absolute ${props.className}`}
+    >
       <div className="tablet:p-20 tablet:flex-row flex flex-col justify-between p-10">
         <h1 className="tablet:text-5xl filter drop-shadow flex flex-col justify-center flex-grow text-4xl font-black text-white capitalize">
           <div>
@@ -49,8 +51,9 @@ function HeroText(props) {
 
 export default function Hero(props) {
   return (
-    <span className="relative">
-      <HeroText />
+    <span className="isolate relative">
+      {/* ensure text is dispalyed above image. Isolated from other contexts  */}
+      <HeroText className="z-50" />
       <HeroImage />
     </span>
   )
