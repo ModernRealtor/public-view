@@ -23,6 +23,7 @@ export default function Menu(props) {
           document.body.classList.toggle("scroll")
           setIsOpen(!isOpen)
         }}
+        aria-label={isOpen ? "Close Menu" : "Open Menu"}
       >
         {isOpen ? <CloseIcon /> : <MenuIcon />}
       </button>

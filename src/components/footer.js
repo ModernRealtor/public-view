@@ -172,7 +172,14 @@ function Socials(props) {
       {props.title}
       <div className="flex justify-around p-5">
         {props.entries.map(item => (
-          <div key={item.short}>{item.icon}</div>
+          <a
+            key={item.short}
+            href={item.value}
+            target="blank"
+            aria-label={`Visit our ${item.title} page`}
+          >
+            {item.icon}
+          </a>
         ))}
       </div>
     </div>
