@@ -44,13 +44,13 @@ const footerData = {
         title: "Instagram",
         short: "IG",
         icon: <InstagramLogo />,
-        value: "example.com",
+        value: "/",
       },
       {
         title: "LinkedIn",
         short: "IN",
         icon: <LinkedInLogo />,
-        value: "example.com",
+        value: "/",
       },
       {
         title: "Youtube",
@@ -72,6 +72,21 @@ const footerData = {
       {
         key: "theme",
         tag: ThemeSelector,
+      },
+    ],
+  },
+  about: {
+    title: "The Brokerage",
+    entries: [
+      {
+        title: "About",
+        short: "about",
+        value: "/",
+      },
+      {
+        title: "The Team",
+        short: "team",
+        value: "/",
       },
     ],
   },
@@ -211,10 +226,30 @@ function Affiliates(props) {
     </div>
   )
 }
+
+function About(props) {
+  return (
+    <FooterDropdown {...props}>
+      <ul>
+        {props.entries.map(item => {
+          return (
+            <li>
+              <a key={item.short} href={item.value}>
+                {item.title}
+              </a>
+            </li>
+          )
+        })}
+      </ul>
+    </FooterDropdown>
+  )
+}
+
 export default function Footer(props) {
   return (
     <div className="p-10 mt-16 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
+        <About {...footerData.about} />
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
         <hr className="my-5 mt-16" />
