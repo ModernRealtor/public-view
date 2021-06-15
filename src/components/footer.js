@@ -234,15 +234,11 @@ function Socials(props) {
   )
 }
 function Copyright(props) {
-  return (
-    <div className="laptop:text-left laptop:pt-0 py-5 text-center">
-      {props.value}
-    </div>
-  )
+  return <div className="laptop:text-left text-center">{props.value}</div>
 }
 function Affiliates(props) {
   return (
-    <div className="text-2xs flex flex-col gap-2 mt-5">
+    <div className="text-2xs flex flex-col gap-2 mt-8">
       {props.entries.map(item => (
         <div key={item.id}>
           <item.icon className="float-left h-8 pb-2 pr-2" />
@@ -281,6 +277,20 @@ function BusinessTag(props) {
   )
 }
 
+function FooterBanner(props) {
+  return (
+    <div className="my-20">
+      <hr className="my-5" />
+      <div className="gap-y-8 flex flex-wrap justify-between">
+        <BusinessTag {...footerData.meta} />
+        <Socials {...footerData.socials} />
+      </div>
+      <hr className="my-5" />
+      <Copyright {...footerData.copyright} />
+    </div>
+  )
+}
+
 export default function Footer(props) {
   return (
     <div className="p-10 mt-16 bg-gray-300 shadow-inner">
@@ -290,13 +300,7 @@ export default function Footer(props) {
           <ContactUs {...footerData.contact} className="flex-grow" />
           <Preferences {...footerData.preferences} className="flex-grow" />
         </div>
-        <hr className="my-5" />
-        <div className="flex flex-wrap justify-between">
-          <BusinessTag {...footerData.meta} />
-          <Socials {...footerData.socials} />
-        </div>
-        <hr className="my-5" />
-        <Copyright {...footerData.copyright} />
+        <FooterBanner />
         <Affiliates {...footerData.affiliations} />
       </div>
     </div>
