@@ -296,9 +296,9 @@ function FooterBanner(props) {
 
 export default function Footer(props) {
   return (
-    <div className="p-10 mt-16 bg-gray-300 shadow-inner">
+    <div className="p-10 mt-20 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
-        <div className="place-content-around gap-x-20 gap-y-6 flex flex-wrap">
+        <div className="place-content-around gap-x-20 gap-y-10 laptop:mb-32 flex flex-wrap mt-5 mb-10">
           <About {...footerData.about} className="flex-grow" />
           <ContactUs {...footerData.contact} className="flex-grow" />
           <Preferences {...footerData.preferences} className="flex-grow" />
