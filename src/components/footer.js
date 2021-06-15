@@ -251,7 +251,7 @@ function About(props) {
 
 function BusinessTag(props) {
   return (
-    <div className="flex flex-wrap items-center m-auto text-center">
+    <div className="tablet:text-left flex flex-wrap items-center m-auto text-center">
       {<props.icon className="w-12" />}
       <div className="flex flex-col">
         <span>{props.title}</span>
