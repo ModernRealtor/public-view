@@ -153,13 +153,13 @@ function FooterDropdown(props) {
   return (
     <Disclosure>
       {({ open }) => (
-        <>
+        <div className="my-2">
           <Disclosure.Button className="flex justify-between w-full py-2">
             <span>{props.title}</span>
             <CaretIcon className={`${open ? "" : "transform rotate-180"} `} />
           </Disclosure.Button>
           <Disclosure.Panel>{props.children}</Disclosure.Panel>
-        </>
+        </div>
       )}
     </Disclosure>
   )
@@ -251,7 +251,7 @@ function About(props) {
 
 function BusinessTag(props) {
   return (
-    <div className="grid grid-flow-col grid-rows-2 gap-2 mt-8">
+    <div className="grid grid-flow-col grid-rows-2 gap-2 my-10">
       {<props.icon className="w-12 row-span-2" />}
       <span>{props.title}</span>
       <span>{props.subtitle}</span>
@@ -267,7 +267,7 @@ export default function Footer(props) {
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
         <BusinessTag {...footerData.meta} />
-        <hr className="my-5 mt-10" />
+        <hr className="my-5" />
         <Socials {...footerData.socials} />
         <hr className="my-5" />
         <Copyright {...footerData.copyright} />
