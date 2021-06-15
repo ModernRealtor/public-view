@@ -151,17 +151,30 @@ const footerData = {
 
 function FooterDropdown(props) {
   return (
-    <Disclosure>
-      {({ open }) => (
+    <>
+      <span className="laptop:hidden block">
+        <Disclosure>
+          {({ open }) => (
+            <div className={`w-64 max-w-xs ${props.className}`}>
+              <Disclosure.Button className="flex justify-between w-full py-2">
+                <span>{props.title}</span>
+                <CaretIcon
+                  className={`${open ? "" : "transform rotate-180"} `}
+                />
+              </Disclosure.Button>
+              <Disclosure.Panel>{props.children}</Disclosure.Panel>
+            </div>
+          )}
+        </Disclosure>
+      </span>
+      <span className="laptop:block hidden">
         <div className={`w-64 max-w-xs ${props.className}`}>
-          <Disclosure.Button className="flex justify-between w-full py-2">
-            <span>{props.title}</span>
-            <CaretIcon className={`${open ? "" : "transform rotate-180"} `} />
-          </Disclosure.Button>
-          <Disclosure.Panel>{props.children}</Disclosure.Panel>
+          {props.title}
+          <hr className="w-full" />
+          {props.children}
         </div>
-      )}
-    </Disclosure>
+      </span>
+    </>
   )
 }
 
