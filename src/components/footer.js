@@ -251,7 +251,7 @@ function About(props) {
 
 function BusinessTag(props) {
   return (
-    <div className="grid grid-flow-col grid-rows-2 gap-2 my-10">
+    <div className="grid grid-flow-col grid-rows-2 my-10 space-x-2">
       {<props.icon className="w-12 row-span-2" />}
       <span>{props.title}</span>
       <span>{props.subtitle}</span>
