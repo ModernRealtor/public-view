@@ -1,30 +1,37 @@
 import React from "react"
-import { CaretIcon } from "../assets/icons/controls"
+import { CaretIcon, PhoneIcon, LocationIcon } from "../assets/icons/controls"
 import { Disclosure } from "@headlessui/react"
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
+import LogoIcon from "../assets/icons/logo"
 import {
   FacebookLogo,
   InstagramLogo,
   LinkedInLogo,
+  YoutubeLogo,
 } from "../assets/icons/socials"
 
 const footerData = {
+  meta: {
+    icon: LogoIcon,
+    title: "West-100 Capital Realty Inc., Brokerage",
+    subtitle: "Independently Owned and Operated",
+  },
   contact: {
     title: "Contact Us",
     description: "Call or drop by anytime!",
     entries: [
       {
         title: "Office Number",
-        short: "Office",
-        icon: null,
-        value: "416-666-6666",
+        short: "tel",
+        icon: <PhoneIcon />,
+        value: "(416) 658-5553",
       },
       {
         title: "Address",
-        short: "Address",
-        icon: null,
-        value: "34 Example St. Toronto Ontario",
+        short: "address",
+        icon: <LocationIcon />,
+        value: "2544 Eglinton Ave W, York, ON M6M 1T1",
       },
     ],
   },
@@ -36,19 +43,27 @@ const footerData = {
         title: "Facebook",
         short: "FB",
         icon: <FacebookLogo />,
-        value: "example.com",
+        value: "https://www.facebook.com/Realty100Plus",
       },
+      // The following two she only has a personal, not a business. For now. So not linking it
       {
         title: "Instagram",
         short: "IG",
         icon: <InstagramLogo />,
-        value: "example.com",
+        value: "/",
       },
       {
         title: "LinkedIn",
         short: "IN",
         icon: <LinkedInLogo />,
-        value: "example.com",
+        value: "/",
+      },
+      {
+        title: "Youtube",
+        short: "YT",
+        icon: <YoutubeLogo />,
+        value:
+          "https://www.youtube.com/channel/UCKQ4oHRYH_aAQHaSXoPdaSQ/featured",
       },
     ],
   },
@@ -63,6 +78,21 @@ const footerData = {
       {
         key: "theme",
         tag: ThemeSelector,
+      },
+    ],
+  },
+  about: {
+    title: "The Brokerage",
+    entries: [
+      {
+        title: "About",
+        short: "about",
+        value: "/",
+      },
+      {
+        title: "The Team",
+        short: "team",
+        value: "/",
       },
     ],
   },
@@ -121,17 +151,30 @@ const footerData = {
 
 function FooterDropdown(props) {
   return (
-    <Disclosure>
-      {({ open }) => (
-        <>
-          <Disclosure.Button className="flex justify-between w-full py-2">
-            <span>{props.title}</span>
-            <CaretIcon className={`${open ? "" : "transform rotate-180"} `} />
-          </Disclosure.Button>
-          <Disclosure.Panel>{props.children}</Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+    <>
+      <span className="laptop:hidden block">
+        <Disclosure>
+          {({ open }) => (
+            <div className={`w-64 max-w-xs ${props.className}`}>
+              <Disclosure.Button className="flex justify-between w-full py-2">
+                <span>{props.title}</span>
+                <CaretIcon
+                  className={`${open ? "" : "transform rotate-180"} `}
+                />
+              </Disclosure.Button>
+              <Disclosure.Panel>{props.children}</Disclosure.Panel>
+            </div>
+          )}
+        </Disclosure>
+      </span>
+      <span className="laptop:block hidden">
+        <div className={`w-64 max-w-xs ${props.className}`}>
+          {props.title}
+          <hr className="w-full" />
+          {props.children}
+        </div>
+      </span>
+    </>
   )
 }
 
@@ -140,8 +183,8 @@ function ContactUs(props) {
     <FooterDropdown {...props}>
       {props.description}
       {props.entries.map(item => (
-        <div key={item.short}>
-          {item.short}: {item.value}
+        <div key={item.short} aria-label={item.title} className="flex gap-4">
+          {item.icon} {item.value}
         </div>
       ))}
     </FooterDropdown>
@@ -168,9 +211,9 @@ function Preferences(props) {
 
 function Socials(props) {
   return (
-    <div className="text-center">
-      {props.title}
-      <div className="flex justify-around p-5">
+    <div className="laptop:flex-row flex flex-col flex-auto max-w-sm text-center">
+      <span className="m-auto">{props.title}</span>
+      <div className="flex justify-around flex-auto p-5">
         {props.entries.map(item => (
           <a
             key={item.short}
@@ -186,7 +229,11 @@ function Socials(props) {
   )
 }
 function Copyright(props) {
-  return <div className="py-5 text-center">{props.value}</div>
+  return (
+    <div className="laptop:text-left laptop:pt-0 py-5 text-center">
+      {props.value}
+    </div>
+  )
 }
 function Affiliates(props) {
   return (
@@ -202,14 +249,49 @@ function Affiliates(props) {
     </div>
   )
 }
+
+function About(props) {
+  return (
+    <FooterDropdown {...props}>
+      <ul>
+        {props.entries.map(item => {
+          return (
+            <li key={item.short}>
+              <a href={item.value}>{item.title}</a>
+            </li>
+          )
+        })}
+      </ul>
+    </FooterDropdown>
+  )
+}
+
+function BusinessTag(props) {
+  return (
+    <div className="tablet:text-left tablet:m-0 flex flex-wrap items-center m-auto text-center">
+      {<props.icon className="w-12" />}
+      <div className="flex flex-col flex-auto">
+        <span>{props.title}</span>
+        <span>{props.subtitle}</span>
+      </div>
+    </div>
+  )
+}
+
 export default function Footer(props) {
   return (
     <div className="p-10 mt-16 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
-        <ContactUs {...footerData.contact} />
-        <Preferences {...footerData.preferences} />
-        <hr className="my-5 mt-16" />
-        <Socials {...footerData.socials} />
+        <div className="place-content-around gap-x-20 gap-y-6 flex flex-wrap">
+          <About {...footerData.about} className="flex-grow" />
+          <ContactUs {...footerData.contact} className="flex-grow" />
+          <Preferences {...footerData.preferences} className="flex-grow" />
+        </div>
+        <hr className="my-5" />
+        <div className="flex flex-wrap justify-between">
+          <BusinessTag {...footerData.meta} />
+          <Socials {...footerData.socials} />
+        </div>
         <hr className="my-5" />
         <Copyright {...footerData.copyright} />
         <Affiliates {...footerData.affiliations} />
