@@ -198,7 +198,7 @@ function Preferences(props) {
 
 function Socials(props) {
   return (
-    <div className="text-center">
+    <div className="flex-auto text-center">
       {props.title}
       <div className="flex justify-around p-5">
         {props.entries.map(item => (
@@ -251,10 +251,12 @@ function About(props) {
 
 function BusinessTag(props) {
   return (
-    <div className="grid grid-flow-col grid-rows-2 my-10 space-x-2">
-      {<props.icon className="w-12 row-span-2" />}
-      <span>{props.title}</span>
-      <span>{props.subtitle}</span>
+    <div className="flex flex-wrap items-center m-auto text-center">
+      {<props.icon className="w-12" />}
+      <div className="flex flex-col">
+        <span>{props.title}</span>
+        <span>{props.subtitle}</span>
+      </div>
     </div>
   )
 }
@@ -266,9 +268,11 @@ export default function Footer(props) {
         <About {...footerData.about} />
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
-        <BusinessTag {...footerData.meta} />
         <hr className="my-5" />
-        <Socials {...footerData.socials} />
+        <div className="flex flex-wrap">
+          <BusinessTag {...footerData.meta} />
+          <Socials {...footerData.socials} />
+        </div>
         <hr className="my-5" />
         <Copyright {...footerData.copyright} />
         <Affiliates {...footerData.affiliations} />
