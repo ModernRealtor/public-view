@@ -218,17 +218,20 @@ function Socials(props) {
   return (
     <div className="laptop:flex-row flex flex-col flex-auto max-w-sm text-center">
       <span className="m-auto">{props.title}</span>
-      <div className="flex justify-around flex-auto p-5">
-        {props.entries.map(item => (
-          <a
-            key={item.short}
-            href={item.value}
-            target="blank"
-            aria-label={`Visit our ${item.title} page`}
-          >
-            {item.icon}
-          </a>
-        ))}
+      <div className="items-stretch flex-auto p-5">
+        <ul className="flex justify-around max-w-xs m-auto">
+          {props.entries.map(item => (
+            <li key={item.short}>
+              <a
+                href={item.value}
+                target="blank"
+                aria-label={`Visit our ${item.title} page`}
+              >
+                {item.icon}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
