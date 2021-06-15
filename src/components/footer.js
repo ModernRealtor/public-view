@@ -7,6 +7,7 @@ import {
   FacebookLogo,
   InstagramLogo,
   LinkedInLogo,
+  YoutubeLogo,
 } from "../assets/icons/socials"
 
 const footerData = {
@@ -48,6 +49,12 @@ const footerData = {
         title: "LinkedIn",
         short: "IN",
         icon: <LinkedInLogo />,
+        value: "example.com",
+      },
+      {
+        title: "Youtube",
+        short: "YT",
+        icon: <YoutubeLogo />,
         value: "example.com",
       },
     ],
