@@ -216,7 +216,11 @@ function Socials(props) {
   )
 }
 function Copyright(props) {
-  return <div className="py-5 text-center">{props.value}</div>
+  return (
+    <div className="laptop:text-left laptop:pt-0 py-5 text-center">
+      {props.value}
+    </div>
+  )
 }
 function Affiliates(props) {
   return (
