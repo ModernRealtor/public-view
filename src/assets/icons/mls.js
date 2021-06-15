@@ -5,7 +5,7 @@ export default function MLSIcon(props) {
     <svg
       viewBox="0 0 72.3 32"
       version="1.1"
-      className={`w-20 m-auto ${props.className}`}
+      className={`m-auto ${props.className}`}
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
       stroke="currentColor"

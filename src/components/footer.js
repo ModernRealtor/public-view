@@ -132,18 +132,23 @@ const footerData = {
     title: "Affiliates",
     entries: [
       {
-        icon: <MLSIcon />,
-        id: 0,
-        title: "Trusted listings from REALTOR® Agents.",
-        description:
-          "The MLS® mark and associated logos identify professional services rendered by REALTOR® members of CREA to effect the purchase, sale and lease of real estate as part of a cooperative selling system.",
+        icon: <RealtorIcon className="h-8" />,
+        id: "realtor-icon",
+        text:
+          "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
       },
       {
-        icon: <RealtorIcon />,
-        id: 1,
-        title: "",
-        description:
-          "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
+        icon: <MLSIcon className="h-8" />,
+        id: "mls-icon",
+        text: (
+          <>
+            Trusted listings from REALTOR® Agents.
+            <br />
+            The MLS® mark and associated logos identify professional services
+            rendered by REALTOR® members of CREA to effect the purchase, sale
+            and lease of real estate as part of a cooperative selling system.,
+          </>
+        ),
       },
     ],
   },
@@ -241,9 +246,7 @@ function Affiliates(props) {
       {props.entries.map(item => (
         <div key={item.id} className="flex gap-2">
           <div className="self-center">{item.icon}</div>
-          <div className="self-center">
-            {item.title} <br /> {item.description}
-          </div>
+          <div className="self-center">{item.text}</div>
         </div>
       ))}
     </div>
