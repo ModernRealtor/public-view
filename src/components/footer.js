@@ -198,9 +198,9 @@ function Preferences(props) {
 
 function Socials(props) {
   return (
-    <div className="flex-auto max-w-sm text-center">
-      {props.title}
-      <div className="flex justify-around p-5">
+    <div className="laptop:flex-row flex flex-col flex-auto max-w-sm text-center">
+      <span className="m-auto">{props.title}</span>
+      <div className="flex justify-around flex-auto p-5">
         {props.entries.map(item => (
           <a
             key={item.short}
