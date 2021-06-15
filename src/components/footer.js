@@ -19,13 +19,13 @@ const footerData = {
         title: "Office Number",
         short: "Office",
         icon: null,
-        value: "416-666-6666",
+        value: "(416) 658-5553",
       },
       {
         title: "Address",
         short: "Address",
         icon: null,
-        value: "34 Example St. Toronto Ontario",
+        value: "2544 Eglinton Ave W, York, ON M6M 1T1",
       },
     ],
   },
@@ -37,8 +37,9 @@ const footerData = {
         title: "Facebook",
         short: "FB",
         icon: <FacebookLogo />,
-        value: "example.com",
+        value: "https://www.facebook.com/Realty100Plus",
       },
+      // The following two she only has a personal, not a business. For now. So not linking it
       {
         title: "Instagram",
         short: "IG",
@@ -55,7 +56,8 @@ const footerData = {
         title: "Youtube",
         short: "YT",
         icon: <YoutubeLogo />,
-        value: "example.com",
+        value:
+          "https://www.youtube.com/channel/UCKQ4oHRYH_aAQHaSXoPdaSQ/featured",
       },
     ],
   },
