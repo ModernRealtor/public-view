@@ -1,5 +1,5 @@
 import React from "react"
-import { CaretIcon } from "../assets/icons/controls"
+import { CaretIcon, PhoneIcon, LocationIcon } from "../assets/icons/controls"
 import { Disclosure } from "@headlessui/react"
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
@@ -17,14 +17,14 @@ const footerData = {
     entries: [
       {
         title: "Office Number",
-        short: "Office",
-        icon: null,
+        short: "tel",
+        icon: <PhoneIcon />,
         value: "(416) 658-5553",
       },
       {
         title: "Address",
-        short: "Address",
-        icon: null,
+        short: "address",
+        icon: <LocationIcon />,
         value: "2544 Eglinton Ave W, York, ON M6M 1T1",
       },
     ],
@@ -149,8 +149,8 @@ function ContactUs(props) {
     <FooterDropdown {...props}>
       {props.description}
       {props.entries.map(item => (
-        <div key={item.short}>
-          {item.short}: {item.value}
+        <div key={item.short} aria-label={item.title} className="flex gap-4">
+          {item.icon} {item.value}
         </div>
       ))}
     </FooterDropdown>
