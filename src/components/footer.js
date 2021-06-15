@@ -132,18 +132,23 @@ const footerData = {
     title: "Affiliates",
     entries: [
       {
-        icon: <MLSIcon />,
-        id: 0,
-        title: "Trusted listings from REALTOR® Agents.",
-        description:
-          "The MLS® mark and associated logos identify professional services rendered by REALTOR® members of CREA to effect the purchase, sale and lease of real estate as part of a cooperative selling system.",
+        icon: RealtorIcon,
+        id: "realtor-icon",
+        text:
+          "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
       },
       {
-        icon: <RealtorIcon />,
-        id: 1,
-        title: "",
-        description:
-          "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
+        icon: MLSIcon,
+        id: "mls-icon",
+        text: (
+          <>
+            Trusted listings from REALTOR® Agents.
+            <br />
+            The MLS® mark and associated logos identify professional services
+            rendered by REALTOR® members of CREA to effect the purchase, sale
+            and lease of real estate as part of a cooperative selling system.,
+          </>
+        ),
       },
     ],
   },
@@ -213,37 +218,34 @@ function Socials(props) {
   return (
     <div className="laptop:flex-row flex flex-col flex-auto max-w-sm text-center">
       <span className="m-auto">{props.title}</span>
-      <div className="flex justify-around flex-auto p-5">
-        {props.entries.map(item => (
-          <a
-            key={item.short}
-            href={item.value}
-            target="blank"
-            aria-label={`Visit our ${item.title} page`}
-          >
-            {item.icon}
-          </a>
-        ))}
+      <div className="items-stretch flex-auto p-5">
+        <ul className="flex justify-around max-w-xs m-auto">
+          {props.entries.map(item => (
+            <li key={item.short}>
+              <a
+                href={item.value}
+                target="blank"
+                aria-label={`Visit our ${item.title} page`}
+              >
+                {item.icon}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
 }
 function Copyright(props) {
-  return (
-    <div className="laptop:text-left laptop:pt-0 py-5 text-center">
-      {props.value}
-    </div>
-  )
+  return <div className="laptop:text-left text-center">{props.value}</div>
 }
 function Affiliates(props) {
   return (
-    <div className="text-2xs flex flex-col gap-2 mt-5">
+    <div className="text-2xs flex flex-col gap-2 mt-8">
       {props.entries.map(item => (
-        <div key={item.id} className="flex gap-2">
-          <div className="self-center">{item.icon}</div>
-          <div className="self-center">
-            {item.title} <br /> {item.description}
-          </div>
+        <div key={item.id}>
+          <item.icon className="float-left h-8 pb-2 pr-2" />
+          <span className="leading-none align-top">{item.text}</span>
         </div>
       ))}
     </div>
@@ -278,22 +280,30 @@ function BusinessTag(props) {
   )
 }
 
+function FooterBanner(props) {
+  return (
+    <div className="my-20">
+      <hr className="my-5" />
+      <div className="gap-y-8 flex flex-wrap justify-between">
+        <BusinessTag {...footerData.meta} />
+        <Socials {...footerData.socials} />
+      </div>
+      <hr className="my-5" />
+      <Copyright {...footerData.copyright} />
+    </div>
+  )
+}
+
 export default function Footer(props) {
   return (
-    <div className="p-10 mt-16 bg-gray-300 shadow-inner">
+    <div className="p-10 mt-20 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
-        <div className="place-content-around gap-x-20 gap-y-6 flex flex-wrap">
+        <div className="place-content-around gap-x-20 gap-y-10 laptop:mb-32 flex flex-wrap mt-5 mb-10">
           <About {...footerData.about} className="flex-grow" />
           <ContactUs {...footerData.contact} className="flex-grow" />
           <Preferences {...footerData.preferences} className="flex-grow" />
         </div>
-        <hr className="my-5" />
-        <div className="flex flex-wrap justify-between">
-          <BusinessTag {...footerData.meta} />
-          <Socials {...footerData.socials} />
-        </div>
-        <hr className="my-5" />
-        <Copyright {...footerData.copyright} />
+        <FooterBanner />
         <Affiliates {...footerData.affiliations} />
       </div>
     </div>
