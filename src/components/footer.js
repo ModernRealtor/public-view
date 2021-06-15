@@ -132,13 +132,13 @@ const footerData = {
     title: "Affiliates",
     entries: [
       {
-        icon: <RealtorIcon className="h-8" />,
+        icon: RealtorIcon,
         id: "realtor-icon",
         text:
           "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
       },
       {
-        icon: <MLSIcon className="h-8" />,
+        icon: MLSIcon,
         id: "mls-icon",
         text: (
           <>
@@ -244,9 +244,9 @@ function Affiliates(props) {
   return (
     <div className="text-2xs flex flex-col gap-2 mt-5">
       {props.entries.map(item => (
-        <div key={item.id} className="flex gap-2">
-          <div className="self-center">{item.icon}</div>
-          <div className="self-center">{item.text}</div>
+        <div key={item.id}>
+          <item.icon className="float-left h-8 pb-2 pr-2" />
+          <span className="leading-none align-top">{item.text}</span>
         </div>
       ))}
     </div>

@@ -4,7 +4,7 @@ export default function RealtorIcon(props) {
   return (
     <svg
       viewBox="0 0 72.6 82.974"
-      className={`m-auto ${props.className}`}
+      className={` ${props.className}`}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
