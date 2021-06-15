@@ -198,7 +198,7 @@ function Preferences(props) {
 
 function Socials(props) {
   return (
-    <div className="flex-auto text-center">
+    <div className="flex-auto max-w-sm text-center">
       {props.title}
       <div className="flex justify-around p-5">
         {props.entries.map(item => (
@@ -251,9 +251,9 @@ function About(props) {
 
 function BusinessTag(props) {
   return (
-    <div className="tablet:text-left flex flex-wrap items-center m-auto text-center">
+    <div className="tablet:text-left tablet:m-0 flex flex-wrap items-center m-auto text-center">
       {<props.icon className="w-12" />}
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-auto">
         <span>{props.title}</span>
         <span>{props.subtitle}</span>
       </div>
@@ -269,7 +269,7 @@ export default function Footer(props) {
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
         <hr className="my-5" />
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-between">
           <BusinessTag {...footerData.meta} />
           <Socials {...footerData.socials} />
         </div>
