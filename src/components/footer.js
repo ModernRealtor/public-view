@@ -3,6 +3,7 @@ import { CaretIcon, PhoneIcon, LocationIcon } from "../assets/icons/controls"
 import { Disclosure } from "@headlessui/react"
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
+import LogoIcon from "../assets/icons/logo"
 import {
   FacebookLogo,
   InstagramLogo,
@@ -11,6 +12,11 @@ import {
 } from "../assets/icons/socials"
 
 const footerData = {
+  meta: {
+    icon: LogoIcon,
+    title: "West-100 Capital Realty Inc., Brokerage",
+    subtitle: "Independently Owned and Operated",
+  },
   contact: {
     title: "Contact Us",
     description: "Call or drop by anytime!",
@@ -233,15 +239,23 @@ function About(props) {
       <ul>
         {props.entries.map(item => {
           return (
-            <li>
-              <a key={item.short} href={item.value}>
-                {item.title}
-              </a>
+            <li key={item.short}>
+              <a href={item.value}>{item.title}</a>
             </li>
           )
         })}
       </ul>
     </FooterDropdown>
+  )
+}
+
+function BusinessTag(props) {
+  return (
+    <div className="grid grid-flow-col grid-rows-2 gap-2 mt-8">
+      {<props.icon className="w-12 row-span-2" />}
+      <span>{props.title}</span>
+      <span>{props.subtitle}</span>
+    </div>
   )
 }
 
@@ -252,7 +266,8 @@ export default function Footer(props) {
         <About {...footerData.about} />
         <ContactUs {...footerData.contact} />
         <Preferences {...footerData.preferences} />
-        <hr className="my-5 mt-16" />
+        <BusinessTag {...footerData.meta} />
+        <hr className="my-5 mt-10" />
         <Socials {...footerData.socials} />
         <hr className="my-5" />
         <Copyright {...footerData.copyright} />
