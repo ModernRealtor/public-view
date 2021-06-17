@@ -157,10 +157,10 @@ const footerData = {
 function FooterDropdown(props) {
   return (
     <>
-      <span className="laptop:hidden block">
+      <span className="laptop:hidden block w-full max-w-sm">
         <Disclosure>
           {({ open }) => (
-            <div className={`w-64 max-w-xs ${props.className}`}>
+            <div className={`w-full ${props.className}`}>
               <Disclosure.Button className="flex justify-between w-full py-2">
                 <span>{props.title}</span>
                 <CaretIcon
@@ -298,7 +298,7 @@ export default function Footer(props) {
   return (
     <div className="p-10 mt-20 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
-        <div className="place-content-around gap-x-20 gap-y-10 laptop:mb-32 flex flex-wrap mt-5 mb-10">
+        <div className="place-content-center gap-x-20 gap-y-10 laptop:mb-32 flex flex-wrap mt-5 mb-10">
           <About {...footerData.about} className="flex-grow" />
           <ContactUs {...footerData.contact} className="flex-grow" />
           <Preferences {...footerData.preferences} className="flex-grow" />
