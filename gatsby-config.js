@@ -4,19 +4,45 @@
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
+const clientName = process.env["clientName"] || "Demo"
+const themeColor = process.env["themeColor"] || "000000"
+const clientTagline = process.env["tagline"] || "Tagline"
+const clientNumber = process.env["number"] || "phone number"
+const clientAddress = process.env["address"] || "address"
+const clientFB = process.env["facebook"] || "fb"
+const clientInsta = process.env["instagram"] || "insta"
+const clientLinkedIn = process.env["linkedIn"] || "linkedIn"
+const clientYoutube = process.env["youtube"] || "yt"
+
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: `${clientName}`,
+    description: `${clientName} Description`,
+    themeColor: `#${themeColor}`,
+    tagline: `${clientTagline}`,
+    address: `${clientAddress}`,
+    phoneNumber: `${clientNumber}`,
+    fb: `${clientFB}`,
+    instagram: `${clientInsta}`,
+    linkedIn: `${clientLinkedIn}`,
+    youtube: `${clientYoutube}`,
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `West-100 Capital Reality`,
-        short_name: `West-100`,
+        name: `${clientName}`,
+        short_name: `${clientName}`,
         start_url: `/`,
         icon: `static/icon.svg`,
         background_color: `#FEFEFF`,
-        theme_color: `#FBB33B`,
+        theme_color: `#${themeColor}`,
         display: `standalone`,
       },
     },
