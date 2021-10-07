@@ -1,5 +1,6 @@
 import React from "react"
 import { CaretIcon, PhoneIcon, LocationIcon } from "../assets/icons/controls"
+import { useStaticQuery, graphql } from "gatsby"
 import { Disclosure } from "@headlessui/react"
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
@@ -11,147 +12,164 @@ import {
   YoutubeLogo,
 } from "../assets/icons/socials"
 
-const footerData = {
-  meta: {
-    icon: LogoIcon,
-    title: "West-100 Capital Realty Inc., Brokerage",
-    subtitle: "Independently Owned and Operated",
-  },
-  contact: {
-    title: "Contact Us",
-    description: "Call or drop by anytime!",
-    entries: [
-      {
-        title: "Office Number",
-        short: "tel",
-        icon: <PhoneIcon />,
-        value: "(416) 658-5553",
-      },
-      {
-        title: "Address",
-        short: "address",
-        icon: <LocationIcon />,
-        value: "2544 Eglinton Ave W, York, ON M6M 1T1",
-      },
-    ],
-  },
-  socials: {
-    title: "Stay Connected",
-    description: "Follow us on social media!",
-    entries: [
-      {
-        title: "Facebook",
-        short: "FB",
-        icon: <FacebookLogo />,
-        value: "https://www.facebook.com/Realty100Plus",
-      },
-      // The following two she only has a personal, not a business. For now. So not linking it
-      {
-        title: "Instagram",
-        short: "IG",
-        icon: <InstagramLogo />,
-        value: "/",
-      },
-      {
-        title: "LinkedIn",
-        short: "IN",
-        icon: <LinkedInLogo />,
-        value: "/",
-      },
-      {
-        title: "Youtube",
-        short: "YT",
-        icon: <YoutubeLogo />,
-        value:
-          "https://www.youtube.com/channel/UCKQ4oHRYH_aAQHaSXoPdaSQ/featured",
-      },
-    ],
-  },
-  preferences: {
-    title: "Preferences",
-    description: "Modify your preferences",
-    entries: [
-      {
-        key: "language",
-        tag: LanguageSelector,
-      },
-      {
-        key: "theme",
-        tag: ThemeSelector,
-      },
-    ],
-  },
-  about: {
-    title: "The Brokerage",
-    entries: [
-      {
-        title: "About",
-        short: "about",
-        value: "/",
-      },
-      {
-        title: "The Team",
-        short: "team",
-        value: "/",
-      },
-    ],
-  },
-  language: {
-    title: "Language",
-    description: "Choose a language.",
-    entries: [
-      {
-        title: "English",
-        value: "en",
-      },
-    ],
-  },
-  theme: {
-    title: "Theme",
-    description: "Choose a theme.",
-    entries: [
-      {
-        title: "Light",
-        value: "l",
-      },
-      {
-        title: "Dark",
-        value: "d",
-      },
-      {
-        title: "System",
-        value: "sys",
-      },
-    ],
-  },
-  copyright: {
-    title: "Copyright",
-    value: "©2021 West-100 Capital Realty, Inc.",
-  },
-  affiliations: {
-    title: "Affiliates",
-    entries: [
-      {
-        icon: RealtorIcon,
-        id: "realtor-icon",
-        text:
-          "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
-      },
-      {
-        icon: MLSIcon,
-        id: "mls-icon",
-        text: (
-          <>
-            Trusted listings from REALTOR® Agents.
-            <br />
-            The MLS® mark and associated logos identify professional services
-            rendered by REALTOR® members of CREA to effect the purchase, sale
-            and lease of real estate as part of a cooperative selling system.,
-          </>
-        ),
-      },
-    ],
-  },
+const getFooterData = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          tagline
+          address
+          phoneNumber
+          fb
+          instagram
+          linkedIn
+          youtube
+        }
+      }
+    }
+  `)
+
+  return {
+    meta: {
+      icon: LogoIcon,
+      title: `${data.site.siteMetadata.title}`,
+      subtitle: `${data.site.siteMetadata.tagline}`,
+    },
+    contact: {
+      title: "Contact Us",
+      description: "Call or drop by anytime!",
+      entries: [
+        {
+          title: "Office Number",
+          short: "tel",
+          icon: <PhoneIcon />,
+          value: `${data.site.siteMetadata.phoneNumber}`,
+        },
+        {
+          title: "Address",
+          short: "address",
+          icon: <LocationIcon />,
+          value: `${data.site.siteMetadata.address}`,
+        },
+      ],
+    },
+    socials: {
+      title: "Stay Connected",
+      description: "Follow us on social media!",
+      entries: [
+        {
+          title: "Facebook",
+          short: "FB",
+          icon: <FacebookLogo />,
+          value: `${data.site.siteMetadata.fb}`,
+        },
+        {
+          title: "Instagram",
+          short: "IG",
+          icon: <InstagramLogo />,
+          value: `${data.site.siteMetadata.instagram}`,
+        },
+        {
+          title: "LinkedIn",
+          short: "IN",
+          icon: <LinkedInLogo />,
+          value: `${data.site.siteMetadata.linkedIn}`,
+        },
+        {
+          title: "Youtube",
+          short: "YT",
+          icon: <YoutubeLogo />,
+          value: `${data.site.siteMetadata.youtube}`,
+        },
+      ],
+    },
+    preferences: {
+      title: "Preferences",
+      description: "Modify your preferences",
+      entries: [
+        {
+          key: "language",
+          tag: LanguageSelector,
+        },
+        {
+          key: "theme",
+          tag: ThemeSelector,
+        },
+      ],
+    },
+    about: {
+      title: "The Brokerage",
+      entries: [
+        {
+          title: "About",
+          short: "about",
+          value: "/",
+        },
+        {
+          title: "The Team",
+          short: "team",
+          value: "/",
+        },
+      ],
+    },
+    language: {
+      title: "Language",
+      description: "Choose a language.",
+      entries: [
+        {
+          title: "English",
+          value: "en",
+        },
+      ],
+    },
+    theme: {
+      title: "Theme",
+      description: "Choose a theme.",
+      entries: [
+        {
+          title: "Light",
+          value: "l",
+        },
+        {
+          title: "Dark",
+          value: "d",
+        },
+        {
+          title: "System",
+          value: "sys",
+        },
+      ],
+    },
+    copyright: {
+      title: "Copyright",
+      value: `©2021 ${data.site.siteMetadata.title}`,
+    },
+    affiliations: {
+      title: "Affiliates",
+      entries: [
+        {
+          icon: RealtorIcon,
+          id: "realtor-icon",
+          text:
+            "©2021 The Canadian Real Estate Association. All rights reserved. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by CREA and identify real estate professionals who are members of CREA.",
+        },
+        {
+          icon: MLSIcon,
+          id: "mls-icon",
+          text: (
+            <>
+              Trusted listings from REALTOR® Agents.
+              <br />
+              The MLS® mark and associated logos identify professional services
+              rendered by REALTOR® members of CREA to effect the purchase, sale
+              and lease of real estate as part of a cooperative selling system.,
+            </>
+          ),
+        },
+      ],
+    },
+  }
 }
 
 function FooterDropdown(props) {
@@ -204,6 +222,7 @@ function ThemeSelector(props) {
 }
 
 function Preferences(props) {
+  let footerData = getFooterData()
   return (
     <FooterDropdown {...props}>
       {props.description}
@@ -281,6 +300,7 @@ function BusinessTag(props) {
 }
 
 function FooterBanner(props) {
+  let footerData = getFooterData()
   return (
     <div className="my-20">
       <hr className="my-5" />
@@ -295,6 +315,7 @@ function FooterBanner(props) {
 }
 
 export default function Footer(props) {
+  let footerData = getFooterData()
   return (
     <div className="p-10 mt-20 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
