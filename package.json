@@ -16,12 +16,12 @@
     "@headlessui/react": "^1.2.0",
     "@heroicons/react": "^1.0.1",
     "@tailwindcss/aspect-ratio": "^0.2.1",
-    "gatsby": "^3.6.2",
+    "gatsby": "^3.14.2",
     "gatsby-plugin-image": "^1.7.0",
     "gatsby-plugin-manifest": "^3.5.0",
     "gatsby-plugin-offline": "^4.5.0",
     "gatsby-plugin-react-helmet": "^4.4.0",
-    "gatsby-plugin-sharp": "^3.7.0",
+    "gatsby-plugin-sharp": "^3.14.1",
     "gatsby-source-filesystem": "^3.7.0",
     "gatsby-transformer-sharp": "^3.7.0",
     "react": "^17.0.1",
@@ -34,7 +34,7 @@
     "postcss": "^8.3.0",
     "prettier": "2.2.1",
     "prettier-plugin-tailwind-css": "^1.5.0",
-    "tailwindcss": "^2.1.4"
+    "tailwindcss": "^2.2.16"
   },
   "repository": {
     "type": "git",
