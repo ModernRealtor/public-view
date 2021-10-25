@@ -1,7 +1,7 @@
 {
   "name": "public-view",
   "private": true,
-  "description": "Public site for West-100",
+  "description": "Public site template",
   "version": "0.1.0",
   "scripts": {
     "build": "gatsby build",
@@ -37,12 +37,5 @@
     "prettier": "2.2.1",
     "prettier-plugin-tailwind-css": "^1.5.0",
     "tailwindcss": "^2.2.16"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/West-100/public-view"
-  },
-  "bugs": {
-    "url": "https://github.com/West-100/public-view/issues"
   }
 }
