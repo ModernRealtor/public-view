@@ -20,6 +20,7 @@ const clientYoutube = process.env["youtube"] || "yt"
 
 
 const clientRef = process.env["CLIENT_REF"] || "not found"
+const cmsURL = process.env["CMS_URL"] || "https://staging.modernrealtor.dev/api/cms/graphql"
 
 
 module.exports = {
@@ -48,6 +49,17 @@ module.exports = {
         background_color: `#FEFEFF`,
         theme_color: `#${themeColor}`,
         display: `standalone`,
+      },
+    },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "Cms",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "cms",
+        // Url to query from
+        url: cmsURL,
       },
     },
     `gatsby-plugin-postcss`,

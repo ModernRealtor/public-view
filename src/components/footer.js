@@ -12,7 +12,7 @@ import {
   YoutubeLogo,
 } from "../assets/icons/socials"
 
-const getFooterData = () => {
+const FooterData = () => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -222,7 +222,7 @@ function ThemeSelector(props) {
 }
 
 function Preferences(props) {
-  let footerData = getFooterData()
+  let footerData = FooterData()
   return (
     <FooterDropdown {...props}>
       {props.description}
@@ -300,7 +300,7 @@ function BusinessTag(props) {
 }
 
 function FooterBanner(props) {
-  let footerData = getFooterData()
+  let footerData = FooterData()
   return (
     <div className="my-20">
       <hr className="my-5" />
@@ -315,7 +315,7 @@ function FooterBanner(props) {
 }
 
 export default function Footer(props) {
-  let footerData = getFooterData()
+  let footerData = FooterData()
   return (
     <div className="p-10 mt-20 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
