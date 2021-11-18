@@ -18,10 +18,14 @@ const clientInsta = process.env["instagram"] || "insta"
 const clientLinkedIn = process.env["linkedIn"] || "linkedIn"
 const clientYoutube = process.env["youtube"] || "yt"
 
+
+const clientRef = process.env["CLIENT_REF"] || "not found"
+
+
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: `${clientName}`,
+    title: `${clientRef} ${clientName}`,
     description: `${clientName} Description`,
     themeColor: `#${themeColor}`,
     tagline: `${clientTagline}`,
