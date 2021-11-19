@@ -40,18 +40,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `${clientName}`,
-        short_name: `${clientName}`,
-        start_url: `/`,
-        icon: `static/icon.svg`,
-        background_color: `#FEFEFF`,
-        theme_color: `#${themeColor}`,
-        display: `standalone`,
-      },
-    },
-    {
       resolve: "gatsby-source-graphql",
       options: {
         // Arbitrary name for the remote schema Query type
