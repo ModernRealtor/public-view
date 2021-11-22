@@ -48,6 +48,11 @@ module.exports = {
         fieldName: "cms",
         // Url to query from
         url: cmsURL,
+        // HTTP headers
+        headers: {
+          // Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          OrgRef: clientRef
+        },
       },
     },
     `gatsby-plugin-postcss`,

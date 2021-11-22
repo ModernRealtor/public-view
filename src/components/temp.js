@@ -5,7 +5,9 @@ export default function TempInner(props) {
   const data = useStaticQuery(graphql`
   query {
     cms {
-      test
+      team {
+        name
+      }
     }
   }
 `)
@@ -15,7 +17,7 @@ export default function TempInner(props) {
       Our Services (solutions: buy/sell/etc) <br />
       Testimonials <br />
       oct 22 test
-      {data.cms.test}
+      {data.cms.team[0].name}
     </div>
   )
 }
