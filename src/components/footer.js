@@ -72,7 +72,7 @@ export default function Footer(props) {
   }
 `)
   return (
-    <div className="p-10 mt-20 bg-gray-300 shadow-inner">
+    <div className="py-10 mt-20 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
         <div className="place-content-center gap-x-20 gap-y-10 laptop:mb-32 flex flex-wrap mt-5 mb-10">
           <LogoIcon className="flex-col" logoClassName="w-36" />
