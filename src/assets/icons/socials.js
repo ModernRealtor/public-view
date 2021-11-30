@@ -125,30 +125,25 @@ export default function FooterSocials(props) {
   }
 `)
   return (
-    <div className="laptop:flex-row flex flex-col flex-auto max-w-sm text-center">
-      <span className="m-auto">Stay Connected</span>
-      <div className="items-stretch flex-auto p-5">
-        <ul className="flex justify-around max-w-xs m-auto">
-          {data.cms.org.contact
-            .filter(item => item.type in socialIcons)
-            .map((item, i) => ({
-              key: i,
-              href: `${socialIcons[item.type].prefix}${item.value}`,
-              label: `Contact link. ${item.description || ""}`,
-              icon: socialIcons[item.type].icon
-            })).map(item => (
-              <li key={item.key}>
-                <a
-                  href={item.href}
-                  target="blank"
-                  aria-label={item.label}
-                >
-                  <item.icon/>
-                </a>
-              </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <ul className="flex items-center content-between gap-x-3">
+      {data.cms.org.contact
+        .filter(item => item.type in socialIcons)
+        .map((item, i) => ({
+          key: i,
+          href: `${socialIcons[item.type].prefix}${item.value}`,
+          label: `Contact link. ${item.description || ""}`,
+          icon: socialIcons[item.type].icon
+        })).map(item => (
+          <li key={item.key}>
+            <a
+              href={item.href}
+              target="blank"
+              aria-label={item.label}
+            >
+              <item.icon/>
+            </a>
+          </li>
+      ))}
+    </ul>
   )
 }
