@@ -1,3 +1,5 @@
+const path = require("path")
+
 async function resolveManifestOptions(graphql){
     return graphql(`
     query{
@@ -27,13 +29,21 @@ exports.onPostBuild = ({ reporter }) => {
     reporter.info(`Your Gatsby site has been built!`)
 }
 
-// Create blog pages dynamically
-exports.createPages = async ({ graphql, store }) => {
+exports.createPages = async ({ graphql, store, actions}) => {
     const state = store.getState()
+    const { createPage } = actions
 
+    // Update manifest with dynamic content
     const plugin = state.flattenedPlugins.find(plugin => plugin.name === "gatsby-plugin-manifest")
     if (plugin) {
         const manifestOptions = await resolveManifestOptions(graphql)
         plugin.pluginOptions = {...plugin.pluginOptions, ...manifestOptions}
     }
+
+    // Create test page
+    const pageTemplate = path.resolve(`src/dynamicPages/teamMember.js`)
+    createPage({
+        path: "/team/1",
+        component: pageTemplate
+    })
 }
