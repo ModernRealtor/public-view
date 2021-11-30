@@ -8,16 +8,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const clientName = process.env["clientName"] || "Demo"
 const themeColor = process.env["themeColor"] || "000000"
-const clientTagline = process.env["tagline"] || "Tagline"
-const clientNumber = process.env["number"] || "phone number"
-const clientAddress = process.env["address"] || "address"
-const clientFB = process.env["facebook"] || "fb"
-const clientInsta = process.env["instagram"] || "insta"
-const clientLinkedIn = process.env["linkedIn"] || "linkedIn"
-const clientYoutube = process.env["youtube"] || "yt"
-
 
 const clientRef = process.env["CLIENT_REF"] || "not found"
 const cmsURL = process.env["CMS_URL"] || "https://staging.modernrealtor.dev/api/cms/graphql"
@@ -26,16 +17,7 @@ const cmsURL = process.env["CMS_URL"] || "https://staging.modernrealtor.dev/api/
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: `${clientRef} ${clientName}`,
-    description: `${clientName} Description`,
-    themeColor: `#${themeColor}`,
-    tagline: `${clientTagline}`,
-    address: `${clientAddress}`,
-    phoneNumber: `${clientNumber}`,
-    fb: `${clientFB}`,
-    instagram: `${clientInsta}`,
-    linkedIn: `${clientLinkedIn}`,
-    youtube: `${clientYoutube}`,
+    themeColor: `#${themeColor}`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

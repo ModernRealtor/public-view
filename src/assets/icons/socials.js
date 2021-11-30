@@ -1,4 +1,5 @@
 import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
 
 export function FacebookLogo(props) {
   return (
@@ -62,5 +63,88 @@ export function YoutubeLogo(props) {
     >
       <path d="M 93.465 47.843 L 154.886 82.785 L 93.465 117.725 Z M 230.089 25.854 C 227.386 15.677 219.424 7.663 209.313 4.943 C 190.987 0 117.499 0 117.499 0 C 117.499 0 44.013 0 25.687 4.943 C 15.576 7.663 7.613 15.677 4.911 25.854 C 0 44.3 0 82.784 0 82.784 C 0 82.784 0 121.269 4.911 139.715 C 7.613 149.891 15.576 157.905 25.687 160.626 C 44.013 165.568 117.499 165.568 117.499 165.568 C 117.499 165.568 190.987 165.568 209.313 160.626 C 219.424 157.905 227.386 149.89 230.089 139.716 C 235 121.268 235 82.784 235 82.784 C 235 82.784 235 44.3 230.089 25.854 Z"></path>
     </svg>
+  )
+}
+
+export function TikTokLogo(props) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      version="1.1" 
+      viewBox="0 0 256 256" 
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="0"
+      className={`w-5 h-5 ${props.className}`}
+    >
+      <path d="M 45 0 C 20.147 0 0 20.147 0 45 c 0 24.853 20.147 45 45 45 s 45 -20.147 45 -45 C 90 20.147 69.853 0 45 0 z M 72.039 33.277 v 6.758 c -3.187 0.001 -6.283 -0.623 -9.203 -1.855 c -1.878 -0.793 -3.627 -1.814 -5.227 -3.048 l 0.048 20.801 c -0.02 4.684 -1.873 9.085 -5.227 12.4 c -2.73 2.698 -6.188 4.414 -9.937 4.97 c -0.881 0.13 -1.777 0.197 -2.684 0.197 c -4.013 0 -7.823 -1.3 -10.939 -3.698 c -0.586 -0.452 -1.147 -0.941 -1.681 -1.468 c -3.635 -3.593 -5.509 -8.462 -5.194 -13.584 c 0.241 -3.899 1.802 -7.618 4.404 -10.532 c 3.443 -3.857 8.26 -5.998 13.41 -5.998 c 0.906 0 1.803 0.068 2.684 0.198 v 2.499 v 6.951 c -0.835 -0.275 -1.727 -0.427 -2.656 -0.427 c -4.705 0 -8.512 3.839 -8.442 8.548 c 0.045 3.013 1.69 5.646 4.118 7.098 c 1.141 0.682 2.453 1.105 3.853 1.182 c 1.097 0.06 2.151 -0.093 3.126 -0.415 c 3.362 -1.111 5.787 -4.268 5.787 -7.992 l 0.011 -13.93 V 16.5 h 9.307 c 0.009 0.922 0.103 1.822 0.276 2.694 c 0.702 3.529 2.692 6.591 5.46 8.678 c 2.414 1.821 5.42 2.9 8.678 2.9 c 0.002 0 0.029 0 0.027 -0.002 V 33.277 z" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+    </svg>
+  )
+}
+
+
+let socialIcons = {
+  "fb": {
+    icon: FacebookLogo,
+    prefix: "www.facebook.com"
+  },
+  "ig": {
+    icon: InstagramLogo,
+    prefix: "www.instagram.com"
+  },
+  "li": {
+    icon: LinkedInLogo,
+    prefix: "www.linkedin.com/in"
+  },
+  "yt": {
+    icon: YoutubeLogo,
+    prefix: "www.youtube.com"
+  },
+  "tt": {
+    icon: TikTokLogo,
+    prefix: "www.tiktok.com"
+  }
+}
+
+export default function FooterSocials(props) {
+  const data = useStaticQuery(graphql`
+  query {
+    cms {
+      org {
+        contact {
+          type
+          value
+          description
+        }
+      }
+    }
+  }
+`)
+  return (
+    <div className="laptop:flex-row flex flex-col flex-auto max-w-sm text-center">
+      <span className="m-auto">Stay Connected</span>
+      <div className="items-stretch flex-auto p-5">
+        <ul className="flex justify-around max-w-xs m-auto">
+          {data.cms.org.contact
+            .filter(item => item.type in socialIcons)
+            .map((item, i) => ({
+              key: i,
+              href: `${socialIcons[item.type].prefix}${item.value}`,
+              label: `Contact link. ${item.description || ""}`,
+              icon: socialIcons[item.type].icon
+            })).map(item => (
+              <li key={item.key}>
+                <a
+                  href={item.href}
+                  target="blank"
+                  aria-label={item.label}
+                >
+                  <item.icon/>
+                </a>
+              </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   )
 }

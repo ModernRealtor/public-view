@@ -5,10 +5,11 @@ import LogoIcon from "../assets/icons/logo"
 export default function Logo(props) {
   const data = useStaticQuery(graphql`
     query {
-      site {
-        siteMetadata {
-          title
-          description
+      cms {
+        org {
+          info{
+            name
+          }
         }
       }
     }
@@ -20,10 +21,7 @@ export default function Logo(props) {
       </button>
       <div className="place-content-center flex flex-row flex-wrap justify-start h-full ml-1">
         <span className="tablet:mr-3 text-lg font-bold">
-          {data.site.siteMetadata.title}
-        </span>
-        <span className="tablet:inline-block hidden text-sm leading-loose">
-          {data.site.siteMetadata.description}
+          {data.cms.org.info.name}
         </span>
       </div>
     </div>

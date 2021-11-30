@@ -4,10 +4,10 @@ import { MenuIcon, CloseIcon } from "../assets/icons/controls"
 const menuData = {
   entries: [
     {
-      title: "Get Started",
+      title: "Residential",
     },
     {
-      title: "Login",
+      title: "Commercial",
     },
   ],
 }
