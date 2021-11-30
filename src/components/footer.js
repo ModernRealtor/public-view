@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
-import LogoIcon from "../assets/icons/logo"
+import LogoIcon from "./logo"
 import Socials from "../assets/icons/socials"
 
 let links = [
@@ -59,18 +59,6 @@ function Affiliates(props) {
   )
 }
 
-
-function BusinessTag(props) {
-  return (
-    <div className="tablet:text-left tablet:m-0 flex flex-wrap items-center m-auto text-center">
-      {<LogoIcon className="w-12" />}
-      <div className="flex flex-col flex-auto">
-        <span>{props.businessName}</span>
-      </div>
-    </div>
-  )
-}
-
 export default function Footer(props) {
   const data = useStaticQuery(graphql`
   query {
@@ -87,7 +75,7 @@ export default function Footer(props) {
     <div className="p-10 mt-20 bg-gray-300 shadow-inner">
       <div className="h-full text-sm">
         <div className="place-content-center gap-x-20 gap-y-10 laptop:mb-32 flex flex-wrap mt-5 mb-10">
-          <BusinessTag  className="flex-grow" businessName={data.cms.org.info.name} />
+          <LogoIcon className="flex-col" logoClassName="w-36" />
           {links.map((link, i) => (
             <a 
               href={link.value}
