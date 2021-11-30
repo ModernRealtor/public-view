@@ -77,7 +77,7 @@ export default function Footer(props) {
     cms {
       org {
         info{
-          name
+          name 
         }
       }
     }
@@ -98,7 +98,7 @@ export default function Footer(props) {
             </a>
           ))}
         </div>
-        <div className="laptop:text-left text-center">{data.cms.org.info.name}</div>
+        <div className="laptop:text-left text-center">&copy; Copyright 2021 {data.cms.org.info.name}</div>
         <Socials />
         <Affiliates />
       </div>
