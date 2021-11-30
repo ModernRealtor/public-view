@@ -1,26 +1,13 @@
 const path = require("path")
 
-async function resolveManifestOptions(graphql){
-    return graphql(`
-    query{
-        cms {
-            org {
-                info {
-                    name
-                }
-            }
-        }
-    }
-    `).then(ret => {
-        let data = ret.data.cms.org.info
-        return ({
-            // in future, grab all values from fauna
-            // AND icon/svg; save locally then use
-            name: data.name,
-            short_name: data.name,
-            background_color: "#15F4EE",
-            theme_color: "#15F4EE" 
-        })
+function resolveManifestOptions(orgInfo){
+    return ({
+        // in future, grab all values from fauna
+        // AND icon/svg; save locally then use
+        name: orgInfo.name,
+        short_name: orgInfo.name,
+        background_color: "#15F4EE",
+        theme_color: "#15F4EE" 
     })
 }
 
@@ -33,17 +20,50 @@ exports.createPages = async ({ graphql, store, actions}) => {
     const state = store.getState()
     const { createPage } = actions
 
+    let data = await graphql(`
+    query{
+        cms {
+            org {
+                info {
+                    name
+                }
+                team {
+                    id
+                    info {
+                        name
+                        type
+                        title
+                        displayOnPv
+                    }
+                    contact {
+                        type
+                        value
+                        description
+                    }
+                }
+            }
+        }
+    }
+    `)
+
     // Update manifest with dynamic content
     const plugin = state.flattenedPlugins.find(plugin => plugin.name === "gatsby-plugin-manifest")
     if (plugin) {
-        const manifestOptions = await resolveManifestOptions(graphql)
+        const manifestOptions = resolveManifestOptions(data.data.cms.org.info)
         plugin.pluginOptions = {...plugin.pluginOptions, ...manifestOptions}
     }
 
-    // Create test page
-    const pageTemplate = path.resolve(`src/dynamicPages/teamMember.js`)
-    createPage({
-        path: "/team/1",
-        component: pageTemplate
-    })
+    // Create team member pages
+    data.data.cms.org.team
+        .filter(teamInfo => teamInfo.info.displayOnPv)
+        .forEach(teamInfo => {
+            createPage({
+                path: `/team/${teamInfo.id}`,
+                component: path.resolve(`src/dynamicPages/teamMember.js`),
+                context: {
+                    info: teamInfo.info,
+                    contact: teamInfo.contact
+                }
+            })
+        })
 }
