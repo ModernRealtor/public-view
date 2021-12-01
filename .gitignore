@@ -67,3 +67,7 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+
+# This file will be modified on every build. do not add the built versions
+./src/styles/theme.css
