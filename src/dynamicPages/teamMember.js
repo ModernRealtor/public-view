@@ -5,8 +5,8 @@ export default function TeamMember({pageContext}) {
   let {info, contact} = pageContext
   return (
     <Layout>
-      <div className="outer-layout">
-        A Team Member <br/>
+      <span className="outer-layout">
+        <div>A Team Member</div>
         <h4>Info</h4>
         {Object.entries(info).map((entry, i) => (
           <p key={i}> {`${entry[0]} : ${entry[1]}`} </p>
@@ -18,7 +18,7 @@ export default function TeamMember({pageContext}) {
             <p key={i}> {`${entry[0]} : ${entry[1]}`}</p>
             ))
         ))}
-      </div>
+      </span>
     </Layout>
   )
 }

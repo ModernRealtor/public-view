@@ -90,23 +90,23 @@ export function TikTokLogo(props) {
 let socialIcons = {
   "fb": {
     icon: FacebookLogo,
-    prefix: "www.facebook.com"
+    prefix: "https://www.facebook.com"
   },
   "ig": {
     icon: InstagramLogo,
-    prefix: "www.instagram.com"
+    prefix: "https://www.instagram.com"
   },
   "li": {
     icon: LinkedInLogo,
-    prefix: "www.linkedin.com/in"
+    prefix: "https://www.linkedin.com/in"
   },
   "yt": {
     icon: YoutubeLogo,
-    prefix: "www.youtube.com"
+    prefix: "https://www.youtube.com"
   },
   "tt": {
     icon: TikTokLogo,
-    prefix: "www.tiktok.com"
+    prefix: "https://www.tiktok.com"
   }
 }
 

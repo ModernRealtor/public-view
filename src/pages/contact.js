@@ -4,9 +4,11 @@ import Layout from "../components/layout"
 export default function Contact() {
   return (
     <Layout>
-      <div className="outer-layout">
-        Contact page
-      </div>
+      <span className="outer-layout">
+        <div>
+          Contact page
+        </div>
+      </span>
     </Layout>
   )
 }

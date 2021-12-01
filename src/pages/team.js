@@ -22,8 +22,8 @@ export default function Team() {
     .map(teamInfo => teamInfo.id)
   return (
     <Layout>
-      <div className="outer-layout">
-        Team list page <br/>
+      <span className="outer-layout">
+        <div>Team list page</div> 
         <ul>
         {teamIds.map(teamId => (
           <li key={teamId}>
@@ -31,7 +31,7 @@ export default function Team() {
           </li>
           ))}
         </ul>
-      </div>
+      </span>
     </Layout>
   )
 }

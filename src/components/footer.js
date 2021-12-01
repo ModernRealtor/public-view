@@ -74,8 +74,8 @@ export default function Footer(props) {
         </div>
         <Affiliates />
       </div>
-      <div className="flex place-content-between bg-gray-700 py-10 outer-layout">
-        <span>
+      <div className="bg-gray-700 py-10 outer-layout">
+        <span className="flex place-content-between place-items-center gap-y-5 flex-col tablet:flex-row">
           <Socials />
           <div>&copy; Copyright 2021 ModernRealtor</div>
         </span>
