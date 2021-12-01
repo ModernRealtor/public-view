@@ -39,20 +39,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      position: ["important"],
-    },
-  },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"),
-    plugin(function ({ addVariant }) {
-      addVariant("important", ({ container }) => {
-        container.walkRules(rule => {
-          rule.selector = `.\\!${rule.selector.slice(1)}`
-          rule.walkDecls(decl => {
-            decl.important = true
-          })
-        })
-      })
-    }),
-  ],
+      textColor: ['visited'],
+    }
+  }
 }

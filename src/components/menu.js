@@ -35,7 +35,7 @@ export default function Menu(props) {
         {menuData.entries.map(item => (
           <button
             key={item.title}
-            className="tablet:w-auto tablet:text-center tablet:py-0 tablet:my-0 w-full px-5 py-3 mt-5 text-left border border-yellow-700"
+            className="tablet:w-auto tablet:text-center tablet:py-0 tablet:my-0 w-full px-5 py-3 mt-5 text-left font-semibold hover:text-indigo-800"
           >
             {item.title}
           </button>

@@ -31,3 +31,9 @@
         }
     }
 }
+
+@layer base {
+    a {
+      @apply text-black hover:text-indigo-800 visited:text-gray-600
+    }
+}

@@ -64,10 +64,10 @@ export default function Footer(props) {
       <div className="py-10 bg-gray-300 shadow-inner outer-layout">
         <div className="place-content-between flex flex-wrap">
           <LogoIcon className="flex flex-col w-1/2" logoClassName="w-24" />
-          <ul className="flex flex-col w-auto pt-2 gap-1.5 text-right">
+          <ul className="flex flex-col w-auto pt-2 gap-1.5 text-right font-medium">
             {links.map((link, i) => (
               <li key={i}>
-                <a href={link.value}>{link.title}</a>
+                <a href={link.value} >{link.title}</a>
               </li>
             ))}
           </ul>
