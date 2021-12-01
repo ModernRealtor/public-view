@@ -8,17 +8,12 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const themeColor = process.env["themeColor"] || "000000"
 
 const clientRef = process.env["CLIENT_REF"] || "not found"
 const cmsURL = process.env["CMS_URL"] || "https://staging.modernrealtor.dev/api/cms/graphql"
 
 
 module.exports = {
-  /* Your site config here */
-  siteMetadata: {
-    themeColor: `#${themeColor}`
-  },
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,
@@ -26,7 +21,6 @@ module.exports = {
         name: "ModernRealtor",
         short_name: "ModernRealtor",
         start_url: "/",
-        background_color: "#6b37bf",
         theme_color: "#6b37bf",
         icon: "static/icon.svg", // This path is relative to the root of the site.
       },

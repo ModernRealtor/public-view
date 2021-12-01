@@ -1,5 +1,5 @@
 const colors = require("tailwindcss/colors")
-const plugin = require("tailwindcss/plugin")
+
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -21,15 +21,11 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.trueGray,
-      indigo: colors.indigo,
-      red: colors.rose,
-      yellow: colors.amber,
-      green: colors.emerald,
-      orange: {
-        light: "##fdd086",
-        DEFAULT: "#FBB33B",
-        dark: "#e59105",
-      },
+      primary: "var(--color-primary)",
+      secondary: "var(--color-secondary)",
+      accent: "var(--color-accent)",
+      dark: "var(--color-dark)",
+      light: "var(--color-light)"
     },
     extend: {
       fontSize: {
