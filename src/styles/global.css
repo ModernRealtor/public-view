@@ -8,6 +8,14 @@
             overflow: auto;
         }
     }
+    @variants dark {
+        .theme-color {
+            @apply bg-dark
+        }
+    }
+    .theme-color {
+        @apply bg-light
+    }
 
     .outer-layout > * {
         @apply max-w-full w-full px-6
@@ -29,5 +37,11 @@
         .outer-layout > * {
             @apply max-w-7xl
         }
+    }
+}
+
+@layer base {
+    a {
+      @apply text-primary hover:text-accent visited:text-secondary
     }
 }

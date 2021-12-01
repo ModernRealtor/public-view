@@ -30,18 +30,14 @@ function generateThemeCss(orgInfo){
  *  */
 function generateThemeTemplate(themeInfo){
     let template = `
-    :root {
-        --color-primary:${themeInfo.dominantColor};
-        --color-secondary: ${themeInfo.complimentColor};
-        --color-accent: ${themeInfo.accentColor};
-        --color-dark: ${themeInfo.darkColor};
-        --color-light: ${themeInfo.lightColor};
-    }
-
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-    `
+:root {
+    --color-primary:${themeInfo.dominantColor};
+    --color-secondary: ${themeInfo.complimentColor};
+    --color-accent: ${themeInfo.accentColor};
+    --color-dark: ${themeInfo.darkColor};
+    --color-light: ${themeInfo.lightColor};
+}
+`
 
     return template
 }
