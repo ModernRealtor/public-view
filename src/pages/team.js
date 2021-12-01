@@ -22,15 +22,16 @@ export default function Team() {
     .map(teamInfo => teamInfo.id)
   return (
     <Layout>
+      <div className="outer-layout">
         Team list page <br/>
+        <ul>
         {teamIds.map(teamId => (
-          <a
-            href={`/team/${teamId}`}
-            key={teamId}
-          >
-            Staff {teamId}'s page
-          </a>
-        ))}
+          <li key={teamId}>
+            <a href={`/team/${teamId}`}> Staff {teamId}'s page</a>
+          </li>
+          ))}
+        </ul>
+      </div>
     </Layout>
   )
 }

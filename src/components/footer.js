@@ -47,7 +47,7 @@ let affiliations = {
 
 function Affiliates(props) {
   return (
-    <div className="text-2xs flex flex-col gap-2 my-10">
+    <div className="text-2xs flex flex-col gap-2 mt-10">
       {affiliations.entries.map(item => (
         <div key={item.id}>
           <item.icon className="float-left h-8 pb-2 pr-2" />
@@ -60,22 +60,26 @@ function Affiliates(props) {
 
 export default function Footer(props) {
   return (
-    <div className="pt-5 mt-20 bg-gray-300 shadow-inner">
-      <div className="place-content-between flex flex-wrap">
-        <LogoIcon className="flex flex-col w-1/2" logoClassName="w-24" />
-        <ul className="flex flex-col w-auto pt-2 gap-1.5 text-right">
-          {links.map((link, i) => (
-            <li key={i}>
-              <a href={link.value}>{link.title}</a>
-            </li>
-          ))}
-        </ul>
+    <>
+      <div className="py-10 bg-gray-300 shadow-inner outer-layout">
+        <div className="place-content-between flex flex-wrap">
+          <LogoIcon className="flex flex-col w-1/2" logoClassName="w-24" />
+          <ul className="flex flex-col w-auto pt-2 gap-1.5 text-right">
+            {links.map((link, i) => (
+              <li key={i}>
+                <a href={link.value}>{link.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Affiliates />
       </div>
-      <Affiliates />
-      <div className="flex place-content-between bg-gray-700 py-10">
-        <Socials />
-        <div>&copy; Copyright 2021 ModernRealtor</div>
+      <div className="flex place-content-between bg-gray-700 py-10 outer-layout">
+        <span>
+          <Socials />
+          <div>&copy; Copyright 2021 ModernRealtor</div>
+        </span>
       </div>
-    </div>
+    </>
   )
 }

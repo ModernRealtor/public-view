@@ -4,9 +4,11 @@ import Menu from "./menu"
 
 export default function Header(props) {
   return (
-    <nav className="sticky top-0 z-30 flex justify-between py-5 mx-auto bg-white shadow">
-      <Logo className="flex-auto w-1/3" />
-      <Menu className="flex-auto w-1/3" />
-    </nav>
+    <div className="outer-layout bg-white shadow sticky top-0 z-30 ">
+      <nav className="flex justify-between py-5">
+          <Logo className="flex-auto w-1/3" />
+          <Menu className="flex-auto w-1/3" />
+      </nav>
+    </div>
   )
 }
