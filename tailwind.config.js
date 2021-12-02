@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors")
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: "media", // or 'media' or 'class'
+  darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
       tablet: "640px",
@@ -23,9 +23,7 @@ module.exports = {
       gray: colors.trueGray,
       primary: "var(--color-primary)",
       secondary: "var(--color-secondary)",
-      accent: "var(--color-accent)",
-      dark: "var(--color-dark)",
-      light: "var(--color-light)"
+      accent: "var(--color-accent)"
     },
     extend: {
       fontSize: {

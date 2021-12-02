@@ -1,6 +1,7 @@
 import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
 
-export default function LogoIcon(props) {
+function LogoIcon(props) {
   return (
     <svg
       version="1.1"
@@ -26,5 +27,32 @@ export default function LogoIcon(props) {
       <path id="svg_22" d="M 1.659 18.225 L 5.82 18.225 L 5.82 19.033 L 1.659 19.033 L 1.659 18.225 Z"></path>
       <path id="svg_24" d="M 18.198 18.225 L 22.362 18.225 L 22.362 19.033 L 18.198 19.033 L 18.198 18.225 Z"></path>
     </svg>
+  )
+}
+
+
+export default function Logo(props) {
+  const data = useStaticQuery(graphql`
+    query {
+      cms {
+        org {
+          info{
+            name
+          }
+        }
+      }
+    }
+  `)
+  return (
+    <div className={`${props.className} flex flex-nowrap`}>
+      <button className={`w-11 hover:text-accent ${props.logoClassName}`} aria-label="Return to home" onClick={() => {window.location.href='/'}}>
+        <LogoIcon  />
+      </button>
+      <div className="place-content-center flex flex-row flex-wrap justify-start h-full ml-1">
+        <span className="tablet:mr-3 text-lg font-bold capitalize">
+          {data.cms.org.info.name}
+        </span>
+      </div>
+    </div>
   )
 }

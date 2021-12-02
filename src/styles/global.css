@@ -8,17 +8,21 @@
             overflow: auto;
         }
     }
-    @variants dark {
-        .theme-color {
-            @apply bg-dark
-        }
+}
+
+@layer base {
+    a {
+        @apply hover:text-accent
     }
-    .theme-color {
-        @apply bg-light
+}
+
+@layer components {
+    .bg-black .social-icon{
+        @apply text-current hover:text-accent
     }
 
     .outer-layout > * {
-        @apply max-w-full w-full px-6
+        @apply max-w-full w-full px-6 
     }
 
     @screen tablet {
@@ -37,11 +41,5 @@
         .outer-layout > * {
             @apply max-w-7xl
         }
-    }
-}
-
-@layer base {
-    a {
-      @apply text-primary hover:text-accent visited:text-secondary
     }
 }

@@ -139,6 +139,7 @@ export default function FooterSocials(props) {
               href={item.href}
               target="blank"
               aria-label={item.label}
+              class="social-icon"
             >
               <item.icon/>
             </a>

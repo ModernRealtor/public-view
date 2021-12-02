@@ -20,7 +20,7 @@ export default function Layout(props) {
   <div>
       <Helmet>
           <html lang="en" className="min-h-screen" />
-          <body className="overflow-hidden scroll tablet:scroll theme-color" />
+          <body className="overflow-hidden scroll tablet:scroll" />
           <meta charSet="utf-8" />
           <title>{data.cms.org.info.name}</title>
       </Helmet>
