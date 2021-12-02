@@ -21,7 +21,7 @@ export default function Team({location}) {
     .filter(teamInfo => teamInfo.info.displayOnPv)
     .map(teamInfo => teamInfo.id)
   return (
-    <Layout path={location.pathname}>
+    <Layout path={location.pathname} title="Our Team">
       <div className="outer-layout h-96">
         <div>Team list page</div> 
         <ul>

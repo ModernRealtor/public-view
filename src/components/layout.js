@@ -16,13 +16,15 @@ export default function Layout(props) {
       }
     }
   `)
+  let nameTitleCase = data.cms.org.info.name.charAt(0).toUpperCase() + data.cms.org.info.name.substring(1)
+  let title = (props.title? `${props.title} - ` : "") + nameTitleCase
   return (
   <div>
       <Helmet>
           <html lang="en"/>
           <body className="bg-secondary overflow-hidden scroll tablet:scroll" />
           <meta charSet="utf-8" />
-          <title>{data.cms.org.info.name}</title>
+          <title>{title}</title>
       </Helmet>
       <Header />
       {props.children}

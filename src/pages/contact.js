@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 
 export default function Contact({location}) {
   return (
-    <Layout path={location.pathname}>
+    <Layout path={location.pathname} title="Contact Us">
       <span className="outer-layout">
         <div className="h-96">
           Contact page

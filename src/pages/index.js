@@ -10,10 +10,7 @@ export default function Home() {
         <div className="h-48">
           What we do/Value Proposition <br />
           Our Services (solutions: buy/sell/etc) <br />
-          Testimonials <br />
-          <p className="text-primary">primary</p>
-          <p className="text-secondary">secondary</p>
-          <p className="text-accent">accent</p>
+          Testimonials
         </div>
       </div>
     </Layout>

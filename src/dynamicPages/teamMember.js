@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 export default function TeamMember({pageContext}) {
   let {info, contact} = pageContext
   return (
-    <Layout>
+    <Layout title={info.name}>
       <div className="outer-layout h-96">
         <div>A Team Member</div>
         <h4>Info</h4>
