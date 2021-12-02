@@ -5,14 +5,14 @@ import Hero from "../components/hero"
 export default function Home() {
   return (
     <Layout>
-      <div className="flex flex-col gap-16 mb-5 outer-layout bg-secondary text-primary">
-        <Hero />
-        <div className="h-48">
-          What we do/Value Proposition <br />
-          Our Services (solutions: buy/sell/etc) <br />
-          Testimonials
+        <Hero className="outer-layout bg-secondary text-primary"/>
+        <div className="h-96 outer-layout bg-primary text-secondary">
+          <p>What we do/Value Proposition</p>
+          <p>Our Services (solutions: buy/sell/etc)</p>
         </div>
-      </div>
+        <div className="h-48 outer-layout bg-secondary text-primary">
+          <p>Testimonials</p>
+        </div>
     </Layout>
   )
 }
