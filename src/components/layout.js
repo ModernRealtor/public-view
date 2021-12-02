@@ -19,14 +19,14 @@ export default function Layout(props) {
   return (
   <div>
       <Helmet>
-          <html lang="en" className="min-h-screen" />
-          <body className="overflow-hidden scroll tablet:scroll" />
+          <html lang="en"/>
+          <body className="bg-secondary overflow-hiddenscroll tablet:scroll" />
           <meta charSet="utf-8" />
           <title>{data.cms.org.info.name}</title>
       </Helmet>
       <Header />
       {props.children}
-      <Footer />
+      <Footer path={props.path || null} />
   </div>
   )
 }

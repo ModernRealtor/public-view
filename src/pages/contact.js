@@ -1,11 +1,11 @@
 import React from "react"
 import Layout from "../components/layout"
 
-export default function Contact() {
+export default function Contact({location}) {
   return (
-    <Layout>
+    <Layout path={location.pathname}>
       <span className="outer-layout">
-        <div>
+        <div className="h-96">
           Contact page
         </div>
       </span>

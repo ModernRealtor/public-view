@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 
-export default function Team() {
+export default function Team({location}) {
   const data = useStaticQuery(graphql`
   query {
     cms {
@@ -21,8 +21,8 @@ export default function Team() {
     .filter(teamInfo => teamInfo.info.displayOnPv)
     .map(teamInfo => teamInfo.id)
   return (
-    <Layout>
-      <span className="outer-layout">
+    <Layout path={location.pathname}>
+      <div className="outer-layout h-96">
         <div>Team list page</div> 
         <ul>
         {teamIds.map(teamId => (
@@ -31,7 +31,7 @@ export default function Team() {
           </li>
           ))}
         </ul>
-      </span>
+      </div>
     </Layout>
   )
 }

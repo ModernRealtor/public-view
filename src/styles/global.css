@@ -25,6 +25,15 @@
         @apply text-current hover:text-accent
     }
 
+    a.selected{
+        @apply pointer-events-none
+    }
+
+    a.selected::before{
+        content: ">";
+        @apply text-accent pr-2 font-black;
+    }
+
     .outer-layout > * {
         @apply max-w-full w-full px-6 
     }

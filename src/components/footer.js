@@ -67,7 +67,7 @@ export default function Footer(props) {
           <ul className="flex flex-col w-auto pt-2 gap-1.5 text-right font-medium">
             {links.map((link, i) => (
               <li key={i}>
-                <a href={link.value} >{link.title}</a>
+                <a href={link.value} className={link.value === props.path? "selected" : ""} >{link.title}</a>
               </li>
             ))}
           </ul>
