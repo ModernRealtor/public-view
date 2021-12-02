@@ -21,6 +21,7 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.trueGray,
+      yellow: colors.yellow,
       primary: "var(--color-primary)",
       secondary: "var(--color-secondary)",
       accent: "var(--color-accent)"

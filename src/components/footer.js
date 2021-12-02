@@ -4,6 +4,8 @@ import RealtorIcon from "../assets/icons/realtor"
 import LogoIcon from "../assets/icons/logo"
 import Socials from "../assets/icons/socials"
 
+import {LightningBoltIcon} from "@heroicons/react/solid"
+
 let links = [
   {
     title: "About",
@@ -77,7 +79,7 @@ export default function Footer(props) {
       <div className="py-10 outer-layout bg-primary text-secondary">
         <span className="flex place-content-between place-items-center gap-y-5 flex-col tablet:flex-row">
           <Socials />
-          <div>&copy; Copyright 2021 ModernRealtor</div>
+          <div className="flex"><LightningBoltIcon className="w-6 pr-2 text-yellow-400"/> Powered by ModernRealtor</div>
         </span>
       </div>
     </>
