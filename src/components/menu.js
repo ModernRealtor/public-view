@@ -21,7 +21,7 @@ export default function Menu(props) {
   return (
     <div className={`flex flex-row-reverse ${props.className}`}>
       <button
-        className="w-11 h-11 tablet:hidden p-2"
+        className="w-11 h-11 tablet:hidden p-2 hover:text-accent"
         onClick={() => {
           document.body.classList.toggle("scroll")
           setIsOpen(!isOpen)
