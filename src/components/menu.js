@@ -1,5 +1,8 @@
 import React, { useState } from "react"
-import { MenuIcon, CloseIcon } from "../assets/icons/controls"
+import {
+  MenuAlt3Icon as MenuIcon,
+  XIcon as CloseIcon
+} from "@heroicons/react/solid"
 
 const menuData = {
   entries: [
@@ -25,7 +28,7 @@ export default function Menu(props) {
         }}
         aria-label={isOpen ? "Close Menu" : "Open Menu"}
       >
-        {isOpen ? <CloseIcon /> : <MenuIcon />}
+        {isOpen ? <CloseIcon className="w-6 h-6 m-auto" /> : <MenuIcon className="w-6 h-6 m-auto" />}
       </button>
       <div
         className={`bg-secondary w-full h-screen ${
