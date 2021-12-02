@@ -14,6 +14,10 @@
     a {
         @apply hover:text-accent
     }
+
+    a,button {
+        @apply transition-colors duration-500 ease-out
+    }
 }
 
 @layer components {
