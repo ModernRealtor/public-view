@@ -7,10 +7,13 @@ import {
 const menuData = {
   entries: [
     {
-      title: "Residential",
+      title: "Careers",
     },
     {
-      title: "Commercial",
+      title: "Buyers",
+    },
+    {
+      title: "Sellers",
     },
   ],
 }

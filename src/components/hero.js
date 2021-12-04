@@ -11,7 +11,7 @@ export default function Hero(props) {
         <div className="pt-5 pb-10 desktop:pt-0 text-center tablet:text-left desktop:text-right">
           <h1 className="font-bold py-5 text-4xl capitalize laptop:text-5xl laptop:pb-10 desktop:text-6xl desktop:pb-14 desktop:pt-0">{heroTitle}</h1>
           <p className="pb-4">{heroText}</p>
-          <button className="bg-primary text-secondary hover:bg-accent px-4 py-2 desktop:float-right">Get Started</button>
+          <button className="bg-primary text-secondary hover:bg-accent px-4 py-2 desktop:float-right">Get Started &rarr;</button>
         </div>
         <Undraw name="house_searching" primaryColor="" className="" />
       </div>

@@ -49,7 +49,7 @@ let affiliations = {
 
 function Affiliates(props) {
   return (
-    <div className="text-2xs flex flex-col gap-2 mt-16 text-secondary">
+    <div className="text-xs font-thin flex flex-col gap-2 mt-16 text-secondary">
       {affiliations.entries.map(item => (
         <div key={item.id}>
           <item.icon className="float-left h-10 pb-2 pr-2" />
