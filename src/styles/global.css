@@ -8,6 +8,10 @@
             overflow: auto;
         }
     }
+
+    .bg-half {
+        background: linear-gradient(0deg, var(--color-primary) 50%, var(--color-secondary) 50%)
+    }
 }
 
 @layer base {
