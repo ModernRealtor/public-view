@@ -72,4 +72,4 @@ yarn-error.log
 # This file will be modified on every build. do not add the built versions
 /src/styles/theme.css
 
-/trreb-data
+/dynamicImages
