@@ -41,6 +41,16 @@ exports.createPages = async ({ graphql, store, actions}) => {
                     darkColor
                     lightColor
                 }
+                listings {
+                    user
+                    pass
+                    listings {
+                        ml_num
+                        images {
+                            url
+                        }
+                    }
+                }
                 team {
                     id
                     info {
@@ -59,6 +69,15 @@ exports.createPages = async ({ graphql, store, actions}) => {
         }
     }
     `)
+
+    /**
+     * TODO:
+     * 
+     * Check if listings is null
+     * if not, for each listing:
+     * for each image:
+     * create Remotenode. for each remote node, add 2 node fields, mlNum and imgNum
+     */
 
     // Update manifest with dynamic content
     const plugin = state.flattenedPlugins.find(plugin => plugin.name === "gatsby-plugin-manifest")
