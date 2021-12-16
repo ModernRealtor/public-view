@@ -1,6 +1,8 @@
 const path = require("path")
 const fs = require("fs/promises")
+const { createRemoteFileNode } = require("gatsby-source-filesystem")
 const getCssTemplate = require("./theme-writer")
+
 
 function resolveManifestOptions(orgInfo){
     return ({
@@ -24,12 +26,12 @@ exports.onPostBuild = ({ reporter }) => {
     reporter.info(`Your Gatsby site has been built!`)
 }
 
-exports.createPages = async ({ graphql, store, actions}) => {
+exports.createPages = async ({ graphql, store, actions, getCache, createNodeId}) => {
     let proms = []
     const state = store.getState()
-    const { createPage } = actions
+    const { createPage, createNode,  createNodeField} = actions
 
-    let data = await graphql(`
+    let queryRet = await graphql(`
     query{
         cms {
             org {
@@ -40,16 +42,6 @@ exports.createPages = async ({ graphql, store, actions}) => {
                     accentColor
                     darkColor
                     lightColor
-                }
-                listings {
-                    user
-                    pass
-                    listings {
-                        ml_num
-                        images {
-                            url
-                        }
-                    }
                 }
                 team {
                     id
@@ -69,29 +61,21 @@ exports.createPages = async ({ graphql, store, actions}) => {
         }
     }
     `)
-
-    /**
-     * TODO:
-     * 
-     * Check if listings is null
-     * if not, for each listing:
-     * for each image:
-     * create Remotenode. for each remote node, add 2 node fields, mlNum and imgNum
-     */
-
+    console.log(queryRet)
+    let {data: {cms: {org}}} = queryRet
     // Update manifest with dynamic content
     const plugin = state.flattenedPlugins.find(plugin => plugin.name === "gatsby-plugin-manifest")
     if (plugin) {
-        const manifestOptions = resolveManifestOptions(data.data.cms.org.info)
+        const manifestOptions = resolveManifestOptions(org.info)
         plugin.pluginOptions = {...plugin.pluginOptions, ...manifestOptions}
     }
 
-    let cssData = getCssTemplate(data.data.cms.org.info)
-
+    // Create CSS for specific client
+    let cssData = getCssTemplate(org.info)
     proms.push(writeFile(cssData.path, cssData.data))
 
     // Create team member pages
-    data.data.cms.org.team
+    org.team
     .filter(teamInfo => teamInfo.info.displayOnPv)
     .forEach(teamInfo => {
         createPage({
