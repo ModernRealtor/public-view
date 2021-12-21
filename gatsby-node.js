@@ -1,8 +1,8 @@
-const path = require("path")
+const Path = require("path")
 const fs = require("fs/promises")
-const { createRemoteFileNode } = require("gatsby-source-filesystem")
-const getCssTemplate = require("./theme-writer")
 
+const getCssTemplate = require("./theme-writer")
+const FtpClient = require("./ftp-client")
 
 function resolveManifestOptions(orgInfo){
     return ({
@@ -43,6 +43,17 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
                     darkColor
                     lightColor
                 }
+                listings {
+                    user
+                    pass
+                    imgHost
+                    listings {
+                        ml_num
+                        images {
+                            path
+                        }
+                    }
+                }
                 team {
                     id
                     info {
@@ -61,8 +72,8 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
         }
     }
     `)
-    console.log(queryRet)
     let {data: {cms: {org}}} = queryRet
+    console.log(queryRet, org)
     // Update manifest with dynamic content
     const plugin = state.flattenedPlugins.find(plugin => plugin.name === "gatsby-plugin-manifest")
     if (plugin) {
@@ -80,13 +91,24 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
     .forEach(teamInfo => {
         createPage({
             path: `/team/${teamInfo.id}`,
-            component: path.resolve(`src/dynamicPages/teamMember.js`),
+            component: Path.resolve(`src/dynamicPages/teamMember.js`),
             context: {
                 info: teamInfo.info,
                 contact: teamInfo.contact
             }
         })
     })
+
+    if(org.listings.listings){
+        let ftpClient = new FtpClient(org.listings.imgHost, `${org.listings.user}@photos`, org.listings.pass)
+  
+        org.listings.listings.forEach(listing => {
+            let newDir = Path.join(__dirname, "dynamicImages", "listings", listing.ml_num)
+            proms.push(fs.mkdir(newDir, {recursive: true})
+                .then((ret)=>(Promise.all(listing.images.map(({path}) => ftpClient.downloadImg(path, newDir))))
+            ))
+        })
+    }
 
     return Promise.all(proms)
         
