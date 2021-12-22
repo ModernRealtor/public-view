@@ -10,10 +10,13 @@ const menuData = {
       title: "Careers",
     },
     {
-      title: "Buyers",
+      title: "Lease",
     },
     {
-      title: "Sellers",
+      title: "Buy",
+    },
+    {
+      title: "Sell",
     },
   ],
 }

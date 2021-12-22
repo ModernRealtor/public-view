@@ -47,7 +47,6 @@ function BathIcon(props) {
 
 export function ListingCard(props) {
     let image = getImage(props.image)
-    console.log(props.image)
     return (
         <div className="w-64 h-72 text-primary text-xs">
             <div className="w-full h-3/5 rounded-t-sm bg-gradient-to-t from-secondary to-primary ">
