@@ -1,4 +1,5 @@
 import React from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import {
     LocationMarkerIcon,
     ArrowsExpandIcon
@@ -45,9 +46,13 @@ function BathIcon(props) {
 
 
 export function ListingCard(props) {
+    let image = getImage(props.image)
+    console.log(props.image)
     return (
         <div className="w-64 h-72 text-primary text-xs">
-            <div className="w-full h-3/5 rounded-t-sm bg-gradient-to-t from-secondary to-primary "></div>
+            <div className="w-full h-3/5 rounded-t-sm bg-gradient-to-t from-secondary to-primary ">
+                <GatsbyImage image={image} alt="Primary listing photo for the listing" className="w-full h-full"/>
+            </div>
             <div className="w-full h-2/5 gap-3 bg-secondary rounded-b-sm p-3 flex flex-col justify-items-stretch">
                 <div className="font-thin align-middle"><LocationMarkerIcon className="h-4 mr-2 -ml-0.5 float-left"/> {props.info.address}</div>
                 <div className="flex gap-4 justify-between">

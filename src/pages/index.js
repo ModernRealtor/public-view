@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../components/layout"
 import Hero from "../components/hero"
-import {ListingCard} from "../components/listing"
+import {AvailableListings} from "../components/availableListings"
 
 let metrics = [
   {
@@ -21,41 +21,6 @@ let metrics = [
   },
 ]
 
-let houses = [
-  {
-    address: "123 Fake Addr Lane, Toronto",
-    numBed: 3,
-    numBath: 2,
-    size: 2000,
-    price: 1200000,
-    img: "house1.jpg"
-  },
-  {
-    address: "44 McFake St., Guelph",
-    numBed: 1,
-    numBath: 1,
-    size: 1400,
-    price: 800000,
-    img: "house2.jpg"
-  },
-  {
-    address: "90 Faking Rd., London",
-    numBed: 2,
-    numBath: 2,
-    size: 1800,
-    price: 1340000,
-    img: "house3.jpg"
-  },
-  {
-    address: "1100 Address Fake., Toronto",
-    numBed: 1,
-    numBath: 1,
-    size: 1000,
-    price: 1000000,
-    img: "house4.jpg"
-  },
-]
-
 
 export default function Home() {
   return (
@@ -68,9 +33,7 @@ export default function Home() {
             <a href="#" className="text-sm">Explore All &rarr;</a>
           </div>
           <div className="flex justify-between">
-            {houses.map((info, i) => (
-              <ListingCard key={i} info={info}/>
-            ))}
+            <AvailableListings />
           </div>
         </div>
         <div className="h-96 outer-layout bg-primary text-secondary">
