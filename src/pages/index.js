@@ -26,16 +26,7 @@ export default function Home() {
   return (
     <Layout>
         <Hero className="outer-layout bg-secondary text-primary"/>
-        <div className="outer-layout bg-half text-primary py-12">
-          <div className="uppercase text-xs">&#8212;&#8212; Available</div>
-          <div className="flex justify-between mt-2 mb-20">
-            <h2 className="font-semibold text-3xl">Available Listings</h2>
-            <a href="#" className="text-sm">Explore All &rarr;</a>
-          </div>
-          <div className="flex justify-between">
-            <AvailableListings />
-          </div>
-        </div>
+        <AvailableListings className="outer-layout bg-half text-primary py-12"/>
         <div className="h-96 outer-layout bg-primary text-secondary">
           <p>Why work with us?</p>
           <p>list value offering to clients: knowledgeable, hardworking, industry network</p>

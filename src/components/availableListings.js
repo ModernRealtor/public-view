@@ -10,7 +10,7 @@ const defaultInfo = {
     price: 1200000,
 }
 
-export function AvailableListings(){
+export function AvailableListings(props){
     let {cms, allFile} = useStaticQuery(graphql`
     query {
         cms {
@@ -51,7 +51,21 @@ export function AvailableListings(){
         let mlsNum = listing.edges[0]?.node.fields.mlsNum
         mlImages[mlsNum] = listing.edges.map(({node}) => node)
     })
-    return (<>
-        {listings.map(({ml_num}, i) => (<ListingCard key={i} info={defaultInfo} image={mlImages[ml_num][0]} />))}
-    </>)
+    let thresh = 3
+    return (
+    <div className={props.className}>
+        <div className="uppercase text-xs">&#8212;&#8212; Available</div>
+        <div className="flex justify-between mt-2 mb-20">
+        <h2 className="font-semibold text-3xl">Available Listings</h2>
+        <a href="#" className="text-sm">Explore All &rarr;</a>
+        </div>
+        <div className={`flex w-full gap-5 ${(listings.length>thresh)? "flex-col" : "flex-row"}`}>
+            <div className={`flex justify-between ${(listings.length>thresh)? "w-full" : "w-1/2"}`}>
+                {listings.map(({ml_num}, i) => (<ListingCard key={i} info={defaultInfo} image={mlImages[ml_num][0]} />))}
+            </div>
+            <div className={`text-secondary ${(listings.length>thresh)? "w-full" : "w-1/2 self-end"}`}>
+                Extra text about the available listings
+            </div>
+        </div>
+    </div>)
 }
