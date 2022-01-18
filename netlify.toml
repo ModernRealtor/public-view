@@ -2,5 +2,8 @@
     publish = "public/"
     command = "npm run build"
 
+[build.environment]
+    IMAGEPATH = "/opt/build/repo/dynamicImages/listings/"
+
 [[plugins]]
     package = "@netlify/plugin-gatsby"

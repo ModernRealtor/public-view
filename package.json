@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "prebuild": "react-undraw-cli",
-    "createDir": "npx mkdirp -p dynamicImages/listings",
+    "createDir": "npx mkdirp -p $IMAGEPATH",
     "build": "npm run createDir && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
