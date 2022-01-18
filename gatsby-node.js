@@ -100,7 +100,7 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
     })
 
     if(org.listings.listings){
-        console.log(org.listings.listings)
+        console.error(org.listings.listings)
         let ftpClient = new FtpClient(org.listings.imgHost, `${org.listings.user}@photos`, org.listings.pass)
   
         org.listings.listings.forEach(listing => {
@@ -123,7 +123,7 @@ exports.onCreateNode = ({ node, actions }) => {
     const { createNodeField } = actions
     // Ensures we are processing only File nodes with specified sourceInstanceName
     if (node.internal.type === "File" && node.sourceInstanceName === "listingImages") {
-        console.log(node.dir)
+        console.error(node.dir)
         // Extract MLS number from image's directory
         let mlsNum = node.dir.slice(node.dir.lastIndexOf('/') + 1)
         if(!mlsNum.match(/^([A-Z]+\d{7,})$/)){
