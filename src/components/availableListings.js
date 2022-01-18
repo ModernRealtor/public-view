@@ -26,7 +26,7 @@ export function AvailableListings(props){
             filter: {sourceInstanceName: {eq:"listingImages"}}
             sort: {fields: name}
         ) {
-            group(field: fields___mlsNum){
+            group(field: dir){
                 edges {
                     node {
                       fields {
