@@ -19,6 +19,7 @@
     "@heroicons/react": "^1.0.1",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "dotenv": "^10.0.0",
+    "extract-files": "^10.0.0",
     "gatsby": "^4.2.0",
     "gatsby-plugin-image": "^2.2.0",
     "gatsby-plugin-manifest": "^4.2.0",
