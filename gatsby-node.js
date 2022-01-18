@@ -113,26 +113,3 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
     return Promise.all(proms)
         
 }
-
-/**
- * When a listingImages file Node is created, add node field "mlsNum"
- * 
- */
-exports.onCreateNode = ({ node, actions }) => {
-    const { createNodeField } = actions
-    // Ensures we are processing only File nodes with specified sourceInstanceName
-    if (node.internal.type === "File" && node.sourceInstanceName === "listingImages") {
-        // Extract MLS number from image's directory
-        let mlsNum = node.dir.slice(node.dir.lastIndexOf('/') + 1)
-        if(!mlsNum.match(/^([A-Z]+\d{7,})$/)){
-            throw new Error(`MLS Number is invalid. Expected a Letter Code (1+ characters) followed by 7+ digits. Received: ${mlsNum}`)
-        }
-
-        // Creates new query'able field with name of 'mlsNum'
-        createNodeField({
-            node,
-            name: "mlsNum",
-            value: mlsNum,
-        })
-    }
-  }
