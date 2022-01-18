@@ -47,6 +47,7 @@ module.exports = {
       options: {
         name: `listingImages`,
         path: `${__dirname}/dynamicImages/listings/`,
+        ignore: ["**/.gitinclude"]
       },
     },
     `gatsby-plugin-postcss`,
