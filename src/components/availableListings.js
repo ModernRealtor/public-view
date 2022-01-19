@@ -22,13 +22,22 @@ export function AvailableListings(props){
                 }
             }
         }
-        allFile(filter: {sourceInstanceName: {eq:"listingImages"}}) {
-            nodes {
-                name
-                childImageSharp {
-                    gatsbyImageData(
-                        placeholder: BLURRED
-                    )
+        allFile(
+            filter: {sourceInstanceName: {eq:"listingImages"}}
+            sort: {fields: name}
+        ) {
+            group(field: dir){
+                edges {
+                    node {
+                      fields {
+                          mlsNum
+                      }
+                      childImageSharp {
+                          gatsbyImageData(
+                              placeholder: BLURRED
+                          )
+                      }
+                    }
                 }
             }
         }
@@ -36,12 +45,11 @@ export function AvailableListings(props){
     let listings = cms.org?.listings?.listings
     // Convert mlnum grouping list of images to a dictionary
     let mlImages = {}
-    allFile?.nodes?.forEach(imgNode => {
-        // name is either MLSNUM or MLSNUM_# 
-        let idx = imgNode.name.lastIndexOf("_")
-        let mlsNum = (idx === -1) ? imgNode.name : imgNode.name.slice(0, idx-1)
-        if(!mlImages[mlsNum]) mlImages[mlsNum] = []
-        mlImages[mlsNum].push(imgNode)
+    allFile?.group?.forEach(listing => {
+        // Iterate over listings (images are grouped by it)
+        // Each "listing" instance will have an "edges" array. Should never be empty
+        let mlsNum = listing.edges[0]?.node.fields.mlsNum
+        mlImages[mlsNum] = listing.edges.map(({node}) => node)
     })
     let thresh = 3
     return (

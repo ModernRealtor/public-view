@@ -1,5 +1,5 @@
 import React from "react"
-// import Undraw from "react-undraw"
+import Undraw from "react-undraw"
 
 let heroTitle = "Your next home is a click away."
 let heroText = "Let us help you find the property of your dreams."
@@ -13,7 +13,7 @@ export default function Hero(props) {
           <p className="pb-4">{heroText}</p>
           <button className="bg-primary text-secondary font-normal hover:bg-accent px-4 py-2 desktop:float-right">Get Started &rarr;</button>
         </div>
-        {/* <Undraw name="house_searching" primaryColor="" className="" /> */}
+        <Undraw name="house_searching" primaryColor="" className="" />
       </div>
     </div>
   )
