@@ -14,5 +14,5 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - run: |
-          curl -d '{"repoName":"${{ github.repository }}"}' -H "Content-Type: application/json" -X POST https://staging.modernrealtor.dev/api/frontend/build_all/ 
+          curl -d '{"repoName":"${{ github.repository }}"}' -H "Content-Type: application/json" -H "Authorization: Bearer ${{ secrets.API_ACCESS_TOKEN }}" -X POST https://staging.modernrealtor.dev/api/frontend/build_all/ 
       - run: echo "🍏 This job's status is ${{ job.status }}."
