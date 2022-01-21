@@ -72,8 +72,8 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
         }
     }
     `)
-    let {data: {cms: {org}}} = queryRet
-    console.log(queryRet, org)
+    let org = queryRet?.data?.cms?.org
+    if(!org) throw new Error(`Cannot retrieve org from Graphql query. queryRet: ${JSON.stringify(queryRet)}`)
     // Update manifest with dynamic content
     const plugin = state.flattenedPlugins.find(plugin => plugin.name === "gatsby-plugin-manifest")
     if (plugin) {
