@@ -10,7 +10,7 @@ require("dotenv").config({
 
 
 const clientRef = process.env["CLIENT_REF"] || "not found"
-const cmsURL = process.env["CMS_URL"] || "https://staging.modernrealtor.dev/api/cms/graphql"
+const cmsURL = process.env["CMS_URL"] || "https://staging.modernrealtor.dev/api/graphql"
 
 
 module.exports = {
