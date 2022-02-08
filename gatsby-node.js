@@ -58,9 +58,11 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
                     id
                     info {
                         name
-                        type
-                        title
-                        displayOnPv
+                        staffInfo {
+                            type
+                            title
+                            displayOnPv
+                        }
                     }
                     contact {
                         type

@@ -10,7 +10,9 @@ export default function Team({location}) {
         team {
           id
           info {
-            displayOnPv
+            staffInfo {
+              displayOnPv
+            }
           }
         }
       }
@@ -18,7 +20,7 @@ export default function Team({location}) {
   }
 `)
   let teamIds = data.cms.org.team
-    .filter(teamInfo => teamInfo.info.displayOnPv)
+    .filter(teamInfo => teamInfo.info.staffInfo?.displayOnPv)
     .map(teamInfo => teamInfo.id)
   return (
     <Layout path={location.pathname} title="Our Team">

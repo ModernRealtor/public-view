@@ -8,7 +8,7 @@ export default function TeamMember({pageContext}) {
       <div className="outer-layout h-96">
         <div>A Team Member</div>
         <h4>Info</h4>
-        {Object.entries(info).map((entry, i) => (
+        {Object.entries(info?.staffInfo || {}).map((entry, i) => (
           <p key={i}> {`${entry[0]} : ${entry[1]}`} </p>
         ))}
         <h4>Contact</h4>
