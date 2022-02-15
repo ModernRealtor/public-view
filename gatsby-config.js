@@ -10,7 +10,11 @@ require("dotenv").config({
 
 
 const clientRef = process.env["CLIENT_REF"] || "not found"
-const cmsURL = process.env["CMS_URL"] || "https://staging.modernrealtor.dev/api/graphql"
+const cmsURL = process.env["CMS_URL"]
+
+if (!cmsUrl){
+  throw new Error("API URL not set")
+}
 
 
 module.exports = {
