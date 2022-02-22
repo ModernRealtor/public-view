@@ -9,7 +9,6 @@ require("dotenv").config({
 })
 
 
-const clientRef = process.env["CLIENT_REF"] || "not found"
 const cmsURL = process.env["CMS_URL"] || `https://api${process.env.SUB_URL}modernrealtor.dev/graphql`
 
 
@@ -37,8 +36,7 @@ module.exports = {
         url: cmsURL,
         // HTTP headers
         headers: {
-          Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`,
-          OrgRef: clientRef
+          Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`
         },
       },
     },
