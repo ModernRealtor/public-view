@@ -47,27 +47,48 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
                     user
                     pass
                     imgHost
-                    listings {
-                        ml_num
-                        images {
-                            path
+                    listings(all:true) {
+                        totalCount
+                        edges {
+                            node {
+                                ml_num
+                                images(all:true) {
+                                    totalCount
+                                    edges{
+                                        node {
+                                            path
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-                team {
-                    id
-                    info {
-                        name
-                        staffInfo {
-                            type
-                            title
-                            displayOnPv
+                team(all:true) {
+                    edges {
+                        node {
+                            id
+                            info {
+                                name
+                                staffInfo {
+                                    type
+                                    title
+                                    displayOnPv
+                                }
+                            }
+                            contact {
+                                fb
+                                ig
+                                linkedIn
+                                yt
+                                tt
+                                cell
+                                business
+                                home
+                                email
+                                addr
+                            }
                         }
-                    }
-                    contact {
-                        type
-                        value
-                        description
                     }
                 }
             }
@@ -88,26 +109,25 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
     proms.push(writeFile(cssData.path, cssData.data))
 
     // Create team member pages
-    org.team
-    .filter(teamInfo => teamInfo.info.displayOnPv)
-    .forEach(teamInfo => {
+    org.team.edges
+    .filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
+    .forEach(({node: {id, info, contact}}) => {
         createPage({
-            path: `/team/${teamInfo.id}`,
+            path: `/team/${id}`,
             component: Path.resolve(`src/dynamicPages/teamMember.js`),
-            context: {
-                info: teamInfo.info,
-                contact: teamInfo.contact
-            }
+            context: {info, contact}
         })
     })
 
-    if(org.listings.listings){
+    if(org.listings?.listings?.totalCount > 0){
         let ftpClient = new FtpClient(org.listings.imgHost, `${org.listings.user}@photos`, org.listings.pass)
   
-        org.listings.listings.forEach(listing => {
-            let newDir = Path.join(__dirname, "dynamicImages", "listings", listing.ml_num)
+        org.listings.listings.edges
+        .filter(({node: {images: {totalCount}}})=> totalCount > 0)
+        .forEach(({node}) => {
+            let newDir = Path.join(__dirname, "dynamicImages", "listings", node.ml_num)
             proms.push(fs.mkdir(newDir, {recursive: true})
-                .then((ret)=>(Promise.all(listing.images.map(({path}) => ftpClient.downloadImg(path, newDir))))
+                .then((ret)=>(Promise.all(node.images.edges.map(({node: {path}}) => ftpClient.downloadImg(path, newDir))))
             ))
         })
     }
