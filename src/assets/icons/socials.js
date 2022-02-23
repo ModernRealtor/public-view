@@ -87,7 +87,6 @@ export function TikTokLogo(props) {
   )
 }
 
-let socialIcons = ["fb", "ig", "linkedIn", "yt", "tt"]
 
 export let contactIcons = {
   "fb": {
@@ -148,11 +147,6 @@ export default function FooterSocials(props) {
           linkedIn
           yt
           tt
-          cell
-          business
-          home
-          email
-          addr
         }
       }
     }
@@ -161,7 +155,7 @@ export default function FooterSocials(props) {
   return (
     <ul className="flex items-center content-between gap-x-3">
       {Object.keys(contact)
-        .filter(cKey => contact[cKey] && socialIcons.includes(cKey))
+        .filter(cKey => contact[cKey])
         .map((cKey, i) => ({
           key: i,
           href: `${contactIcons[cKey].prefix}${contact[cKey]}`,
