@@ -12,11 +12,10 @@ export default function TeamMember({pageContext}) {
           <p key={i}> {`${entry[0]} : ${entry[1]}`} </p>
         ))}
         <h4>Contact</h4>
-        {contact.map(contactInfo => (
-          Object.entries(contactInfo)
-            .map((entry, i) => (
-            <p key={i}> {`${entry[0]} : ${entry[1]}`}</p>
-            ))
+        {Object.entries(contact)
+          .filter(entry => entry[1])
+          .map((entry, i) => (
+          <p key={i}> {`${entry[0]} : ${entry[1]}`}</p>
         ))}
       </div>
     </Layout>

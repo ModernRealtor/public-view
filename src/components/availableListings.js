@@ -16,8 +16,12 @@ export function AvailableListings(props){
         cms {
             org {
                 listings {
-                    listings {
-                        ml_num
+                    listings(all: true) {
+                        edges {
+                            node {
+                                ml_num
+                            }
+                        }
                     }
                 }
             }
@@ -33,7 +37,7 @@ export function AvailableListings(props){
             }
         }
     }`)
-    let listings = cms.org?.listings?.listings
+    let listings = cms.org?.listings?.listings?.edges
     // Convert mlnum grouping list of images to a dictionary
     let mlImages = {}
     allFile?.nodes?.forEach(imgNode => {
@@ -53,7 +57,7 @@ export function AvailableListings(props){
         </div>
         <div className={`flex w-full gap-5 ${(listings.length>thresh)? "flex-col" : "flex-row"}`}>
             <div className={`flex justify-between ${(listings.length>thresh)? "w-full" : "w-1/2"}`}>
-                {listings.map(({ml_num}, i) => (<ListingCard key={i} info={defaultInfo} image={mlImages[ml_num][0]} />))}
+                {listings.map(({node: {ml_num}}, i) => (<ListingCard key={i} info={defaultInfo} image={mlImages[ml_num][0]} />))}
             </div>
             <div className={`text-secondary ${(listings.length>thresh)? "w-full" : "w-1/2 self-end"}`}>
                 Extra text about the available listings

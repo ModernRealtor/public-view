@@ -90,35 +90,47 @@ export function TikTokLogo(props) {
 let socialIcons = {
   "fb": {
     icon: FacebookLogo,
-    prefix: "https://www.facebook.com"
+    prefix: "https://www.facebook.com",
+    desc: "Facebok Page"
   },
   "ig": {
     icon: InstagramLogo,
-    prefix: "https://www.instagram.com"
+    prefix: "https://www.instagram.com",
+    desc: "Instagram Account"
   },
-  "li": {
+  "linkedIn": {
     icon: LinkedInLogo,
-    prefix: "https://www.linkedin.com/in"
+    prefix: "https://www.linkedin.com/in",
+    desc: "LinkedIn Page"
   },
   "yt": {
     icon: YoutubeLogo,
-    prefix: "https://www.youtube.com"
+    prefix: "https://www.youtube.com",
+    desc: "Youtube Channel"
   },
   "tt": {
     icon: TikTokLogo,
-    prefix: "https://www.tiktok.com"
+    prefix: "https://www.tiktok.com",
+    desc: "TikTok Account"
   }
 }
 
 export default function FooterSocials(props) {
-  const data = useStaticQuery(graphql`
+  let {cms: {org: {contact}}} = useStaticQuery(graphql`
   query {
     cms {
       org {
         contact {
-          type
-          value
-          description
+          fb
+          ig
+          linkedIn
+          yt
+          tt
+          cell
+          business
+          home
+          email
+          addr
         }
       }
     }
@@ -126,13 +138,13 @@ export default function FooterSocials(props) {
 `)
   return (
     <ul className="flex items-center content-between gap-x-3">
-      {data.cms.org.contact
-        .filter(item => item.type in socialIcons)
-        .map((item, i) => ({
+      {Object.keys(contact)
+        .filter(cKey => contact[cKey] && cKey in socialIcons)
+        .map((cKey, i) => ({
           key: i,
-          href: `${socialIcons[item.type].prefix}${item.value}`,
-          label: `Contact link. ${item.description || ""}`,
-          icon: socialIcons[item.type].icon
+          href: `${socialIcons[cKey].prefix}${contact[cKey]}`,
+          label: socialIcons[cKey].desc,
+          icon: socialIcons[cKey].icon
         })).map(item => (
           <li key={item.key}>
             <a

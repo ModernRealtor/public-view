@@ -3,15 +3,19 @@ import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 
 export default function Team({location}) {
-  const data = useStaticQuery(graphql`
+  let {cms: {org: {team: {edges}}}} = useStaticQuery(graphql`
   query {
     cms {
       org {
-        team {
-          id
-          info {
-            staffInfo {
-              displayOnPv
+        team(all: true) {
+          edges {
+            node {
+              id
+              info {
+                staffInfo {
+                  displayOnPv
+                }
+              }
             }
           }
         }
@@ -19,9 +23,10 @@ export default function Team({location}) {
     }
   }
 `)
-  let teamIds = data.cms.org.team
-    .filter(teamInfo => teamInfo.info.staffInfo?.displayOnPv)
-    .map(teamInfo => teamInfo.id)
+console.log(edges)
+  let teamIds = edges
+    .filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
+    .map(({node: {id}}) => id)
   return (
     <Layout path={location.pathname} title="Our Team">
       <div className="outer-layout h-96">
