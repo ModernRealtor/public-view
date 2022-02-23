@@ -16,7 +16,7 @@ export function AvailableListings(props){
         cms {
             org {
                 listings {
-                    listings(all: true) {
+                    listings {
                         edges {
                             node {
                                 ml_num
@@ -38,6 +38,10 @@ export function AvailableListings(props){
         }
     }`)
     let listings = cms.org?.listings?.listings?.edges
+    if(listings.length === 0){
+        return <></>
+    }
+
     // Convert mlnum grouping list of images to a dictionary
     let mlImages = {}
     allFile?.nodes?.forEach(imgNode => {

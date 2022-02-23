@@ -6,18 +6,19 @@ import {
 
 const menuData = {
   entries: [
-    {
-      title: "Careers",
-    },
-    {
-      title: "Lease",
-    },
-    {
-      title: "Buy",
-    },
-    {
-      title: "Sell",
-    },
+    // For now
+    // {
+    //   title: "Careers",
+    // },
+    // {
+    //   title: "Lease",
+    // },
+    // {
+    //   title: "Buy",
+    // },
+    // {
+    //   title: "Sell",
+    // },
   ],
 }
 
