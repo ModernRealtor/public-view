@@ -1,5 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import {PhoneIcon, DeviceMobileIcon, AtSymbolIcon, LocationMarkerIcon} from "@heroicons/react/solid"
 
 export function FacebookLogo(props) {
   return (
@@ -86,8 +87,9 @@ export function TikTokLogo(props) {
   )
 }
 
+let socialIcons = ["fb", "ig", "linkedIn", "yt", "tt"]
 
-let socialIcons = {
+export let contactIcons = {
   "fb": {
     icon: FacebookLogo,
     prefix: "https://www.facebook.com/",
@@ -112,6 +114,26 @@ let socialIcons = {
     icon: TikTokLogo,
     prefix: "https://www.tiktok.com/",
     desc: "TikTok Account"
+  },
+  "cell": {
+    icon: DeviceMobileIcon,
+    prefix: "tel:",
+    desc: "Cell Phone Number"
+  },
+  "business": {
+    icon: PhoneIcon,
+    prefix: "tel:",
+    desc: "Business Number"
+  },
+  "email": {
+    icon: AtSymbolIcon,
+    prefix: "mailto:",
+    desc: "Email Address"
+  },
+  "addr": {
+    icon: LocationMarkerIcon,
+    prefix: "https://maps.google.com/?q=",
+    desc: "Address"
   }
 }
 
@@ -139,19 +161,19 @@ export default function FooterSocials(props) {
   return (
     <ul className="flex items-center content-between gap-x-3">
       {Object.keys(contact)
-        .filter(cKey => contact[cKey] && cKey in socialIcons)
+        .filter(cKey => contact[cKey] && socialIcons.includes(cKey))
         .map((cKey, i) => ({
           key: i,
-          href: `${socialIcons[cKey].prefix}${contact[cKey]}`,
-          label: socialIcons[cKey].desc,
-          icon: socialIcons[cKey].icon
+          href: `${contactIcons[cKey].prefix}${contact[cKey]}`,
+          label: contactIcons[cKey].desc,
+          icon: contactIcons[cKey].icon
         })).map(item => (
           <li key={item.key}>
             <a
               href={item.href}
-              target="_blank"
               aria-label={item.label}
               className="social-icon"
+              title={item.label}
             >
               <item.icon/>
             </a>

@@ -5,8 +5,10 @@ export default function About({location}) {
   return (
     <Layout path={location.pathname} title="About Us">
       <span className="outer-layout">
-        <div className="h-96">
-          About page
+        <div className="h-96 ">
+          About Us 
+          <br/>
+          Contact Us
         </div>
       </span>
     </Layout>

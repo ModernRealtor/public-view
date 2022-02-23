@@ -1,4 +1,7 @@
 import React from "react"
+import { Link } from "gatsby"
+
+
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
 import LogoIcon from "../assets/icons/logo"
@@ -10,10 +13,6 @@ let links = [
   {
     title: "About",
     value: "/about",
-  },
-  {
-    title: "Contact",
-    value: "/contact",
   },
   {
     title: "Team",
@@ -69,7 +68,7 @@ export default function Footer(props) {
           <ul className="flex flex-col w-auto pt-2 gap-1.5 text-right font-medium">
             {links.map((link, i) => (
               <li key={i}>
-                <a href={link.value} className={link.value === props.path? "selected" : ""} >{link.title}</a>
+                <Link to={link.value} className={link.value === props.path? "selected" : ""} >{link.title}</Link>
               </li>
             ))}
           </ul>
