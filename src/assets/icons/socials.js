@@ -90,27 +90,27 @@ export function TikTokLogo(props) {
 let socialIcons = {
   "fb": {
     icon: FacebookLogo,
-    prefix: "https://www.facebook.com",
+    prefix: "https://www.facebook.com/",
     desc: "Facebok Page"
   },
   "ig": {
     icon: InstagramLogo,
-    prefix: "https://www.instagram.com",
+    prefix: "https://www.instagram.com/",
     desc: "Instagram Account"
   },
   "linkedIn": {
     icon: LinkedInLogo,
-    prefix: "https://www.linkedin.com/in",
+    prefix: "https://www.linkedin.com/in/",
     desc: "LinkedIn Page"
   },
   "yt": {
     icon: YoutubeLogo,
-    prefix: "https://www.youtube.com",
+    prefix: "https://www.youtube.com/channel/",
     desc: "Youtube Channel"
   },
   "tt": {
     icon: TikTokLogo,
-    prefix: "https://www.tiktok.com",
+    prefix: "https://www.tiktok.com/",
     desc: "TikTok Account"
   }
 }
@@ -149,7 +149,7 @@ export default function FooterSocials(props) {
           <li key={item.key}>
             <a
               href={item.href}
-              target="blank"
+              target="_blank"
               aria-label={item.label}
               className="social-icon"
             >
