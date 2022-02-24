@@ -13,10 +13,6 @@ let links = [
   {
     title: "About",
     value: "/about",
-  },
-  {
-    title: "Team",
-    value: "/team",
   }
 ]
 
