@@ -70,6 +70,7 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
                             id
                             info {
                                 name
+                                imageUrl
                                 staffInfo {
                                     type
                                     title
