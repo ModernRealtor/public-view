@@ -10,7 +10,7 @@ export default function TeamMember({pageContext}) {
       <div className="outer-layout pb-10">
         <h2 className="font-semibold text-4xl py-12">{name}</h2>
         <div className="flex gap-10">
-          <img src={imageUrl} alt={`${name}'s Headshot`} className="object-cover object-top w-64 h-64 rounded-full  border-accent border"/>
+          <img src={imageUrl} alt={`${name}'s Headshot`} className="object-cover object-top w-64 h-64 rounded-full "/>
           <div className="flex flex-col py-16 gap-12">
             <div><h3 className="font-medium text-lg">{title}</h3></div>
             <div>
