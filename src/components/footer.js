@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link} from "gatsby"
 
 
 import MLSIcon from "../assets/icons/mls"
@@ -60,7 +60,7 @@ export default function Footer(props) {
     <>
       <div className="py-12 mt-20 outer-layout bg-primary text-secondary">
         <div className="place-content-between flex flex-wrap">
-          <LogoIcon className="flex flex-col w-1/2" logoClassName="w-24" />
+          <LogoIcon className="flex flex-col w-1/2" logoClassName="w-24" showTagline={true} />
           <ul className="flex flex-col w-auto pt-2 gap-1.5 text-right font-medium">
             {links.map((link, i) => (
               <li key={i}>

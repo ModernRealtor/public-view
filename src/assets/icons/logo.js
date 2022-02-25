@@ -32,12 +32,13 @@ function LogoIcon(props) {
 
 
 export default function Logo(props) {
-  const data = useStaticQuery(graphql`
+  const {cms: {org: {info: {name, tagline}}}} = useStaticQuery(graphql`
     query {
       cms {
         org {
           info{
             name
+            tagline
           }
         }
       }
@@ -48,11 +49,12 @@ export default function Logo(props) {
       <button className={`w-11 hover:text-accent ${props.logoClassName}`} aria-label="Return to home" onClick={() => {window.location.href='/'}}>
         <LogoIcon  />
       </button>
-      <div className="place-content-center flex flex-row flex-wrap justify-start h-full ml-1">
+      <div className="place-content-center flex flex-row flex-wrap justify-start h-full">
         <span className="tablet:mr-3 text-lg font-bold capitalize">
-          {data.cms.org.info.name}
+          {name}
         </span>
       </div>
+      {props.showTagline ? <div>{tagline}</div> : ""}
     </div>
   )
 }

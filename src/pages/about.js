@@ -5,10 +5,14 @@ import { contactIcons } from "../assets/icons/socials"
 import Layout from "../components/layout"
 
 export default function About({location}) {
-  let {cms: {org: {contact, team: {edges}}}} = useStaticQuery(graphql`
+  let {cms: {org: {info: {about, tagline}, contact, team: {edges}}}} = useStaticQuery(graphql`
   query {
     cms {
       org {
+        info {
+          about
+          tagline
+        }
         contact {
           cell
           business
@@ -42,7 +46,7 @@ export default function About({location}) {
     <Layout path={location.pathname} title="About Us">
       <div className="outer-layout">
         <h1 className="font-semibold text-4xl pt-8">About Us</h1>
-        <div className="pb-6">...</div>
+        <div className="pb-6">{about || ""} {tagline || ""}</div>
         <div className="py-10">
           <h2 className="font-semibold text-3xl">Contact Us</h2>
           Reach us using any of the following:
