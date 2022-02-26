@@ -75,6 +75,7 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
                                     type
                                     title
                                     displayOnPv
+                                    about
                                 }
                             }
                             contact {
