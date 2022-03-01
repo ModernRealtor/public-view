@@ -25,6 +25,8 @@ const menuData = {
 export default function Menu(props) {
   const [isOpen, setIsOpen] = useState(false)
 
+  if(menuData.entries.length === 0) return <></>
+
   return (
     <div className={`flex flex-row-reverse ${props.className}`}>
       <button
