@@ -81,7 +81,7 @@ export default function About({location}) {
           <h2 className="font-semibold text-3xl pb-10">Our Team</h2>
           <ul className="flex gap-10">
             {teamMembers.map(({id, title, name}) => {
-              return <TeamIcon key={id} id={id} title={title} name={name} imgNode={teamImages[id]} />
+              return <TeamIcon key={id} title={title} name={name} imgNode={teamImages[id]} />
             })}
           </ul>
         </div>
@@ -90,10 +90,11 @@ export default function About({location}) {
   )
 }
 
-function TeamIcon({id, title, name, imgNode}){
+function TeamIcon({title, name, imgNode}){
   let image = getImage(imgNode)
+  let slug = name.replace(/\s+/g, "")
   return <li>
-    <Link to={`/team/${id}`}> 
+    <Link to={`/team/${slug}`}> 
       <div className="flex flex-col">
         <GatsbyImage image={image} alt={`${name}'s Headshot`} className="object-cover object-top w-32 h-32 rounded-full"/>
         <p>{name}</p>

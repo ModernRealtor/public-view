@@ -124,8 +124,9 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
     })
 
     team.forEach(({node: {id, info, contact}}) => {
+        let slug = info.name.replace(/\s+/g, "")
         createPage({
-            path: `/team/${id}`,
+            path: `/team/${slug}`,
             component: Path.resolve(`src/dynamicPages/teamMember.js`),
             context: {info, contact, id}
         })
