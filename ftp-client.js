@@ -18,7 +18,7 @@ class FtpClient {
   downloadImg(fpath, outDir) {
     let i = fpath.lastIndexOf("/")
     if(i === -1){
-      return Promise.reject(new Error(`Could not parse name from ${path}`))
+      return Promise.reject(new Error(`Could not parse name from ${fpath}`))
     }
     let fname = path.join(outDir, fpath.substring(i))
     let client = new PromiseFtp()

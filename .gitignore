@@ -74,3 +74,6 @@ yarn-error.log
 
 /dynamicImages/listings/*
 !/dynamicImages/listings/.gitinclude
+
+/dynamicImages/team/*
+!/dynamicImages/team/.gitinclude
