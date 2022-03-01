@@ -3,6 +3,7 @@ const fs = require("fs/promises")
 
 const getCssTemplate = require("./theme-writer")
 const FtpClient = require("./ftp-client")
+const downloadImg = require("./download-img")
 
 function resolveManifestOptions(orgInfo){
     return ({
@@ -111,9 +112,18 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
     proms.push(writeFile(cssData.path, cssData.data))
 
     // Create team member pages
-    org.team.edges
-    .filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
-    .forEach(({node: {id, info, contact}}) => {
+    let team = org.team.edges.filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
+
+    team.forEach(({node: {id, info: {imageUrl}}}) => {
+        let i = imageUrl.lastIndexOf(".")
+        if(i === -1){
+          return Promise.reject(new Error(`Expected extension in url: ${imageUrl}`))
+        }
+        let imgPath = Path.join(__dirname, "dynamicImages", "team", `${id}${imageUrl.slice(i)}`)
+        proms.push(downloadImg(imageUrl, imgPath))
+    })
+
+    team.forEach(({node: {id, info, contact}}) => {
         createPage({
             path: `/team/${id}`,
             component: Path.resolve(`src/dynamicPages/teamMember.js`),
