@@ -25,12 +25,7 @@ module.exports = {
       primary: "var(--color-primary)",
       secondary: "var(--color-secondary)",
       accent: "var(--color-accent)"
-    },
-    extend: {
-      fontSize: {
-        "2xs": "0.625rem",
-      },
-    },
+    }
   },
   variants: {
     extend: {

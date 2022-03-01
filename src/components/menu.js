@@ -38,7 +38,7 @@ export default function Menu(props) {
         {isOpen ? <CloseIcon className="w-6 h-6 m-auto" /> : <MenuIcon className="w-6 h-6 m-auto" />}
       </button>
       <div
-        className={`bg-secondary w-full h-screen ${
+        className={`bg-secondary w-full h-screen z-0 ${
           isOpen ? "absolute" : "hidden"
         } flex-grow flex-col-reverse flex-wrap right-0 mt-12 pt-5 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:static tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:bg-transparent gap-5 laptop:gap-10`}
       >

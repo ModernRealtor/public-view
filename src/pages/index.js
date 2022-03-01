@@ -3,25 +3,6 @@ import Layout from "../components/layout"
 import Hero from "../components/hero"
 import {AvailableListings} from "../components/availableListings"
 
-// let metrics = [
-//   {
-//     value: 350,
-//     unit: "+",
-//     description: "houses sold"
-//   },
-//   {
-//     value: 22,
-//     unit: "+",
-//     description: "years in the business"
-//   },
-//   {
-//     value: 97,
-//     unit: "%",
-//     description: "client retention rate"
-//   },
-// ]
-
-
 export default function Home() {
   return (
     <Layout>
