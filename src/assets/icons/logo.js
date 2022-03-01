@@ -23,7 +23,7 @@ export default function Logo(props) {
   
   return (
     <div className={`${props.className} flex flex-nowrap`}>
-      <button className={`w-11 hover:text-accent ${props.logoClassName}`} aria-label="Return to home" onClick={() => {window.location.href='/'}}>
+      <button className={`w-16 hover:text-accent ${props.logoClassName}`} aria-label="Return to home" onClick={() => {window.location.href='/'}}>
         <LogoIcon/>
       </button>
       <div className="place-content-center flex flex-row flex-wrap justify-start h-full">
