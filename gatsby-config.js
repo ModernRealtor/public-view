@@ -14,16 +14,6 @@ const cmsURL = process.env["CMS_URL"] || `https://api${process.env.SUB_URL}moder
 
 module.exports = {
   plugins: [
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: "ModernRealtor",
-        short_name: "ModernRealtor",
-        start_url: "/",
-        theme_color: "#6b37bf",
-        icon: "static/icon.svg", // This path is relative to the root of the site.
-      },
-    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-source-graphql",

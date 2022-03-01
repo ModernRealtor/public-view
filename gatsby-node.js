@@ -5,17 +5,6 @@ const getCssTemplate = require("./theme-writer")
 const FtpClient = require("./ftp-client")
 const downloadImg = require("./download-img")
 
-function resolveManifestOptions(orgInfo){
-    return ({
-        // in future, grab all values from fauna
-        // AND icon/svg; save locally then use
-        name: orgInfo.name,
-        short_name: orgInfo.name,
-        // Only add the color if it is not null aka set by the client
-        ...(orgInfo.dominantColor && {theme_color: orgInfo.dominantColor})
-    })
-}
-
 // Write data to a local file system path. Returns a promise
 function writeFile(path, data){
 	return fs.writeFile(path, data).catch(err => {console.error("Could not write file", err)})
@@ -27,15 +16,15 @@ exports.onPostBuild = ({ reporter }) => {
     reporter.info(`Your Gatsby site has been built!`)
 }
 
-exports.createPages = async ({ graphql, store, actions, getCache, createNodeId}) => {
+exports.createPages = async ({ graphql, actions}) => {
     let proms = []
-    const state = store.getState()
-    const { createPage, createNode,  createNodeField} = actions
+    const { createPage} = actions
 
     let queryRet = await graphql(`
     query{
         cms {
             org {
+                id
                 info {
                     name
                     dominantColor
@@ -100,12 +89,13 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
     `)
     let org = queryRet?.data?.cms?.org
     if(!org) throw new Error(`Cannot retrieve org from Graphql query. queryRet: ${JSON.stringify(queryRet)}`)
-    // Update manifest with dynamic content
-    const plugin = state.flattenedPlugins.find(plugin => plugin.name === "gatsby-plugin-manifest")
-    if (plugin) {
-        const manifestOptions = resolveManifestOptions(org.info)
-        plugin.pluginOptions = {...plugin.pluginOptions, ...manifestOptions}
-    }
+
+    // Copy logo SVG into main.svg
+    let logoDir = Path.join(__dirname, "static", "logos")
+    let logoIn = Path.join(logoDir, `${org.id}.svg`)
+    let logoOut = Path.join(logoDir, "main.svg")
+    proms.push(fs.copyFile(logoIn, logoOut))
+
 
     // Create CSS for specific client
     let cssData = getCssTemplate(org.info)

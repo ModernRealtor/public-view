@@ -77,3 +77,5 @@ yarn-error.log
 
 /dynamicImages/team/*
 !/dynamicImages/team/.gitinclude
+
+/static/logos/main.svg

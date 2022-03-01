@@ -5,7 +5,7 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 
 export default function Layout(props) {
-    const data = useStaticQuery(graphql`
+    const {cms: {org: {info: {name}}}} = useStaticQuery(graphql`
     query {
       cms {
         org {
@@ -16,8 +16,7 @@ export default function Layout(props) {
       }
     }
   `)
-  let nameTitleCase = data.cms.org.info.name.charAt(0).toUpperCase() + data.cms.org.info.name.substring(1)
-  let title = (props.title? `${props.title} - ` : "") + nameTitleCase
+  let title = (props.title? `${props.title} | ` : "") + name
   return (
   <div>
       <Helmet>
@@ -25,6 +24,7 @@ export default function Layout(props) {
           <body className="bg-secondary overflow-hidden scroll tablet:scroll" />
           <meta charSet="utf-8" />
           <title>{title}</title>
+          <link rel="icon" type="image/x-icon" href={`logos/main.svg`} />
       </Helmet>
       <Header />
       {props.children}
