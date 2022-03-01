@@ -60,7 +60,7 @@ export default function About({location}) {
   
   return (
     <Layout path={location.pathname} title="About Us">
-      <div className="outer-layout">
+      <div className="outer-layout py-20 desktop:py-28">
         <h1 className="font-semibold text-4xl py-4">About Us</h1>
         <div className="pb-2">
           <h2 className="text-2xl">{name}</h2>
@@ -68,7 +68,7 @@ export default function About({location}) {
           {about ? <p className="py-6">{about}</p> : ""} 
         </div>
         <div className="py-4">
-          <h2 className="font-semibold text-3xl pb-4">Contact Us</h2>
+          <h2 className="font-semibold text-4xl py-4 tablet:pt-12 desktop:pt-20">Contact Us</h2>
           Reach us using any of the following:
           {Object.entries(contact)
             .filter(entry => entry[1])
@@ -78,8 +78,8 @@ export default function About({location}) {
           })}
         </div>
         <div className="py-10">
-          <h2 className="font-semibold text-3xl pb-10">Our Team</h2>
-          <ul className="flex gap-10">
+          <h2 className="font-semibold text-4xl py-8 pb-10 tablet:pt-16 desktop:pt-20">Our Team</h2>
+          <ul className="flex gap-10 flex-wrap content-around justify-evenly laptop:justify-start">
             {teamMembers.map(({id, title, name}) => {
               return <TeamIcon key={id} title={title} name={name} imgNode={teamImages[id]} />
             })}
@@ -95,10 +95,10 @@ function TeamIcon({title, name, imgNode}){
   let slug = name.replace(/\s+/g, "")
   return <li>
     <Link to={`/team/${slug}`}> 
-      <div className="flex flex-col">
-        <GatsbyImage image={image} alt={`${name}'s Headshot`} className="object-cover object-top w-32 h-32 rounded-full"/>
-        <p>{name}</p>
-        <p>{title}</p>
+      <div className="flex flex-col place-items-center text-center">
+        <GatsbyImage image={image} alt={`${name}'s Headshot`} className="w-32 h-32 rounded-full z-0"/>
+        <p className="font-bold">{name}</p>
+        <p className="font-medium">{title}</p>
       </div>
     </Link>
   </li>
