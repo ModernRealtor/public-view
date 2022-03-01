@@ -127,7 +127,7 @@ exports.createPages = async ({ graphql, store, actions, getCache, createNodeId})
         createPage({
             path: `/team/${id}`,
             component: Path.resolve(`src/dynamicPages/teamMember.js`),
-            context: {info, contact}
+            context: {info, contact, id}
         })
     })
 
