@@ -59,9 +59,9 @@ export default function Footer(props) {
   return (
     <>
       <div className="py-12 mt-20 outer-layout ">
-        <div className="bg-yellow-200 flex flex-wrap flex-col text-center place-content-center gap-10 hplace-content-between">
-          <LogoIcon className="bg-yellow-600 flex flex-col place-items-center hw-1/2" logoClassName="w-48 -ml-2" showTagline={true} />
-          <ul className="flex flex-col w-auto pt-2 gap-1.5 font-medium bg-yellow-300">
+        <div className="flex flex-wrap flex-col text-center place-content-center gap-10 tablet:flex-row tablet:place-content-between">
+          <LogoIcon className="flex flex-col place-items-center tablet:place-items-start tablet:text-left" logoClassName="w-48 tablet:-ml-2" showTagline={true} />
+          <ul className="flex flex-col w-auto pt-2 gap-1.5 font-medium tablet:text-right">
             {links.map((link, i) => (
               <li key={i}>
                 <Link to={link.value} className={link.value === props.path? "selected" : ""} >{link.title}</Link>
