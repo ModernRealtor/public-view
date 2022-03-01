@@ -1,11 +1,12 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import { contactIcons } from "../assets/icons/socials"
 import Layout from "../components/layout"
 
 export default function About({location}) {
-  let {cms: {org: {info: {name, about, tagline}, contact, team: {edges}}}} = useStaticQuery(graphql`
+  let {allFile, cms: {org: {info: {name, about, tagline}, contact, team: {edges}}}} = useStaticQuery(graphql`
   query {
     cms {
       org {
@@ -27,7 +28,6 @@ export default function About({location}) {
               id
               info {
                 name
-                imageUrl
                 staffInfo {
                   title
                   displayOnPv
@@ -38,11 +38,26 @@ export default function About({location}) {
         }
       }
     }
+    allFile(filter: {sourceInstanceName: {eq:"teamImages"}}) {
+      nodes {
+          name
+          childImageSharp {
+              gatsbyImageData(
+                  placeholder: BLURRED
+              )
+          }
+      }
   }
-`)
+}`)
   let teamMembers = edges
   .filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
-  .map(({node: {id, info: {name, imageUrl, staffInfo: {title}}}}) => ({id, name, title, imageUrl}))
+  .map(({node: {id, info: {name, staffInfo: {title}}}}) => ({id, name, title}))
+  
+  let teamImages = {}
+  allFile?.nodes?.forEach(imgNode => {
+      teamImages[imgNode.name] = imgNode
+  })
+  
   return (
     <Layout path={location.pathname} title="About Us">
       <div className="outer-layout">
@@ -65,20 +80,25 @@ export default function About({location}) {
         <div className="py-10">
           <h2 className="font-semibold text-3xl pb-10">Our Team</h2>
           <ul className="flex gap-10">
-            {teamMembers.map(({id, title, name, imageUrl}) => (
-              <li key={id}>
-                <Link to={`/team/${id}`}> 
-                  <div className="flex flex-col">
-                    <img src={imageUrl} alt={`${name}'s Headshot`} className="object-cover object-top w-32 h-32 rounded-full"/>
-                    <p>{name}</p>
-                    <p>{title}</p>
-                  </div>
-                </Link>
-              </li>
-              ))}
+            {teamMembers.map(({id, title, name}) => {
+              return <TeamIcon key={id} id={id} title={title} name={name} imgNode={teamImages[id]} />
+            })}
           </ul>
         </div>
       </div>
     </Layout>
   )
+}
+
+function TeamIcon({id, title, name, imgNode}){
+  let image = getImage(imgNode)
+  return <li>
+    <Link to={`/team/${id}`}> 
+      <div className="flex flex-col">
+        <GatsbyImage image={image} alt={`${name}'s Headshot`} className="object-cover object-top w-32 h-32 rounded-full"/>
+        <p>{name}</p>
+        <p>{title}</p>
+      </div>
+    </Link>
+  </li>
 }

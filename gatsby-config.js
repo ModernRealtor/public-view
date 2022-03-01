@@ -48,6 +48,14 @@ module.exports = {
         ignore: ["**/.gitinclude"]
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `teamImages`,
+        path: `${__dirname}/dynamicImages/team/`,
+        ignore: ["**/.gitinclude"]
+      },
+    },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
