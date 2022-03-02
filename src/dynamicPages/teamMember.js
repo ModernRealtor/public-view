@@ -14,7 +14,11 @@ export default function TeamMember({pageContext, data}) {
         <h2 className="font-semibold text-4xl py-12">{name}</h2>
         <div className="py-8 flex gap-16 flex-col laptop:flex-row laptop:gap-24 desktop:gap-28">
           <div className="flex-shrink-0 flex flex-col gap-10 place-items-center tablet:place-content-around tablet:flex-row laptop:flex-col laptop:place-content-start">
-            <GatsbyImage image={image} alt={`${name}'s Headshot`} className="object-cover object-top w-64 h-64 rounded-full "/>
+            <GatsbyImage 
+              image={image} 
+              alt={`${name}'s Headshot`} 
+              className="rounded-b-full "
+            />
             <div>
               {Object.entries(contact)
                 .filter(entry => entry[1])
@@ -41,6 +45,7 @@ export const query = graphql`
       childImageSharp {
           gatsbyImageData(
               placeholder: BLURRED
+              width: 300
           )
       }
     }
