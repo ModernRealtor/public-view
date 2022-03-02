@@ -19,11 +19,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "var(--color-primary)",
-        secondary: "var(--color-secondary)",
-        accent: "var(--color-accent)",
-        test: colors[primary],
-        boop: colors[secondary]
+        primary: colors[primary],
+        secondary: colors[secondary]
       }
     }
   }

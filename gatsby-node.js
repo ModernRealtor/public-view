@@ -1,7 +1,6 @@
 const Path = require("path")
 const fs = require("fs/promises")
 
-const getCssTemplate = require("./theme-writer")
 const FtpClient = require("./ftp-client")
 const downloadImg = require("./download-img")
 
@@ -29,9 +28,6 @@ exports.createPages = async ({ graphql, actions}) => {
                     name
                     dominantColor
                     complimentColor
-                    accentColor
-                    darkColor
-                    lightColor
                 }
                 listings {
                     user
@@ -97,12 +93,9 @@ exports.createPages = async ({ graphql, actions}) => {
     proms.push(fs.copyFile(logoIn, logoOut))
 
 
-    // Create CSS for specific client
-    let cssData = getCssTemplate(org.info)
-    proms.push(writeFile(cssData.path, cssData.data))
     // New colors
     let themePath = Path.join(__dirname, "custom-theme.txt")
-    proms.push(writeFile(themePath, "blue,rose"))
+    proms.push(writeFile(themePath, `${org.info.dominantColor},${org.info.complimentColor}`))
 
     // Create team member pages
     let team = org.team.edges.filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
