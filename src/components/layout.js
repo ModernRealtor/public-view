@@ -21,7 +21,7 @@ export default function Layout(props) {
   <div>
       <Helmet>
           <html lang="en"/>
-          <body className="bg-secondary-50 overflow-hidden scroll tablet:scroll" />
+          <body className="bg-secondary-50 text-secondary-900 overflow-hidden scroll tablet:scroll" />
           <meta charSet="utf-8" />
           <title>{title}</title>
           <link rel="icon" type="image/x-icon" href={`logos/main.svg`} />
