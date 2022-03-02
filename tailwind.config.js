@@ -22,10 +22,5 @@ module.exports = {
         accent: "var(--color-accent)"
       }
     }
-  },
-  variants: {
-    extend: {
-      textColor: ['visited'],
-    }
   }
 }
