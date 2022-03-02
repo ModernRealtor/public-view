@@ -12,7 +12,7 @@
 
 @layer base {
     a {
-        @apply hover:text-primary-400
+        @apply hover:text-primary-500
     }
 
     a,button {
@@ -23,7 +23,7 @@
 
 @layer components {
     .bg-black .social-icon{
-        @apply text-current hover:text-primary-400
+        @apply text-current hover:text-primary-500
     }
 
     a.selected{
@@ -32,7 +32,7 @@
 
     a.selected::before{
         content: ">";
-        @apply text-primary-400 pr-2 font-black;
+        @apply text-primary-500 pr-2 font-black;
     }
 
     .outer-layout > * {
@@ -40,7 +40,7 @@
     }
 
     .primary-btn {
-        @apply font-normal px-4 py-2 bg-primary-400 text-secondary-900 hover:bg-primary-300 hover:text-secondary-700
+        @apply font-normal px-4 py-2 bg-primary-500 text-secondary-900 hover:bg-primary-400 hover:text-secondary-700
     }
 
     @screen tablet {
