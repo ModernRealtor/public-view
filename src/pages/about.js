@@ -65,7 +65,7 @@ export default function About({location}) {
         <div className="pb-2">
           <h2 className="text-2xl">{name}</h2>
           {tagline ? <h3 className="text-lg py-1">{tagline}</h3> : ""}
-          {about ? <p className="py-6">{about}</p> : ""} 
+          {about ? <p className="py-6 whitespace-pre-wrap text-justify">{about}</p> : ""} 
         </div>
         <div className="py-4">
           <h2 className="font-semibold text-4xl py-4 tablet:pt-12 desktop:pt-20">Contact Us</h2>
