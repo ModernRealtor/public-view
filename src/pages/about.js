@@ -44,6 +44,9 @@ export default function About({location}) {
           childImageSharp {
               gatsbyImageData(
                   placeholder: BLURRED
+                  aspectRatio: 1
+                  width: 200
+                  transformOptions: {cropFocus: NORTH}
               )
           }
       }
@@ -96,7 +99,11 @@ function TeamIcon({title, name, imgNode}){
   return <li>
     <Link to={`/team/${slug}`}> 
       <div className="flex flex-col place-items-center text-center">
-        <GatsbyImage image={image} alt={`${name}'s Headshot`} className="w-32 h-32 rounded-full z-0"/>
+        <GatsbyImage 
+          image={image} 
+          alt={`${name}'s Headshot`} 
+          className="rounded-b-full"
+        />
         <p className="font-bold">{name}</p>
         <p className="font-medium">{title}</p>
       </div>
