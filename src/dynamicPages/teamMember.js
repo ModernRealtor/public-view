@@ -27,7 +27,7 @@ export default function TeamMember({pageContext, data}) {
           
           <div className="flex flex-col py-8 gap-6 laptop:gap-12">
             <div><h3 className="font-medium text-lg">{title}</h3></div>
-            <div>{about}</div>
+            <div className="whitespace-pre-wrap text-justify">{about}</div>
           </div>
         </div>
       </div>
