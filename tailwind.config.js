@@ -1,5 +1,7 @@
 const colors = require("tailwindcss/colors")
+const {getTheme} = require("./custom-theme")
 
+let {primary, secondary} = getTheme()
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -19,7 +21,9 @@ module.exports = {
       colors: {
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",
-        accent: "var(--color-accent)"
+        accent: "var(--color-accent)",
+        test: colors[primary],
+        boop: colors[secondary]
       }
     }
   }

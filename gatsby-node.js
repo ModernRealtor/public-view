@@ -100,6 +100,9 @@ exports.createPages = async ({ graphql, actions}) => {
     // Create CSS for specific client
     let cssData = getCssTemplate(org.info)
     proms.push(writeFile(cssData.path, cssData.data))
+    // New colors
+    let themePath = Path.join(__dirname, "custom-theme.txt")
+    proms.push(writeFile(themePath, "blue,rose"))
 
     // Create team member pages
     let team = org.team.edges.filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
