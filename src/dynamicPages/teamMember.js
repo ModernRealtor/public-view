@@ -11,7 +11,7 @@ export default function TeamMember({pageContext, data}) {
   return (
     <Layout title={name}>
       <div className="outer-layout py-10 tablet:py-16 laptop:py-20">
-        <h2 className="font-semibold text-4xl py-12">{name}</h2>
+        <h2 className="text-primary-400 font-semibold text-4xl py-8">{name}</h2>
         <div className="py-8 flex gap-16 flex-col laptop:flex-row laptop:gap-24 desktop:gap-28">
           <div className="flex-shrink-0 flex flex-col gap-10 place-items-center tablet:place-content-around tablet:flex-row laptop:flex-col laptop:place-content-start">
             <GatsbyImage 
