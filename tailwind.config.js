@@ -15,16 +15,12 @@ module.exports = {
       desktop: "1680px",
       // => @media (min-width: 1280px) { ... }
     },
-    colors: {
-      transparent: "transparent",
-      current: "currentColor",
-      black: colors.black,
-      white: colors.white,
-      gray: colors.trueGray,
-      yellow: colors.yellow,
-      primary: "var(--color-primary)",
-      secondary: "var(--color-secondary)",
-      accent: "var(--color-accent)"
+    extend: {
+      colors: {
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        accent: "var(--color-accent)"
+      }
     }
   },
   variants: {
