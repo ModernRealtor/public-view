@@ -8,15 +8,11 @@
             overflow: auto;
         }
     }
-
-    .bg-half {
-        background: linear-gradient(0deg, var(--color-primary) 50%, var(--color-secondary) 50%)
-    }
 }
 
 @layer base {
     a {
-        @apply hover:text-accent
+        @apply hover:text-primary-400
     }
 
     a,button {
@@ -27,7 +23,7 @@
 
 @layer components {
     .bg-black .social-icon{
-        @apply text-current hover:text-accent
+        @apply text-current hover:text-primary-400
     }
 
     a.selected{
@@ -36,11 +32,15 @@
 
     a.selected::before{
         content: ">";
-        @apply text-accent pr-2 font-black;
+        @apply text-primary-400 pr-2 font-black;
     }
 
     .outer-layout > * {
         @apply max-w-full w-full px-6 
+    }
+
+    .primary-btn {
+        @apply font-normal px-4 py-2 bg-primary-400 text-secondary-900 hover:bg-primary-300 hover:text-secondary-700
     }
 
     @screen tablet {

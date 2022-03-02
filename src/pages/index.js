@@ -6,8 +6,8 @@ import {AvailableListings} from "../components/availableListings"
 export default function Home() {
   return (
     <Layout>
-        <Hero className="outer-layout bg-secondary text-primary"/>
-        <AvailableListings className="outer-layout bg-half text-primary py-12"/>
+        <Hero className="outer-layout bg-secondary-50"/>
+        <AvailableListings className="outer-layout text-primary py-12"/>
         {/* <div className="h-64 outer-layout bg-primary text-secondary">
           <p>buy section</p>
           <p>No matter what kind of property you dream of, we will help make that dream a realty</p> 
