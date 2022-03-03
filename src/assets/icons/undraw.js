@@ -1,13 +1,13 @@
 import React from "react"
 
-export function HouseSearching(props) {
+export function HouseSearching({className}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" 
         data-name="Layer 1" 
         width="909" 
         height="453" 
         viewBox="0 0 909 453" 
-        className="text-primary-500"
+        className={`text-primary-500 ${className}`}
         >
         <circle cx="248.18685" cy="325.81866" r="44.68221" fill="#e4e4e4"/>
         <path d="M360.695,519.47445a44.68569,44.68569,0,0,0,74.45376,47.29034A44.68605,44.68605,0,1,1,360.695,519.47445Z" 
