@@ -76,8 +76,9 @@ export default function About({location}) {
           {Object.entries(contact)
             .filter(entry => entry[1])
             .map((entry, i) => {
-              let Icon = contactIcons[entry[0]].icon
-              return <p key={i} className="flex" title={contactIcons[entry[0]].desc}> <Icon className="w-6 pr-2"/> {entry[1]}</p>
+              let Icon = contactIcons[entry[0]]
+              let val = entry[1]
+              return <a href={`${Icon.prefix}${val}`} key={i} className="flex" title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</a>
           })}
         </div>
         <div className="py-10">
