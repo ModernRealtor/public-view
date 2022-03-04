@@ -24,7 +24,6 @@ export default function Layout(props) {
           <body className="bg-secondary-50 text-secondary-800 overflow-hidden scroll tablet:scroll" />
           <meta charSet="utf-8" />
           <title>{title}</title>
-          <link rel="icon" type="image/x-icon" href="logos/main.svg" />
       </Helmet>
       <Header />
       {props.children}
