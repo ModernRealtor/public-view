@@ -14,12 +14,6 @@ const cmsURL = process.env["CMS_URL"] || `https://api${process.env.SUB_URL}moder
 
 module.exports = {
   plugins: [
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        icon: "static/logos/main.svg"
-      },
-    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-source-graphql",
