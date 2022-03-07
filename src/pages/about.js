@@ -72,13 +72,13 @@ export default function About({location}) {
         </div>
         <div className="py-4">
           <h2 className="text-primary-500 font-semibold text-4xl py-4 tablet:pt-12 desktop:pt-20">Contact Us</h2>
-          Reach us using any of the following:
+          <p className="pb-1">Reach us using any of the following:</p>
           {Object.entries(contact)
             .filter(entry => entry[1])
             .map((entry, i) => {
               let Icon = contactIcons[entry[0]]
               let val = entry[1]
-              return <a href={`${Icon.prefix}${val}`} key={i} className="flex" title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</a>
+              return <a href={`${Icon.prefix}${val}`} key={i} className="flex w-max font-medium py-1 " title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</a>
           })}
         </div>
         <div className="py-10">
