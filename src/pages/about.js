@@ -61,7 +61,7 @@ export default function About({location: {pathname, origin}}) {
       teamImages[imgNode.name] = imgNode
   })
   return (
-    <Layout path={pathname} origin={origin} title="About Us">
+    <Layout path={pathname} origin={origin} description={about || "About the brokerage"} title="About Us">
       <div className="outer-layout py-20 desktop:py-28">
         <h1 className="font-semibold text-4xl py-4 text-primary-500 ">About Us</h1>
         <div className="pb-2">

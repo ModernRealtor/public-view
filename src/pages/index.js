@@ -5,7 +5,7 @@ import {AvailableListings} from "../components/availableListings"
 
 export default function Home({location: {origin, pathname}}) {
   return (
-    <Layout origin={origin} path={pathname}>
+    <Layout origin={origin} path={pathname} description="Landing Page">
         <Hero className="outer-layout bg-secondary-50"/>
         <AvailableListings className="outer-layout text-primary py-12"/>
         {/* <div className="h-64 outer-layout bg-primary text-secondary">

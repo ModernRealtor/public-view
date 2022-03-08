@@ -29,7 +29,7 @@ export default function Layout({title, children, path, origin, description}) {
           <link rel="icon" type="image/x-icon" href={logoPath} />
           <link rel="canonical" href={url} />
           <meta property="og:url" content={url} />
-          <meta property="og:title" content={title} />
+          <meta property="og:title" content={pageTitle} />
           <meta property="og:site_name" content={name} />
           <meta property="og:description" content={description || ""} />
       </Helmet>
