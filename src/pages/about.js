@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 
 import { contactIcons } from "../assets/icons/socials"
 import Layout from "../components/layout"
@@ -50,7 +50,7 @@ export default function About({location}) {
               )
           }
       }
-  }
+    }
 }`)
   let teamMembers = edges
   .filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
@@ -80,6 +80,7 @@ export default function About({location}) {
               let val = entry[1]
               return <a href={`${Icon.prefix}${val}`} key={i} className="flex w-max font-medium py-1 " title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</a>
           })}
+          {(contact["addr"]) ? <StaticImage src="../../dynamicImages/map.png" placeholder="blurred" alt="Map showing brokerage location" /> : ""}
         </div>
         <div className="py-10">
           <h2 className="text-primary-500 font-semibold text-4xl py-8 pb-10 tablet:pt-16 desktop:pt-20">Our Team</h2>
