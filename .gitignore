@@ -81,3 +81,5 @@ yarn-error.log
 /static/logos/main.svg
 
 custom-theme.txt
+
+/dynamicImages/map.png

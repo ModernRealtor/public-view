@@ -1,14 +1,25 @@
 const Path = require("path")
 const fs = require("fs/promises")
+const fetch = require('node-fetch')
+const colors = require("tailwindcss/colors")
 
 const FtpClient = require("./ftp-client")
 const downloadImg = require("./download-img")
+
+const MAP_TOKEN = process.env["MAP_TOKEN"]
 
 // Write data to a local file system path. Returns a promise
 function writeFile(path, data){
 	return fs.writeFile(path, data).catch(err => {console.error("Could not write file", err)})
 }
 
+// Returns {longitude: XX, latitude: XX} of a given address 
+function getLatLon(address){
+    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?country=ca&limit=1&types=place%2Cpostcode%2Caddress&language=en&access_token=${MAP_TOKEN}`
+    return fetch(url)
+        .then(resp => resp.json())
+        .then(({features: [{center: [longitude, latitude]}]}) => ({longitude, latitude}))
+}
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -28,6 +39,9 @@ exports.createPages = async ({ graphql, actions}) => {
                     name
                     dominantColor
                     complimentColor
+                }
+                contact {
+                    addr
                 }
                 listings {
                     user
@@ -92,6 +106,17 @@ exports.createPages = async ({ graphql, actions}) => {
     let logoOut = Path.join(logoDir, "main.svg")
     proms.push(fs.copyFile(logoIn, logoOut))
 
+    // If org address provided, download map image
+    if(org.contact?.addr){
+        proms.push(
+            getLatLon(org.contact.addr).then(({latitude, longitude}) => {
+                let outPath = Path.join(__dirname, "dynamicImages", "map.png")
+                let markerColor = (org.info?.dominantColor) ? colors[org.info.dominantColor][500].replace("#", "") : "555555"
+                let url =  `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l+${markerColor}(${longitude},${latitude})/${longitude.toFixed(4)},${latitude.toFixed(4)},13,0/300x200?before_layer=transit-label&access_token=${MAP_TOKEN}`
+                return downloadImg(url, outPath)
+            })
+        )
+    }
 
     // New colors
     let themePath = Path.join(__dirname, "custom-theme.txt")
