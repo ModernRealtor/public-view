@@ -12,7 +12,7 @@ export default function Hero(props) {
         <div className="py-5 tablet:pb-10 desktop:pt-0 text-center tablet:text-left desktop:text-right">
           <h1 className="text-primary-500 font-bold py-5 text-4xl capitalize laptop:text-5xl laptop:pb-10 desktop:text-6xl desktop:pb-14 desktop:pt-0">{heroTitle}</h1>
           <p className="py-4">{heroText}</p>
-          <Link to="/about" className=" primary-btn desktop:float-right">Learn More &rarr;</Link>
+          <Link to="/about/" className=" primary-btn desktop:float-right">Learn More &rarr;</Link>
         </div>
         <HouseSearching className="w-full"/>
       </div>

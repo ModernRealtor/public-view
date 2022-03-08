@@ -3,9 +3,9 @@ import Layout from "../components/layout"
 import Hero from "../components/hero"
 import {AvailableListings} from "../components/availableListings"
 
-export default function Home() {
+export default function Home({location: {origin, pathname}}) {
   return (
-    <Layout>
+    <Layout origin={origin} path={pathname}>
         <Hero className="outer-layout bg-secondary-50"/>
         <AvailableListings className="outer-layout text-primary py-12"/>
         {/* <div className="h-64 outer-layout bg-primary text-secondary">

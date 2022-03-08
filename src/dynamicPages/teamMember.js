@@ -5,11 +5,11 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { contactIcons } from "../assets/icons/socials"
 
-export default function TeamMember({pageContext, data}) {
+export default function TeamMember({pageContext, data, location: {origin, pathname}}) {
   let { info: {name, staffInfo: {title, about}}, contact} = pageContext
   let image = getImage(data.file)
   return (
-    <Layout title={name}>
+    <Layout title={name} origin={origin} path={pathname}>
       <div className="outer-layout py-10 tablet:py-16 laptop:py-20">
         <h2 className="text-primary-500 font-semibold text-4xl py-8">{name}</h2>
         <div className="py-8 flex gap-16 flex-col laptop:flex-row laptop:gap-24 desktop:gap-28">

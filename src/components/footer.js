@@ -12,7 +12,7 @@ import {LightningBoltIcon} from "@heroicons/react/solid"
 let links = [
   {
     title: "About",
-    value: "/about",
+    value: "/about/",
   }
 ]
 
