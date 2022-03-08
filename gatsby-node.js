@@ -112,7 +112,7 @@ exports.createPages = async ({ graphql, actions}) => {
             getLatLon(org.contact.addr).then(({latitude, longitude}) => {
                 let outPath = Path.join(__dirname, "dynamicImages", "map.png")
                 let markerColor = (org.info?.dominantColor) ? colors[org.info.dominantColor][500].replace("#", "") : "555555"
-                let url =  `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l+${markerColor}(${longitude},${latitude})/${longitude.toFixed(4)},${latitude.toFixed(4)},13,0/300x200?before_layer=transit-label&access_token=${MAP_TOKEN}`
+                let url =  `https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-l+${markerColor}(${longitude},${latitude})/${longitude.toFixed(4)},${latitude.toFixed(4)},15,0/600x400@2x?access_token=${MAP_TOKEN}`
                 return downloadImg(url, outPath)
             })
         )
