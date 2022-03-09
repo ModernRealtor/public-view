@@ -7,27 +7,27 @@ function generateHtml({primaryColor, secondaryColor, imgPath, name, tagline}){
     <style type="text/tailwindcss">
         @layer base {
             body {
-                @apply p-16 bg-${secondaryColor}-50
+                @apply p-4 bg-${secondaryColor}-50
             }
             div {
-                @apply flex flex-col gap-4 
+                @apply flex flex-col place-items-center gap-1 text-center
             }
             h1 {
-                @apply text-6xl font-bold text-${primaryColor}-500 
+                @apply text-2xl font-bold text-${primaryColor}-500 
             }
             h2 {
-                @apply text-3xl font-semibold text-${secondaryColor}-500 
+                @apply font-semibold text-${secondaryColor}-500 
             }
             img {
-                @apply w-72 self-end pt-16
+                @apply w-3/4 pb-4
             }
         }
       </style>
     <body>
         <div>
+            <img src="data:image/svg+xml;base64,${readFileSync(imgPath).toString('base64')}">
             <h1>${name}</h1>
             <h2>${tagline}</h2>
-            <img src="data:image/svg+xml;base64,${readFileSync(imgPath).toString('base64')}">
         </div>
     </body>
     </html>`
@@ -43,7 +43,7 @@ async function generateOG({primaryColor, secondaryColor, imgPath, name, tagline,
         })
         .then(newPage => {
             page = newPage
-            return page.setViewport({width: 1200,height: 627})
+            return page.setViewport({width: 300,height: 300})
         })
         .then(() => page.setContent(html))
         .then(() => page.screenshot({path: outPath}))
