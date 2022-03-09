@@ -81,7 +81,7 @@ export default function About({location: {pathname, origin}}) {
           })}
           {(contact["addr"]) ? (
             <StaticImage 
-              src="../../dynamicImages/map.png" 
+              src="../../static/map.png" 
               className="max-w-lg"
               placeholder="blurred" 
               alt="Map showing brokerage location" />
