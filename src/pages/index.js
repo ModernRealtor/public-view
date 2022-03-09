@@ -24,9 +24,9 @@ function Hero(props) {
   )
 }
 
-export default function Home({location: {origin, pathname}}) {
+export default function Home({location: {pathname}}) {
   return (
-    <Layout origin={origin} path={pathname} description={heroText}>
+    <Layout path={pathname} description={heroText}>
         <span id="ogImage"></span>
         <Hero className="outer-layout bg-secondary-50"/>
         <AvailableListings className="outer-layout text-primary py-12"/>

@@ -13,6 +13,9 @@ const cmsURL = process.env["CMS_URL"] || `https://api${process.env.SUB_URL}moder
 
 
 module.exports = {
+  siteMetadata: {
+    domain: process.env["DOMAIN"] || ""
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
@@ -50,6 +53,6 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`
   ],
 }

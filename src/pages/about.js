@@ -5,7 +5,7 @@ import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 import { contactIcons } from "../assets/icons/socials"
 import Layout from "../components/layout"
 
-export default function About({location: {pathname, origin}}) {
+export default function About({location: {pathname}}) {
   let {allFile, cms: {org: {info: {name, about, tagline}, contact, team: {edges}}}} = useStaticQuery(graphql`
   query {
     cms {
@@ -61,7 +61,7 @@ export default function About({location: {pathname, origin}}) {
       teamImages[imgNode.name] = imgNode
   })
   return (
-    <Layout path={pathname} origin={origin} description={about || "About the brokerage"} title="About Us">
+    <Layout path={pathname} description={about || "About the brokerage"} title="About Us">
       <div className="outer-layout py-10 desktop:py-28">
         <h1 className="font-semibold text-4xl pb-4 text-primary-500 ">About Us</h1>
         <div className="pb-2">
