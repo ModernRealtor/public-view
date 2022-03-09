@@ -83,3 +83,6 @@ yarn-error.log
 custom-theme.txt
 
 /static/map.png
+
+/static/ogImages/*
+!/static/ogImages/.gitinclude
