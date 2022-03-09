@@ -79,10 +79,8 @@ yarn-error.log
 !/dynamicImages/team/.gitinclude
 
 /static/logos/main.svg
+/static/logos/main.png
 
 custom-theme.txt
 
 /static/map.png
-
-/static/ogImages/*
-!/static/ogImages/.gitinclude
