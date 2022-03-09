@@ -2,10 +2,10 @@ const Path = require("path")
 const fs = require("fs/promises")
 const fetch = require('node-fetch')
 const colors = require("tailwindcss/colors")
-const puppeteer = require('puppeteer')
 
 const FtpClient = require("./ftp-client")
 const downloadImg = require("./download-img")
+const generateOG = require("./create-OGimage")
 
 const MAP_TOKEN = process.env["MAP_TOKEN"]
 
@@ -40,6 +40,7 @@ exports.createPages = async ({ graphql, actions}) => {
                 id
                 info {
                     name
+                    tagline
                     dominantColor
                     complimentColor
                 }
@@ -124,6 +125,16 @@ exports.createPages = async ({ graphql, actions}) => {
     // New colors
     let themePath = Path.join(__dirname, "custom-theme.txt")
     proms.push(writeFile(themePath, `${org.info.dominantColor},${org.info.complimentColor}`))
+
+    // Generate OG Image
+    proms.push(generateOG({
+        primaryColor: org.info.dominantColor,
+        secondaryColor: org.info.complimentColor,
+        imgPath: logoOut,
+        name: org.info.name,
+        tagline: org.info.tagline || "",
+        outPath: Path.join(logoDir, "main.png")
+    }))
 
     // Create team member pages
     let team = org.team.edges.filter(({node: {info: {staffInfo}}}) => staffInfo.displayOnPv)
