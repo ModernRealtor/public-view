@@ -28,12 +28,12 @@ export default function Layout({title, children, path, origin, description}) {
           <title>{pageTitle}</title>
           <link rel="icon" type="image/x-icon" href="/logos/main.svg" />
           <link rel="canonical" href={url} />
+          <meta property="og:url" content={url} />
+          <meta property="og:title" content={pageTitle} />
+          <meta property="og:site_name" content={name} />
+          <meta property="og:description" content={description || ""} />
+          <meta property="og:image" content="/logos/main.png" />
       </Helmet>
-      <meta property="og:url" content={url} />
-      <meta property="og:title" content={pageTitle} />
-      <meta property="og:site_name" content={name} />
-      <meta property="og:description" content={description || ""} />
-      <meta property="og:image" content="/logos/main.png" />
       <Header />
       {children}
       <Footer path={path} />
