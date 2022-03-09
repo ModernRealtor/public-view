@@ -1,6 +1,8 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
+
 import Header from "../components/header"
 import Footer from "../components/footer"
 
@@ -27,13 +29,24 @@ export default function Layout({title, children, path, origin, description}) {
           <meta charSet="utf-8" />
           <title>{pageTitle}</title>
           <link rel="icon" type="image/x-icon" href="/logos/main.svg" />
-          <link rel="canonical" href={url} />
-          <meta property="og:url" content={url} />
-          <meta property="og:title" content={pageTitle} />
-          <meta property="og:site_name" content={name} />
-          <meta property="og:description" content={description || ""} />
-          <meta property="og:image" content="/logos/main.png" />
       </Helmet>
+      <GatsbySeo
+        title={pageTitle}
+        description={description}
+        canonical={url}
+        openGraph={{
+          url,
+          title: pageTitle,
+          description,
+          images: [
+            {
+              url: `${origin}/logos/main.png`,
+              width: 1200,
+              height: 627,
+            }],
+          site_name: name,
+        }}
+      />
       <Header />
       {children}
       <Footer path={path} />
