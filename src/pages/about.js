@@ -62,8 +62,8 @@ export default function About({location: {pathname, origin}}) {
   })
   return (
     <Layout path={pathname} origin={origin} description={about || "About the brokerage"} title="About Us">
-      <div className="outer-layout py-20 desktop:py-28">
-        <h1 className="font-semibold text-4xl py-4 text-primary-500 ">About Us</h1>
+      <div className="outer-layout py-10 desktop:py-28">
+        <h1 className="font-semibold text-4xl pb-4 text-primary-500 ">About Us</h1>
         <div className="pb-2">
           <h2 className="text-2xl text-secondary-400">{name}</h2>
           {tagline ? <h3 className="text-lg py-1 text-secondary-400">{tagline}</h3> : ""}
