@@ -133,7 +133,7 @@ exports.createPages = async ({ graphql, actions}) => {
         imgPath: logoIn,
         name: org.info.name,
         tagline: org.info.tagline || "",
-        outPath: Path.join(logoDir, "main.png")
+        outPath: Path.join(logoDir, "main300x300.png")
     }))
 
     // Create team member pages
