@@ -38,7 +38,7 @@ export default function Layout({title, children, path, description}) {
           <meta property="og:site_name" content={name} />
           <meta property="og:description" content={description || ""} />
           <meta property="og:type" content="website" />
-          <meta property="og:image" itemprop="image" content="/logos/main.png" />
+          <meta property="og:image" itemprop="image" content={`${domain}/logos/main.png`} />
       </Helmet>
       <Header />
       {children}
