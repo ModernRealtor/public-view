@@ -130,7 +130,7 @@ exports.createPages = async ({ graphql, actions}) => {
     proms.push(generateOG({
         primaryColor: org.info.dominantColor,
         secondaryColor: org.info.complimentColor,
-        imgPath: logoOut,
+        imgPath: logoIn,
         name: org.info.name,
         tagline: org.info.tagline || "",
         outPath: Path.join(logoDir, "main.png")
