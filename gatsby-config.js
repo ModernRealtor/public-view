@@ -10,7 +10,7 @@ require("dotenv").config({
 
 
 const cmsURL = process.env["CMS_URL"] || `https://api${process.env.SUB_URL}modernrealtor.dev/graphql`
-
+const gaId = process.env["GA_ID"]
 
 module.exports = {
   siteMetadata: {
@@ -53,6 +53,17 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
+    ...(gaId && [{ // Only add GA analytics if GA ID is provided
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: gaId, 
+        head: true,
+        enableWebVitalsTracking: true,
+        siteSpeedSampleRate: 30,
+        queueTime: 1000, // record 1s latent hits
+        forceSSL: true
+      }
+    }])
   ],
 }
