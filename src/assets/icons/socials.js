@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {PhoneIcon, DeviceMobileIcon, AtSymbolIcon, LocationMarkerIcon} from "@heroicons/react/solid"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 export function FacebookLogo(props) {
   return (
@@ -163,14 +164,14 @@ export default function FooterSocials(props) {
           icon: contactIcons[cKey].icon
         })).map(item => (
           <li key={item.key}>
-            <a
+            <OutboundLink 
               href={item.href}
               aria-label={item.label}
               className="social-icon"
               title={item.label}
             >
               <item.icon/>
-            </a>
+            </OutboundLink >
           </li>
       ))}
     </ul>

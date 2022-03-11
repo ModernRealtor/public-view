@@ -1,6 +1,7 @@
 import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 import Layout from "../components/layout"
 import { contactIcons } from "../assets/icons/socials"
@@ -25,7 +26,7 @@ export default function TeamMember({pageContext, data, location: {pathname}}) {
                 .map((entry, i) => {
                   let Icon = contactIcons[entry[0]]
                   let val = entry[1]
-                  return <a href={`${Icon.prefix}${val}`} key={i} className="flex w-max font-medium py-1" title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</a>
+                  return <OutboundLink  href={`${Icon.prefix}${val}`} key={i} className="flex w-max font-medium py-1" title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</OutboundLink >
                 })}
             </div>
           </div>

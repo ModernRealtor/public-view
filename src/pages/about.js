@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 import { contactIcons } from "../assets/icons/socials"
 import Layout from "../components/layout"
@@ -77,7 +78,7 @@ export default function About({location: {pathname}}) {
             .map((entry, i) => {
               let Icon = contactIcons[entry[0]]
               let val = entry[1]
-              return <a href={`${Icon.prefix}${val}`} key={i} className="flex w-fit font-medium py-1 max-w-max items-baseline" title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</a>
+              return <OutboundLink  href={`${Icon.prefix}${val}`} key={i} className="flex w-fit font-medium py-1 max-w-max items-baseline" title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</OutboundLink >
           })}
           {(contact["addr"]) ? (
             <StaticImage 
