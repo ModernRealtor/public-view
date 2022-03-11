@@ -54,7 +54,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
     `gatsby-plugin-offline`,
-    ...(gaId && [{ // Only add GA analytics if GA ID is provided
+    ...(gaId? [{ 
       resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: gaId, 
@@ -64,6 +64,6 @@ module.exports = {
         queueTime: 1000, // record 1s latent hits
         forceSSL: true
       }
-    }])
+    }] : []) // Only add GA analytics if GA ID is provided
   ],
 }
