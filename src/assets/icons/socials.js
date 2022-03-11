@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {PhoneIcon, DeviceMobileIcon, AtSymbolIcon, LocationMarkerIcon} from "@heroicons/react/solid"
-import { OutboundLink } from "gatsby-plugin-google-analytics"
+import { OutboundLink } from "gatsby-plugin-google-gtag"
 
 export function FacebookLogo(props) {
   return (
