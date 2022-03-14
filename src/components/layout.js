@@ -33,6 +33,7 @@ export default function Layout({title, children, path, description}) {
           <title>{pageTitle}</title>
           <link rel="icon" type="image/x-icon" href="/logos/main.svg" />
           <link rel="canonical" href={url} />
+          <meta name="description" content={description || ""}/>
           <meta property="og:url" content={url} />
           <meta property="og:title" content={pageTitle} />
           <meta property="og:site_name" content={name} />
