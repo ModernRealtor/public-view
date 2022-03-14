@@ -55,6 +55,7 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-offline`,
     ...(gaId? [{ 
       resolve: "gatsby-plugin-google-gtag",
