@@ -14,7 +14,7 @@ const gaId = process.env["GA_ID"]
 
 module.exports = {
   siteMetadata: {
-    domain: process.env["DOMAIN"] || ""
+    siteUrl: process.env["DOMAIN"] || ""
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -49,6 +49,8 @@ module.exports = {
         ignore: ["**/.gitinclude"]
       },
     },
+    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-robots-txt',
     `gatsby-plugin-postcss`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,

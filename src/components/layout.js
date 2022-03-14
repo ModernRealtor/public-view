@@ -5,7 +5,7 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 
 export default function Layout({title, children, path, description}) {
-    const {site: {siteMetadata: {domain}}, cms: {org: {info: {name}}}} = useStaticQuery(graphql`
+    const {site: {siteMetadata: {siteUrl}}, cms: {org: {info: {name}}}} = useStaticQuery(graphql`
     {
       cms {
         org {
@@ -16,12 +16,12 @@ export default function Layout({title, children, path, description}) {
       }
       site {
         siteMetadata {
-          domain
+          siteUrl
         }
       }
     }
   `)
-  let url = `${domain}${path}`
+  let url = `${siteUrl}${path}`
   let pageTitle = (title? `${title} | ` : "") + name
 
   return (
@@ -38,7 +38,7 @@ export default function Layout({title, children, path, description}) {
           <meta property="og:site_name" content={name} />
           <meta property="og:description" content={description || ""} />
           <meta property="og:type" content="website" />
-          <meta property="og:image" itemprop="image" content={`${domain}/logos/main300x300.png`} />
+          <meta property="og:image" itemprop="image" content={`${siteUrl}/logos/main300x300.png`} />
       </Helmet>
       <Header />
       {children}
