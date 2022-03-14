@@ -1,10 +1,10 @@
 import React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
-import { OutboundLink } from "gatsby-plugin-google-gtag"
 
 import { contactIcons } from "../assets/icons/socials"
 import Layout from "../components/layout"
+import { InternalLink, ExternalLink } from "../components/gaLink"
 
 export default function About({location: {pathname}}) {
   let {allFile, cms: {org: {info: {name, about, tagline}, contact, team: {edges}}}} = useStaticQuery(graphql`
@@ -78,7 +78,15 @@ export default function About({location: {pathname}}) {
             .map((entry, i) => {
               let Icon = contactIcons[entry[0]]
               let val = entry[1]
-              return <OutboundLink  href={`${Icon.prefix}${val}`} key={i} className="flex w-fit font-medium py-1 max-w-max items-baseline" title={Icon.desc}> <Icon.icon className="w-6 pr-2"/> {val}</OutboundLink >
+              return <ExternalLink  
+                href={`${Icon.prefix}${val}`} 
+                key={i} 
+                className="flex w-fit font-medium py-1 max-w-max items-baseline" 
+                label={Icon.desc}
+                tag="About > Contact"
+                > 
+                  <Icon.icon className="w-6 pr-2"/> {val}
+                </ExternalLink >
           })}
           {(contact["addr"]) ? (
             <StaticImage 
@@ -105,7 +113,11 @@ function TeamIcon({title, name, imgNode}){
   let image = getImage(imgNode)
   let slug = name.replace(/\s+/g, "")
   return <li>
-    <Link to={`/team/${slug}`}> 
+    <InternalLink 
+      to={`/team/${slug}`}
+      label={`About ${name}`}
+      tag="About > Team"
+    > 
       <div className="flex flex-col place-items-center text-center">
         <GatsbyImage 
           image={image} 
@@ -115,6 +127,6 @@ function TeamIcon({title, name, imgNode}){
         <p className="font-bold">{name}</p>
         <p className="font-medium">{title}</p>
       </div>
-    </Link>
+    </InternalLink>
   </li>
 }

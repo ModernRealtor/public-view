@@ -1,13 +1,12 @@
 import React from "react"
-import { Link} from "gatsby"
-
+import {LightningBoltIcon} from "@heroicons/react/solid"
 
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
 import LogoIcon from "../assets/icons/logo"
 import Socials from "../assets/icons/socials"
+import { InternalLink } from "./gaLink"
 
-import {LightningBoltIcon} from "@heroicons/react/solid"
 
 let links = [
   {
@@ -60,11 +59,18 @@ export default function Footer(props) {
     <>
       <div className="py-12 mt-20 outer-layout ">
         <div className="flex flex-wrap flex-col text-center place-content-center gap-10 tablet:flex-row tablet:place-content-between">
-          <LogoIcon className="flex flex-col place-items-center tablet:place-items-start tablet:text-left" logoClassName="w-48 tablet:-ml-2" showTagline={true} />
+          <LogoIcon gaTag="Footer" className="flex flex-col place-items-center tablet:place-items-start tablet:text-left" logoClassName="w-48 tablet:-ml-2" showTagline={true} />
           <ul className="flex flex-col w-auto pt-2 gap-1.5 font-medium tablet:text-right">
             {links.map((link, i) => (
               <li key={i}>
-                <Link to={link.value} className={link.value === props.path? "selected" : ""} >{link.title}</Link>
+                <InternalLink 
+                  to={link.value} 
+                  className={link.value === props.path? "selected" : ""} 
+                  tag="Footer"
+                  label={link.title}
+                >
+                  {link.title}
+                </InternalLink>
               </li>
             ))}
           </ul>
