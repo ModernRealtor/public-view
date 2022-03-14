@@ -29,10 +29,11 @@ export default function Layout({title, children, path, description}) {
       <Helmet>
           <html lang="en"/>
           <body className="bg-secondary-50 text-secondary-800 overflow-hidden scroll tablet:scroll" />
-          <meta charSet="utf-8" />
           <title>{pageTitle}</title>
           <link rel="icon" type="image/x-icon" href="/logos/main.svg" />
           <link rel="canonical" href={url} />
+          <meta http-equiv="Content-Type" content="text/html; charSet=utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="description" content={description || ""}/>
           <meta property="og:url" content={url} />
           <meta property="og:title" content={pageTitle} />
