@@ -4,13 +4,14 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "../components/header"
 import Footer from "../components/footer"
 
-export default function Layout({title, children, path, description}) {
-    const {site: {siteMetadata: {siteUrl}}, cms: {org: {info: {name}}}} = useStaticQuery(graphql`
+export default function Layout({title, children, path}) {
+    const {site: {siteMetadata: {siteUrl}}, cms: {org: {info: {name, description}}}} = useStaticQuery(graphql`
     {
       cms {
         org {
           info {
             name
+            description
           }
         }
       }

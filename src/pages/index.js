@@ -33,7 +33,7 @@ function Hero(props) {
 
 export default function Home({location: {pathname}}) {
   return (
-    <Layout path={pathname} description={heroText}>
+    <Layout path={pathname}>
         <Hero className="outer-layout bg-secondary-50"/>
         <AvailableListings className="outer-layout text-primary py-12"/>
         {/* <div className="h-64 outer-layout bg-primary text-secondary">

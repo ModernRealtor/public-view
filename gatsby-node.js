@@ -34,7 +34,7 @@ exports.createPages = async ({ graphql, actions}) => {
     const { createPage} = actions
 
     let queryRet = await graphql(`
-    query{
+    {
         cms {
             org {
                 id
