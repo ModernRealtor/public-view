@@ -1,8 +1,14 @@
-const puppeteer = require("puppeteer");
-const { readFileSync } = require('fs');
+const puppeteer = require("puppeteer")
+const { readFileSync } = require("fs")
 
-function generateHtml({primaryColor, secondaryColor, imgPath, name, tagline}){
-    return `<html>
+function generateHtml({
+  primaryColor,
+  secondaryColor,
+  imgPath,
+  name,
+  tagline,
+}) {
+  return `<html>
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
         @layer base {
@@ -25,7 +31,9 @@ function generateHtml({primaryColor, secondaryColor, imgPath, name, tagline}){
       </style>
     <body>
         <div>
-            <img src="data:image/svg+xml;base64,${readFileSync(imgPath).toString('base64')}">
+            <img src="data:image/svg+xml;base64,${readFileSync(
+              imgPath
+            ).toString("base64")}">
             <h1>${name}</h1>
             <h2>${tagline}</h2>
         </div>
@@ -33,27 +41,41 @@ function generateHtml({primaryColor, secondaryColor, imgPath, name, tagline}){
     </html>`
 }
 
-async function generateOG({primaryColor, secondaryColor, imgPath, name, tagline, outPath}){
-    let html = generateHtml({primaryColor, secondaryColor, imgPath, name, tagline})
-    let browser, page
-    puppeteer.launch({args: ['--no-sandbox']})
-        .then(brows => {
-            browser = brows
-            return browser.newPage()
-        })
-        .then(newPage => {
-            page = newPage
-            return page.setViewport({width: 300,height: 300})
-        })
-        .then(() => page.setContent(html))
-        .then(() => page.screenshot({path: outPath}))
-        .then(() => browser.close())
-        .catch((err) => {
-            try {
-                browser?.close()
-            } catch {}
-            return Promise.reject(err)
-        })
+async function generateOG({
+  primaryColor,
+  secondaryColor,
+  imgPath,
+  name,
+  tagline,
+  outPath,
+}) {
+  let html = generateHtml({
+    primaryColor,
+    secondaryColor,
+    imgPath,
+    name,
+    tagline,
+  })
+  let browser, page
+  puppeteer
+    .launch({ args: ["--no-sandbox"] })
+    .then(brows => {
+      browser = brows
+      return browser.newPage()
+    })
+    .then(newPage => {
+      page = newPage
+      return page.setViewport({ width: 300, height: 300 })
+    })
+    .then(() => page.setContent(html))
+    .then(() => page.screenshot({ path: outPath }))
+    .then(() => browser.close())
+    .catch(err => {
+      try {
+        browser?.close()
+      } catch {}
+      return Promise.reject(err)
+    })
 }
 
 module.exports = generateOG

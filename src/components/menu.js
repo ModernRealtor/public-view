@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import {
   MenuAlt3Icon as MenuIcon,
-  XIcon as CloseIcon
+  XIcon as CloseIcon,
 } from "@heroicons/react/solid"
 
 const menuData = {
@@ -25,19 +25,23 @@ const menuData = {
 export default function Menu(props) {
   const [isOpen, setIsOpen] = useState(false)
 
-  if(menuData.entries.length === 0) return <></>
+  if (menuData.entries.length === 0) return <></>
 
   return (
     <div className={`flex flex-row-reverse ${props.className}`}>
       <button
-        className="w-11 h-11 tablet:hidden p-2 hover:text-accent"
+        className="w-11 h-11 tablet:hidden hover:text-accent p-2"
         onClick={() => {
           document.body.classList.toggle("scroll")
           setIsOpen(!isOpen)
         }}
         aria-label={isOpen ? "Close Menu" : "Open Menu"}
       >
-        {isOpen ? <CloseIcon className="w-6 h-6 m-auto" /> : <MenuIcon className="w-6 h-6 m-auto" />}
+        {isOpen ? (
+          <CloseIcon className="w-6 h-6 m-auto" />
+        ) : (
+          <MenuIcon className="w-6 h-6 m-auto" />
+        )}
       </button>
       <div
         className={`bg-secondary w-full h-screen z-0 ${
@@ -47,7 +51,7 @@ export default function Menu(props) {
         {menuData.entries.map(item => (
           <button
             key={item.title}
-            className="tablet:w-auto tablet:text-center tablet:py-0 tablet:my-0 w-full px-5 py-3 mt-5 text-left font-semibold hover:text-accent"
+            className="tablet:w-auto tablet:text-center tablet:py-0 tablet:my-0 hover:text-accent w-full px-5 py-3 mt-5 font-semibold text-left"
           >
             {item.title}
           </button>

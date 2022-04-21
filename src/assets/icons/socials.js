@@ -1,6 +1,11 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import {PhoneIcon, DeviceMobileIcon, AtSymbolIcon, LocationMarkerIcon} from "@heroicons/react/solid"
+import {
+  PhoneIcon,
+  DeviceMobileIcon,
+  AtSymbolIcon,
+  LocationMarkerIcon,
+} from "@heroicons/react/solid"
 
 import { ExternalLink } from "../../components/gaLink"
 
@@ -71,10 +76,10 @@ export function YoutubeLogo(props) {
 
 export function TikTokLogo(props) {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      version="1.1" 
-      viewBox="0 0 256 256" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      viewBox="0 0 256 256"
       fill="currentColor"
       stroke="currentColor"
       strokeWidth="0"
@@ -82,99 +87,107 @@ export function TikTokLogo(props) {
     >
       <g transform="translate(128 128) scale(0.72 0.72)">
         <g transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)">
-          <path d="M 45 0 C 20.147 0 0 20.147 0 45 c 0 24.853 20.147 45 45 45 s 45 -20.147 45 -45 C 90 20.147 69.853 0 45 0 z M 72.039 33.277 v 6.758 c -3.187 0.001 -6.283 -0.623 -9.203 -1.855 c -1.878 -0.793 -3.627 -1.814 -5.227 -3.048 l 0.048 20.801 c -0.02 4.684 -1.873 9.085 -5.227 12.4 c -2.73 2.698 -6.188 4.414 -9.937 4.97 c -0.881 0.13 -1.777 0.197 -2.684 0.197 c -4.013 0 -7.823 -1.3 -10.939 -3.698 c -0.586 -0.452 -1.147 -0.941 -1.681 -1.468 c -3.635 -3.593 -5.509 -8.462 -5.194 -13.584 c 0.241 -3.899 1.802 -7.618 4.404 -10.532 c 3.443 -3.857 8.26 -5.998 13.41 -5.998 c 0.906 0 1.803 0.068 2.684 0.198 v 2.499 v 6.951 c -0.835 -0.275 -1.727 -0.427 -2.656 -0.427 c -4.705 0 -8.512 3.839 -8.442 8.548 c 0.045 3.013 1.69 5.646 4.118 7.098 c 1.141 0.682 2.453 1.105 3.853 1.182 c 1.097 0.06 2.151 -0.093 3.126 -0.415 c 3.362 -1.111 5.787 -4.268 5.787 -7.992 l 0.011 -13.93 V 16.5 h 9.307 c 0.009 0.922 0.103 1.822 0.276 2.694 c 0.702 3.529 2.692 6.591 5.46 8.678 c 2.414 1.821 5.42 2.9 8.678 2.9 c 0.002 0 0.029 0 0.027 -0.002 V 33.277 z" transform=" matrix(1 0 0 1 0 0) " strokeLinecap="round" />
+          <path
+            d="M 45 0 C 20.147 0 0 20.147 0 45 c 0 24.853 20.147 45 45 45 s 45 -20.147 45 -45 C 90 20.147 69.853 0 45 0 z M 72.039 33.277 v 6.758 c -3.187 0.001 -6.283 -0.623 -9.203 -1.855 c -1.878 -0.793 -3.627 -1.814 -5.227 -3.048 l 0.048 20.801 c -0.02 4.684 -1.873 9.085 -5.227 12.4 c -2.73 2.698 -6.188 4.414 -9.937 4.97 c -0.881 0.13 -1.777 0.197 -2.684 0.197 c -4.013 0 -7.823 -1.3 -10.939 -3.698 c -0.586 -0.452 -1.147 -0.941 -1.681 -1.468 c -3.635 -3.593 -5.509 -8.462 -5.194 -13.584 c 0.241 -3.899 1.802 -7.618 4.404 -10.532 c 3.443 -3.857 8.26 -5.998 13.41 -5.998 c 0.906 0 1.803 0.068 2.684 0.198 v 2.499 v 6.951 c -0.835 -0.275 -1.727 -0.427 -2.656 -0.427 c -4.705 0 -8.512 3.839 -8.442 8.548 c 0.045 3.013 1.69 5.646 4.118 7.098 c 1.141 0.682 2.453 1.105 3.853 1.182 c 1.097 0.06 2.151 -0.093 3.126 -0.415 c 3.362 -1.111 5.787 -4.268 5.787 -7.992 l 0.011 -13.93 V 16.5 h 9.307 c 0.009 0.922 0.103 1.822 0.276 2.694 c 0.702 3.529 2.692 6.591 5.46 8.678 c 2.414 1.821 5.42 2.9 8.678 2.9 c 0.002 0 0.029 0 0.027 -0.002 V 33.277 z"
+            transform=" matrix(1 0 0 1 0 0) "
+            strokeLinecap="round"
+          />
         </g>
       </g>
     </svg>
   )
 }
 
-
 export let contactIcons = {
-  "fb": {
+  fb: {
     icon: FacebookLogo,
     prefix: "https://www.facebook.com/",
-    desc: "Facebok Page"
+    desc: "Facebok Page",
   },
-  "ig": {
+  ig: {
     icon: InstagramLogo,
     prefix: "https://www.instagram.com/",
-    desc: "Instagram Account"
+    desc: "Instagram Account",
   },
-  "linkedIn": {
+  linkedIn: {
     icon: LinkedInLogo,
     prefix: "https://www.linkedin.com/in/",
-    desc: "LinkedIn Page"
+    desc: "LinkedIn Page",
   },
-  "yt": {
+  yt: {
     icon: YoutubeLogo,
     prefix: "https://www.youtube.com/channel/",
-    desc: "Youtube Channel"
+    desc: "Youtube Channel",
   },
-  "tt": {
+  tt: {
     icon: TikTokLogo,
     prefix: "https://www.tiktok.com/",
-    desc: "TikTok Account"
+    desc: "TikTok Account",
   },
-  "cell": {
+  cell: {
     icon: DeviceMobileIcon,
     prefix: "tel:",
-    desc: "Cell Phone Number"
+    desc: "Cell Phone Number",
   },
-  "business": {
+  business: {
     icon: PhoneIcon,
     prefix: "tel:",
-    desc: "Business Number"
+    desc: "Business Number",
   },
-  "email": {
+  email: {
     icon: AtSymbolIcon,
     prefix: "mailto:",
-    desc: "Email Address"
+    desc: "Email Address",
   },
-  "addr": {
+  addr: {
     icon: LocationMarkerIcon,
     prefix: "https://maps.google.com/?q=",
-    desc: "Address"
-  }
+    desc: "Address",
+  },
 }
 
 export default function FooterSocials(props) {
-  let {cms: {org: {contact}}} = useStaticQuery(graphql`
-  query {
-    cms {
-      org {
-        contact {
-          fb
-          ig
-          linkedIn
-          yt
-          tt
+  let {
+    cms: {
+      org: { contact },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      cms {
+        org {
+          contact {
+            fb
+            ig
+            linkedIn
+            yt
+            tt
+          }
         }
       }
     }
-  }
-`)
+  `)
   return (
-    <ul className="flex items-center content-between gap-x-3">
+    <ul className="gap-x-3 flex items-center content-between">
       {Object.keys(contact)
         .filter(cKey => contact[cKey])
         .map((cKey, i) => ({
           key: i,
           href: `${contactIcons[cKey].prefix}${contact[cKey]}`,
           label: contactIcons[cKey].desc,
-          icon: contactIcons[cKey].icon
-        })).map(item => (
+          icon: contactIcons[cKey].icon,
+        }))
+        .map(item => (
           <li key={item.key}>
-            <ExternalLink 
+            <ExternalLink
               href={item.href}
               label={item.label}
               className="social-icon"
               tag="Footer"
             >
-              <item.icon/>
-            </ExternalLink >
+              <item.icon />
+            </ExternalLink>
           </li>
-      ))}
+        ))}
     </ul>
   )
 }
