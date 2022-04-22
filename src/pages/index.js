@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import { AvailableListings } from "../components/availableListings"
+// import { AvailableListings } from "../components/availableListings"
 import { HouseSearching } from "../assets/icons/undraw"
 import { InternalLink } from "../components/gaLink"
 
@@ -39,7 +39,7 @@ export default function Home({ location: { pathname } }) {
   return (
     <Layout path={pathname}>
       <Hero className="outer-layout bg-secondary-50" />
-      <AvailableListings className="outer-layout text-primary py-12" />
+      {/* <AvailableListings className="outer-layout text-primary py-12" /> */}
       {/* <div className="outer-layout bg-primary text-secondary h-64">
           <p>buy section</p>
           <p>No matter what kind of property you dream of, we will help make that dream a realty</p> 

@@ -32,7 +32,7 @@ export function ExternalLink({ tag, href, className, label, children }) {
       aria-label={linkLabel}
       title={linkLabel}
       onClick={() => {
-        typeof window !== "undefined" &&
+        typeof window?.gtag !== "undefined" &&
           window.gtag("event", "click", {
             type: "external",
             location: href,

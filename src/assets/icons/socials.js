@@ -98,31 +98,40 @@ export function TikTokLogo(props) {
   )
 }
 
+function extractSlug(link) {
+  // If link ends with /, remove it
+  if(link[link.length-1] === "/"){
+    link = link.slice(0, -1)
+  }
+  let [slug] = link.match(/[^/]+$/g)
+  return slug
+}
+
 export let contactIcons = {
   fb: {
     icon: FacebookLogo,
-    prefix: "https://www.facebook.com/",
     desc: "Facebok Page",
+    display: extractSlug
   },
   ig: {
     icon: InstagramLogo,
-    prefix: "https://www.instagram.com/",
     desc: "Instagram Account",
+    display: extractSlug
   },
   linkedIn: {
     icon: LinkedInLogo,
-    prefix: "https://www.linkedin.com/in/",
     desc: "LinkedIn Page",
+    display: extractSlug
   },
   yt: {
     icon: YoutubeLogo,
-    prefix: "https://www.youtube.com/channel/",
     desc: "Youtube Channel",
+    display: extractSlug
   },
-  tt: {
+  twitter: {
     icon: TikTokLogo,
-    prefix: "https://www.tiktok.com/",
     desc: "TikTok Account",
+    display: extractSlug
   },
   cell: {
     icon: DeviceMobileIcon,
@@ -149,18 +158,18 @@ export let contactIcons = {
 export default function FooterSocials(props) {
   let {
     cms: {
-      org: { contact },
+      curOrg: { contact },
     },
   } = useStaticQuery(graphql`
-    query {
+    {
       cms {
-        org {
+        curOrg {
           contact {
             fb
             ig
             linkedIn
             yt
-            tt
+            twitter
           }
         }
       }
@@ -172,7 +181,7 @@ export default function FooterSocials(props) {
         .filter(cKey => contact[cKey])
         .map((cKey, i) => ({
           key: i,
-          href: `${contactIcons[cKey].prefix}${contact[cKey]}`,
+          href: `${contactIcons[cKey].prefix || ""}${contact[cKey]}`,
           label: contactIcons[cKey].desc,
           icon: contactIcons[cKey].icon,
         }))

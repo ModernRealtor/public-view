@@ -12,11 +12,14 @@ export default function TeamMember({
   location: { pathname },
 }) {
   let {
-    info: {
-      name,
-      staffInfo: { title, about },
-    },
-    contact,
+    staff: {
+      title,
+      about,
+      user: {
+        name,
+        contact
+      }
+    }
   } = pageContext
   let image = getImage(data.file)
   return (
@@ -38,13 +41,13 @@ export default function TeamMember({
                   let val = entry[1]
                   return (
                     <OutboundLink
-                      href={`${Icon.prefix}${val}`}
+                      href={`${Icon.prefix|| ""}${val}`}
                       key={i}
                       className="w-max flex py-1 font-medium"
                       title={Icon.desc}
                     >
                       {" "}
-                      <Icon.icon className="w-6 pr-2" /> {val}
+                      <Icon.icon className="w-6 pr-2" /> {Icon.display? Icon.display(val) : val}
                     </OutboundLink>
                   )
                 })}
@@ -64,8 +67,8 @@ export default function TeamMember({
 }
 
 export const query = graphql`
-  query TeamImage($id: String) {
-    file(name: { eq: $id }) {
+  query TeamImage($fname: String) {
+    file(name: { eq: $fname }, sourceInstanceName: {eq: "teamImages"}) {
       childImageSharp {
         gatsbyImageData(placeholder: BLURRED, width: 300)
       }
