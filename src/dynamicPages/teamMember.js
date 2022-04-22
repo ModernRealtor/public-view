@@ -12,11 +12,14 @@ export default function TeamMember({
   location: { pathname },
 }) {
   let {
-    info: {
-      name,
-      staffInfo: { title, about },
-    },
-    contact,
+    staff: {
+      title,
+      about,
+      user: {
+        name,
+        contact
+      }
+    }
   } = pageContext
   let image = getImage(data.file)
   return (

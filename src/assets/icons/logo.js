@@ -11,18 +11,16 @@ function LogoIcon(props) {
 export default function Logo(props) {
   const {
     cms: {
-      org: {
-        info: { name, tagline },
+      curOrg: {
+        name, tagline,
       },
     },
   } = useStaticQuery(graphql`
-    query {
+    {
       cms {
-        org {
-          info {
-            name
-            tagline
-          }
+        curOrg {
+          name
+          tagline
         }
       }
     }

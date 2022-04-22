@@ -10,18 +10,16 @@ export default function Layout({ title, children, path }) {
       siteMetadata: { siteUrl },
     },
     cms: {
-      org: {
-        info: { name, description },
+      curOrg: {
+        name, description,
       },
     },
   } = useStaticQuery(graphql`
     {
       cms {
-        org {
-          info {
-            name
-            description
-          }
+        curOrg {
+          name
+          description
         }
       }
       site {

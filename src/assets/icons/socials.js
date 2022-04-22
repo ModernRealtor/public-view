@@ -101,27 +101,22 @@ export function TikTokLogo(props) {
 export let contactIcons = {
   fb: {
     icon: FacebookLogo,
-    prefix: "https://www.facebook.com/",
     desc: "Facebok Page",
   },
   ig: {
     icon: InstagramLogo,
-    prefix: "https://www.instagram.com/",
     desc: "Instagram Account",
   },
   linkedIn: {
     icon: LinkedInLogo,
-    prefix: "https://www.linkedin.com/in/",
     desc: "LinkedIn Page",
   },
   yt: {
     icon: YoutubeLogo,
-    prefix: "https://www.youtube.com/channel/",
     desc: "Youtube Channel",
   },
-  tt: {
+  twitter: {
     icon: TikTokLogo,
-    prefix: "https://www.tiktok.com/",
     desc: "TikTok Account",
   },
   cell: {
@@ -149,18 +144,18 @@ export let contactIcons = {
 export default function FooterSocials(props) {
   let {
     cms: {
-      org: { contact },
+      curOrg: { contact },
     },
   } = useStaticQuery(graphql`
-    query {
+    {
       cms {
-        org {
+        curOrg {
           contact {
             fb
             ig
             linkedIn
             yt
-            tt
+            twitter
           }
         }
       }

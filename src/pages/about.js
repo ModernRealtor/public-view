@@ -10,40 +10,31 @@ export default function About({ location: { pathname } }) {
   let {
     allFile,
     cms: {
-      org: {
-        info: { name, about, tagline },
+      curOrg: {
+        name, about, tagline,
         contact,
-        team: { edges },
+        staff,
       },
     },
   } = useStaticQuery(graphql`
     query {
       cms {
-        org {
-          info {
-            name
-            about
-            tagline
-          }
+        curOrg {
+          name
+          about
+          tagline
           contact {
             cell
             business
-            home
             email
             addr
           }
-          team(all: true) {
-            edges {
-              node {
-                id
-                info {
-                  name
-                  staffInfo {
-                    title
-                    displayOnPv
-                  }
-                }
-              }
+          staff {
+            id
+            title
+            displayOnPv
+            user {
+              name
             }
           }
         }
@@ -63,15 +54,9 @@ export default function About({ location: { pathname } }) {
       }
     }
   `)
-  let teamMembers = edges
-    .filter(
-      ({
-        node: {
-          info: { staffInfo },
-        },
-      }) => staffInfo.displayOnPv
-    )
-    .map(({ node: { id, info: { name, staffInfo: { title } } } }) => ({
+  let teamMembers = staff
+    .filter(({displayOnPv}) => displayOnPv)
+    .map(({id, title, user: {name}}) => ({
       id,
       name,
       title,

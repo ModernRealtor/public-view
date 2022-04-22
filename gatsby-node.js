@@ -45,7 +45,6 @@ exports.createPages = async ({ graphql, actions }) => {
           tagline
           dominantColor
           complimentColor
-          }
           contact {
             addr
           }
@@ -62,15 +61,13 @@ exports.createPages = async ({ graphql, actions }) => {
                 ig
                 linkedIn
                 yt
-                tt
+                twitter
                 cell
                 business
-                home
                 email
                 addr
               }
             }
-            
           }
         }
       }
@@ -147,7 +144,7 @@ exports.createPages = async ({ graphql, actions }) => {
   )
 
   team.forEach((staff) => {
-    let slug = (staff.user.name || String(staff.id)).name.replace(/\s+/g, "")
+    let slug = (staff.user.name || `Staff${staff.id}`).replace(/\s+/g, "")
     createPage({
       path: `/team/${slug}`,
       component: Path.resolve(`src/dynamicPages/teamMember.js`),
