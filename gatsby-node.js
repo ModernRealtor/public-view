@@ -3,7 +3,6 @@ const fs = require("fs/promises")
 const fetch = require("node-fetch")
 const colors = require("tailwindcss/colors")
 
-const FtpClient = require("./ftp-client")
 const downloadImg = require("./download-img")
 const generateOG = require("./create-OGimage")
 
@@ -77,7 +76,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  let org = queryRet?.data?.cms?.org
+  let org = queryRet?.data?.cms?.curOrg
   if (!org)
     throw new Error(
       `Cannot retrieve org from Graphql query. queryRet: ${JSON.stringify(
@@ -112,38 +111,25 @@ exports.createPages = async ({ graphql, actions }) => {
   proms.push(
     writeFile(
       themePath,
-      `${org.info.dominantColor},${org.info.complimentColor}`
+      `${org.dominantColor},${org.complimentColor}`
     )
   )
 
   // Generate OG Image
   proms.push(
     generateOG({
-      primaryColor: org.info.dominantColor,
-      secondaryColor: org.info.complimentColor,
+      primaryColor: org.dominantColor,
+      secondaryColor: org.complimentColor,
       imgPath: logoIn,
-      name: org.info.name,
-      tagline: org.info.tagline || "",
+      name: org.name,
+      tagline: org.tagline || "",
       outPath: Path.join(logoDir, "main300x300.png"),
     })
   )
 
   // Create team member pages
-  let team = org.team.edges.filter(
-    ({
-      node: {
-        info: { staffInfo },
-      },
-    }) => staffInfo.displayOnPv
-  )
-
-  team.forEach(
-    ({
-      node: {
-        id,
-        info: { imageUrl },
-      },
-    }) => {
+  let team = org.staff.filter(({displayOnPv}) => displayOnPv)
+  team.forEach(({id, user: {imageUrl}}) => {
       let i = imageUrl.lastIndexOf(".")
       if (i === -1) {
         return Promise.reject(
@@ -160,15 +146,16 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   )
 
-  team.forEach(({ node: { id, info, contact } }) => {
-    let slug = info.name.replace(/\s+/g, "")
+  team.forEach((staff) => {
+    let slug = (staff.user.name || String(staff.id)).name.replace(/\s+/g, "")
     createPage({
       path: `/team/${slug}`,
       component: Path.resolve(`src/dynamicPages/teamMember.js`),
-      context: { info, contact, id },
+      context: { staff },
     })
   })
 
+  // Temporary since listings is not implemented on backend yet
   if (false && org.listings?.listings?.totalCount > 0) {
     let ftpClient = new FtpClient(
       org.listings.imgHost,
