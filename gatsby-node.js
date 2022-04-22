@@ -40,66 +40,38 @@ exports.createPages = async ({ graphql, actions }) => {
   let queryRet = await graphql(`
     {
       cms {
-        org {
+        curOrg {
           id
-          info {
-            name
-            tagline
-            dominantColor
-            complimentColor
+          name
+          tagline
+          dominantColor
+          complimentColor
           }
           contact {
             addr
           }
-          listings {
-            user
-            pass
-            imgHost
-            listings(all: true) {
-              totalCount
-              edges {
-                node {
-                  ml_num
-                  images(all: true) {
-                    totalCount
-                    edges {
-                      node {
-                        path
-                      }
-                    }
-                  }
-                }
+          staff {
+            id
+            title
+            about
+            displayOnPv
+            user {
+              name
+              imageUrl
+              contact {
+                fb
+                ig
+                linkedIn
+                yt
+                tt
+                cell
+                business
+                home
+                email
+                addr
               }
             }
-          }
-          team(all: true) {
-            edges {
-              node {
-                id
-                info {
-                  name
-                  imageUrl
-                  staffInfo {
-                    type
-                    title
-                    displayOnPv
-                    about
-                  }
-                }
-                contact {
-                  fb
-                  ig
-                  linkedIn
-                  yt
-                  tt
-                  cell
-                  business
-                  home
-                  email
-                  addr
-                }
-              }
-            }
+            
           }
         }
       }
@@ -197,7 +169,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  if (org.listings?.listings?.totalCount > 0) {
+  if (false && org.listings?.listings?.totalCount > 0) {
     let ftpClient = new FtpClient(
       org.listings.imgHost,
       `${org.listings.user}@photos`,
