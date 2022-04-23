@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 @layer utilities {
-    @variants responsive {
-        .scroll {
-            overflow: auto;
-        }
+    .scroll {
+        overflow: auto;
     }
 }
 

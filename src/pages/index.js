@@ -40,7 +40,7 @@ export default function Home({ location: { pathname } }) {
   return (
     <Layout path={pathname}>
       <Hero className="outer-layout bg-secondary-50" />
-      <LeadForm className="outer-layout bg-blue-500" />
+      <LeadForm className="outer-layout bg-secondary-50" />
       {/* <AvailableListings className="outer-layout text-primary py-12" /> */}
       {/* <div className="outer-layout bg-primary text-secondary h-64">
           <p>buy section</p>
