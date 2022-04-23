@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 // import { AvailableListings } from "../components/availableListings"
 import { HouseSearching } from "../assets/icons/undraw"
 import { InternalLink } from "../components/gaLink"
+import LeadForm from "../components/leadsForm"
 
 let heroTitle = "Your next home is a click away."
 let heroText = "Let us help you find the property of your dreams."
@@ -39,6 +40,7 @@ export default function Home({ location: { pathname } }) {
   return (
     <Layout path={pathname}>
       <Hero className="outer-layout bg-secondary-50" />
+      <LeadForm className="outer-layout bg-blue-500" />
       {/* <AvailableListings className="outer-layout text-primary py-12" /> */}
       {/* <div className="outer-layout bg-primary text-secondary h-64">
           <p>buy section</p>
