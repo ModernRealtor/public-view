@@ -3,80 +3,71 @@ import React, {useState} from "react"
 import {HouseSelect} from "../assets/icons/undraw"
 import {submitLeadForm} from "../services/gql-api"
 
-let inputClass = "mt-1 block w-full rounded-md border-secondary-400 focus:border-primary-500 focus:ring focus:ring-primary-300 focus:ring-opacity-25 "
+let inputClass = "mt-1 block w-full rounded-md border-secondary-400 focus:border-primary-500 focus:ring focus:ring-primary-300 focus:ring-opacity-25 placeholder:font-thin placeholder:opacity-75 "
 
 let LeadForm = ({className}) => {
     let [name, setName] = useState("")
     let [email, setEmail] = useState("")
     let [tel, setTel] = useState("")
     let [pref, setPref] = useState("email")
+    let [comments, setComments] = useState("")
+    let [subscribe, setSubscribe] = useState(false)
+    let [clientPlans, setClientPlans] = useState([])
 
-    function validateForm(){
-        let output = document.getElementById("f_output")
-
-        if(email === "" && tel === ""){
-            output.textContent = "Please provide email or telephone number."
-            output.classList.toggle("text-red-500")
-            return false
-        }
-        if(pref === "email" && email === ""){
-            output.textContent = "Contact method requires an email address."
-            output.classList.toggle("text-red-500")
-            return false
-        }
-
-        if(["call", "text"].includes(pref) && tel === ""){
-            output.textContent = "Contact method requires a phone number."
-            output.classList.toggle("text-red-500")
-            return false
-        }
-
-        return true
+    function resetForm(){
+        setName("")
+        setEmail("")
+        setTel("")
+        setPref("email")
+        setComments("")
+        setSubscribe(false)
     }
 
     async function submitForm(event){
         event.preventDefault();
-        let output = document.getElementById("f_output")
-        output.classList.remove("text-red-500")
-        output.textContent = ""
-        if(!validateForm()) return;
         console.log("loading")
         await submitLeadForm({})
-        console.log("done")
+        resetForm()
         document.getElementById("f_output").textContent = "Form Submitted"
     }
+    let emailRequired = pref === "email";
     return (<div className={`${className}`}>
         <div className="flex flex-col gap-2">
             <div className="px-8"><HouseSelect className="w-full h-auto"/></div>
             <div>
-                <h2 className="text-primary-500 text-3xl font-semi pt-6">Ready to take the next step?</h2>
-                <div id="f_output" className="w-full h-6 m-0 text-center text-sm font-thin text-green-600"></div>
+                <h2 className="text-primary-500 text-3xl font-semi py-6">Ready to take the next step?</h2>
                 <form onSubmit={submitForm}>
                     {/* planning on: buying, selling, investing, leasing */}
                     {/* interested in: residential, commercial, other */}
-                    {/* Additional comments: text area */}
-                    {/* checkbox for email me real estate and brokerage news */}
                     <label className="block">
-                        <span>Name</span>
-                        <input name="name" type="text" value={name}  onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
+                        <span>Name</span><span className="text-red-500 pl-1">*</span>
+                        <input type="text" value={name} placeholder="John Smith" onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
                     </label>
                     <label className="block">
-                        <span>Email</span>
-                        <input name="email" type="email" value={email} onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`}/>
+                        <span>Email</span><span className={`text-red-500 pl-1 ${emailRequired? "" : "hidden"}`}>*</span>
+                        <input type="email" value={email} placeholder="John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`}/>
                     </label>
                     <label className="block">
-                        <span>Tel Number</span>
-                        <input name="tel" type="tel" value={tel} onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`}/>
+                        <span>Tel Number</span><span className={`text-red-500 pl-1 ${emailRequired? "hidden" : ""}`}>*</span>
+                        <input type="tel" value={tel} placeholder="(416) 666-6666" onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`}/>
                     </label>
                     <label className="block">
                         <span>Preferred Contact Method</span>
-                        <select name="pref" value={pref} onChange={({target: {value}}) => setPref(value)} className={`${inputClass} form-select`}>
+                        <select value={pref} onChange={({target: {value}}) => setPref(value)} className={`${inputClass} form-select`}>
                             <option value="email">Email</option>
                             <option value="call">Phone Call</option>
                             <option value="text">Text</option>
                         </select>
                     </label>
-                    <input type="Submit" />
+                    <label className="block">
+                        <span>Additional Comments</span>
+                        <textarea value={comments} onChange={({target: {value}}) => setComments(value)} rows={3} className={`${inputClass} form-textarea`} placeholder="Anything extra you would like us to know?"/>
+                    </label>
+                    <label className="block">
+                        <input type="checkbox" checked={subscribe} onChange={({target: {value}}) => setSubscribe(value)} className={`${inputClass} form-checkbox float-left w-5 h-5 inline-block mb-1 mr-2`}/>
+                        <span className="align-middle ">Subscribe to Brokerage and Real Estate News</span>
+                    </label>
+                    <input type="Submit" className="primary-btn w-full" />
                 </form>
             </div>
         </div>
