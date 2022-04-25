@@ -32,7 +32,7 @@ let LeadForm = ({className}) => {
     async function submitForm(event){
         event.preventDefault();
         setLoading(true)
-        await submitLeadForm({})
+        await submitLeadForm({name, email, tel, pref, comments, subscribe, clientPlans, propTypes})
         resetForm()
         setLoading(false)
     }

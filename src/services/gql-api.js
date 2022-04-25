@@ -19,13 +19,13 @@ const client = new ApolloClient({
 
 export async function submitLeadForm(data){
     console.log(data)
-    let query = gql`
-        query Test {
-            curOrg {
+    let mutation = gql`
+        mutation Test(vars.....) {
+            submitNewLead(vars....) {
                 id
             }
         }
     `
-    await client.query({query}).then(ret => {console.log(ret)})
+    await client.mutate({mutation, variables: {}}).then(ret => {console.log(ret)})
     return Promise.resolve()
 }
