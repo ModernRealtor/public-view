@@ -1,6 +1,4 @@
 import { 
-    useQuery, 
-    useMutation, 
     gql,
     ApolloClient,
     InMemoryCache,
