@@ -12,7 +12,8 @@ let LeadForm = ({className}) => {
     let [pref, setPref] = useState("email")
     let [comments, setComments] = useState("")
     let [subscribe, setSubscribe] = useState(false)
-    let [clientPlans, setClientPlans] = useState([])
+    let [clientPlans, setClientPlans] = useState({"buying": false, "selling": false, "investing": false, "leasing": false})
+    let [propTypes, setPropTypes] = useState({"residential": false, "commercial": false})
 
     function resetForm(){
         setName("")
@@ -21,6 +22,8 @@ let LeadForm = ({className}) => {
         setPref("email")
         setComments("")
         setSubscribe(false)
+        setClientPlans({"buying": false, "selling": false, "investing": false, "leasing": false})
+        setPropTypes({"residential": false, "commercial": false})
     }
 
     async function submitForm(event){
@@ -28,8 +31,8 @@ let LeadForm = ({className}) => {
         console.log("loading")
         await submitLeadForm({})
         resetForm()
-        document.getElementById("f_output").textContent = "Form Submitted"
     }
+
     let emailRequired = pref === "email";
     return (<div className={`${className}`}>
         <div className="flex flex-col gap-2">
@@ -37,19 +40,47 @@ let LeadForm = ({className}) => {
             <div>
                 <h2 className="text-primary-500 text-3xl font-semi py-6">Ready to take the next step?</h2>
                 <form onSubmit={submitForm}>
-                    {/* planning on: buying, selling, investing, leasing */}
-                    {/* interested in: residential, commercial, other */}
+                    <div className="block">
+                        <span>Interested In</span>
+                        <div className="flex flex-wrap gap-x-3 place-content-between">
+                            {Object.keys(clientPlans).map((type, i) => (
+                            <label key={i}>
+                                <input type="checkbox" checked={clientPlans[type]} onChange={({target: {value, checked}}) => {
+                                    let newState = Object.assign({}, clientPlans)
+                                    newState[value] = (checked === true)
+                                    setClientPlans(newState)
+                                }} className={`${inputClass} w-5 h-5 inline-block float-left mr-1`}/>
+                                <span className="capitalize align-middle">{type}</span>
+                            </label>
+                            ))}
+                        </div>                        
+                    </div>
+                    <div className="block">
+                        <span>Property Type</span>
+                        <div className="flex flex-wrap gap-x-3 place-content-between">
+                            {Object.keys(propTypes).map((type, i) => (
+                            <label key={i}>
+                                <input type="checkbox" checked={propTypes[type]} onChange={({target: {value, checked}}) => {
+                                    let newState = Object.assign({}, propTypes)
+                                    newState[value] = (checked === true)
+                                    setPropTypes(newState)
+                                }} className={`${inputClass} w-5 h-5 inline-block float-left mr-1`}/>
+                                <span className="capitalize align-middle">{type}</span>
+                            </label>
+                            ))}
+                        </div>                        
+                    </div>
                     <label className="block">
                         <span>Name</span><span className="text-red-500 pl-1">*</span>
                         <input type="text" value={name} placeholder="John Smith" onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
                     </label>
                     <label className="block">
                         <span>Email</span><span className={`text-red-500 pl-1 ${emailRequired? "" : "hidden"}`}>*</span>
-                        <input type="email" value={email} placeholder="John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`}/>
+                        <input type="email" value={email} placeholder="John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`} required={emailRequired}/>
                     </label>
                     <label className="block">
-                        <span>Tel Number</span><span className={`text-red-500 pl-1 ${emailRequired? "hidden" : ""}`}>*</span>
-                        <input type="tel" value={tel} placeholder="(416) 666-6666" onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`}/>
+                        <span>Phone Number</span><span className={`text-red-500 pl-1 ${emailRequired? "hidden" : ""}`}>*</span>
+                        <input type="tel" value={tel} placeholder="(416) 666-6666" onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`} required={!emailRequired}/>
                     </label>
                     <label className="block">
                         <span>Preferred Contact Method</span>
@@ -64,7 +95,7 @@ let LeadForm = ({className}) => {
                         <textarea value={comments} onChange={({target: {value}}) => setComments(value)} rows={3} className={`${inputClass} form-textarea`} placeholder="Anything extra you would like us to know?"/>
                     </label>
                     <label className="block">
-                        <input type="checkbox" checked={subscribe} onChange={({target: {value}}) => setSubscribe(value)} className={`${inputClass} form-checkbox float-left w-5 h-5 inline-block mb-1 mr-2`}/>
+                        <input type="checkbox" checked={subscribe} onChange={({target: {checked}}) => setSubscribe(checked)} className={`${inputClass} form-checkbox float-left w-5 h-5 inline-block mb-1 mr-2`}/>
                         <span className="align-middle ">Subscribe to Brokerage and Real Estate News</span>
                     </label>
                     <input type="Submit" className="primary-btn w-full" />
