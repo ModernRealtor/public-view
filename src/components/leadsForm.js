@@ -39,7 +39,7 @@ let LeadForm = ({className}) => {
             <div className="px-8"><HouseSelect className="w-full h-auto"/></div>
             <div>
                 <h2 className="text-primary-500 text-3xl font-semi py-6">Ready to take the next step?</h2>
-                <form onSubmit={submitForm}>
+                <form onSubmit={submitForm} className="flex flex-col gap-2">
                     <div className="block">
                         <span>Interested In</span>
                         <div className="flex flex-wrap gap-x-3 place-content-between">
@@ -49,13 +49,13 @@ let LeadForm = ({className}) => {
                                     let newState = Object.assign({}, clientPlans)
                                     newState[value] = (checked === true)
                                     setClientPlans(newState)
-                                }} className={`${inputClass} w-5 h-5 inline-block float-left mr-1`}/>
+                                }} className={`${inputClass} w-5 h-5 inline-block float-left mr-1 checked:focus:bg-primary-500`}/>
                                 <span className="capitalize align-middle">{type}</span>
                             </label>
                             ))}
                         </div>                        
                     </div>
-                    <div className="block">
+                    <div className="block pt-1.5">
                         <span>Property Type</span>
                         <div className="flex flex-wrap gap-x-3 place-content-between">
                             {Object.keys(propTypes).map((type, i) => (
@@ -64,12 +64,16 @@ let LeadForm = ({className}) => {
                                     let newState = Object.assign({}, propTypes)
                                     newState[value] = (checked === true)
                                     setPropTypes(newState)
-                                }} className={`${inputClass} w-5 h-5 inline-block float-left mr-1`}/>
+                                }} className={`${inputClass} w-5 h-5 inline-block float-left mr-1 checked:focus:bg-primary-500`}/>
                                 <span className="capitalize align-middle">{type}</span>
                             </label>
                             ))}
                         </div>                        
                     </div>
+                    <label className="block">
+                        <span>Additional Comments</span>
+                        <textarea value={comments} onChange={({target: {value}}) => setComments(value)} rows={3} className={`${inputClass} form-textarea`} placeholder="Anything extra you would like us to know?"/>
+                    </label>
                     <label className="block">
                         <span>Name</span><span className="text-red-500 pl-1">*</span>
                         <input type="text" value={name} placeholder="John Smith" onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
@@ -91,11 +95,7 @@ let LeadForm = ({className}) => {
                         </select>
                     </label>
                     <label className="block">
-                        <span>Additional Comments</span>
-                        <textarea value={comments} onChange={({target: {value}}) => setComments(value)} rows={3} className={`${inputClass} form-textarea`} placeholder="Anything extra you would like us to know?"/>
-                    </label>
-                    <label className="block">
-                        <input type="checkbox" checked={subscribe} onChange={({target: {checked}}) => setSubscribe(checked)} className={`${inputClass} form-checkbox float-left w-5 h-5 inline-block mb-1 mr-2`}/>
+                        <input type="checkbox" checked={subscribe} onChange={({target: {checked}}) => setSubscribe(checked)} className={`${inputClass} form-checkbox float-left w-5 h-5 inline-block mb-1 mr-2 checked:focus:bg-primary-500`}/>
                         <span className="align-middle ">Subscribe to Brokerage and Real Estate News</span>
                     </label>
                     <input type="Submit" className="primary-btn w-full" />
