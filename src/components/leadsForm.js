@@ -39,10 +39,14 @@ let LeadForm = ({className}) => {
 
     let emailRequired = pref === "email";
     return (<div className={`${className}`}>
-        <div className="flex flex-col gap-2">
-            <div className="px-8"><HouseSelect className="w-full h-auto"/></div>
+        <div className="flex flex-col">
+            <div className="relative w-full overflow-clip" style={{paddingTop: "55%"}}>
+                <div className="absolute top-0">
+                    <HouseSelect className="w-full h-fit top-0"/>
+                </div>
+            </div>
             <div className="relative">
-                <h2 className="text-primary-500 text-3xl font-semi py-6">Ready to take the next step?</h2>
+                <h2 className="text-primary-500 text-3xl font-semi pb-6">Ready to take the next step?</h2>
                 <form onSubmit={submitForm} className={`${loading? "cursor-wait animate-pulse" : ""}`}>
                     <fieldset className={`flex flex-col gap-2 disabled:pointer-events-none`} disabled={loading}>
                         <div className="block">
