@@ -1,6 +1,7 @@
 import React from "react"
 
 import {HouseSelect} from "../assets/icons/undraw"
+import {submitLeadForm} from "../services/gql-api"
 
 let inputClass = "mt-1 block w-full rounded-md border-secondary-400 focus:border-primary-500 focus:ring focus:ring-primary-300 focus:ring-opacity-25 "
 
@@ -10,7 +11,7 @@ let LeadForm = ({className}) => {
             <div className="px-8"><HouseSelect className="w-full h-auto"/></div>
             <div>
                 <h2 className="text-primary-500 text-3xl font-semi py-6">Ready to take the next step?</h2>
-                <form>
+                <form onClick={()=> {submitLeadForm({hi: "sdfs"})}}>
                     {/* planning on: buying, selling, investing, leasing */}
                     {/* interested in: residential, commercial, other */}
                     {/* email, phone number, atleast one is required */}
