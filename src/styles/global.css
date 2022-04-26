@@ -38,7 +38,7 @@
     }
 
     .primary-btn {
-        @apply font-medium px-4 py-2 my-2 bg-secondary-800 text-secondary-50 hover:bg-primary-500 hover:text-secondary-50
+        @apply cursor-pointer font-medium px-4 py-2 my-2 bg-secondary-800 text-secondary-50 hover:bg-primary-500 hover:text-secondary-50
     }
 
     @screen tablet {

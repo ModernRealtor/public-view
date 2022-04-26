@@ -4,7 +4,7 @@ import {HouseSelect} from "../assets/icons/undraw"
 import {submitLeadForm} from "../services/gql-api"
 
 let inputClass = "form-input mt-1 block w-full rounded-md border-secondary-400 focus:border-primary-500 focus:ring focus:ring-primary-300 focus:ring-opacity-25 placeholder:font-thin placeholder:opacity-75 "
-let checkClass = "form-checkbox w-5 h-5 inline-block float-left mr-1 checked:bg-primary-500 checked:focus:bg-primary-500 checked:focus:ring-1 checked:focus:ring-primary-500"
+let checkClass = "form-checkbox w-5 h-5 inline-block float-left mr-1 cursor-pointer checked:bg-primary-500 checked:focus:bg-primary-500 checked:focus:ring-1 checked:focus:ring-primary-500"
 
 
 let LeadForm = ({className}) => {
@@ -50,10 +50,10 @@ let LeadForm = ({className}) => {
                 <form onSubmit={submitForm} className={`${loading? "cursor-wait animate-pulse" : ""}`}>
                     <fieldset className={`flex flex-col gap-2 disabled:pointer-events-none`} disabled={loading}>
                         <div className="block">
-                            <span className="font-medium">Interested In</span>
-                            <div className="flex flex-wrap gap-x-3 place-content-between">
+                            <span className="font-medium cursor-default">Interested In</span>
+                            <div className="flex flex-wrap gap-x-6 justify-start">
                                 {Object.keys(clientPlans).map((type, i) => (
-                                <label key={i}>
+                                <label key={i} className="cursor-pointer">
                                     <input type="checkbox" value={type} checked={clientPlans[type]} onChange={({target: {value, checked}}) => {
                                         let newState = Object.assign({}, clientPlans)
                                         newState[value] = (checked === true)
@@ -65,10 +65,10 @@ let LeadForm = ({className}) => {
                             </div>                        
                         </div>
                         <div className="block">
-                            <span className="font-medium">Property Type</span>
-                            <div className="flex flex-wrap gap-x-3 place-content-between">
+                            <span className="font-medium cursor-default">Property Type</span>
+                            <div className="flex flex-wrap gap-x-6 justify-start">
                                 {Object.keys(propTypes).map((type, i) => (
-                                <label key={i}>
+                                <label key={i} className="cursor-pointer">
                                     <input type="checkbox" value={type} checked={propTypes[type]} onChange={({target: {value, checked}}) => {
                                         let newState = Object.assign({}, propTypes)
                                         newState[value] = (checked === true)
@@ -103,11 +103,11 @@ let LeadForm = ({className}) => {
                                 <option value="text">Text</option>
                             </select>
                         </label>
-                        <label className="block">
+                        <label className="block cursor-pointer">
                             <input type="checkbox" checked={subscribe} onChange={({target: {checked}}) => setSubscribe(checked)} className={`${inputClass} ${checkClass} mb-1 mr-2`}/>
                             <span className="align-middle ">Subscribe to Brokerage and Real Estate News</span>
                         </label>
-                        <input type="Submit" className="primary-btn w-full" />
+                        <input type="Submit" value="Submit" className="primary-btn w-full" />
                     </fieldset>
                 </form>
             </div>
