@@ -39,14 +39,16 @@ let LeadForm = ({className}) => {
 
     let emailRequired = pref === "email";
     return (<div className={`${className}`}>
-        <div className="flex flex-col">
-            <div className="relative w-full overflow-clip" style={{paddingTop: "55%"}}>
-                <div className="absolute top-0">
-                    <HouseSelect className="w-full h-fit top-0"/>
+        <div className="flex flex-col tablet:flex-row place-content-center">
+            <div className="flex-none flex-col-reverse place-content-start gap-4 tablet:basis-2/5 tablet:pr-12 tablet:flex">
+                <div className="relative w-full overflow-clip tablet:overflow-visible" style={{paddingTop: "55%"}}>
+                    <div className="absolute top-0">
+                        <HouseSelect className="w-full h-fit"/>
+                    </div>
                 </div>
+                <h2 className="text-primary-500 text-3xl font-semi pb-6">Ready to take the next step?</h2>
             </div>
             <div className="relative">
-                <h2 className="text-primary-500 text-3xl font-semi pb-6">Ready to take the next step?</h2>
                 <form onSubmit={submitForm} className={`${loading? "cursor-wait animate-pulse" : ""}`}>
                     <fieldset className={`flex flex-col gap-2 disabled:pointer-events-none`} disabled={loading}>
                         <div className="block">
@@ -85,15 +87,15 @@ let LeadForm = ({className}) => {
                         </label>
                         <label className="block">
                             <span className="font-medium">Name</span><span className="text-red-500 pl-1">*</span>
-                            <input type="text" value={name} placeholder="John Smith" onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
+                            <input type="text" value={name} placeholder="e.g. John Smith" onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
                         </label>
                         <label className="block">
                             <span className="font-medium">Email</span><span className={`text-red-500 pl-1 ${emailRequired? "" : "hidden"}`}>*</span>
-                            <input type="email" value={email} placeholder="John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`} required={emailRequired}/>
+                            <input type="email" value={email} placeholder="e.g. John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`} required={emailRequired}/>
                         </label>
                         <label className="block">
                             <span className="font-medium">Phone Number</span><span className={`text-red-500 pl-1 ${emailRequired? "hidden" : ""}`}>*</span>
-                            <input type="tel" value={tel} placeholder="(416) 666-6666" onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`} required={!emailRequired}/>
+                            <input type="tel" value={tel} placeholder="e.g. (416) 666-6666" onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`} required={!emailRequired}/>
                         </label>
                         <label className="block">
                             <span className="font-medium">Preferred Contact Method</span>
@@ -107,7 +109,7 @@ let LeadForm = ({className}) => {
                             <input type="checkbox" checked={subscribe} onChange={({target: {checked}}) => setSubscribe(checked)} className={`${inputClass} ${checkClass} mb-1 mr-2`}/>
                             <span className="align-middle ">Subscribe to Brokerage and Real Estate News</span>
                         </label>
-                        <input type="Submit" value="Submit" className="primary-btn w-full" />
+                        <input type="Submit" value="Submit" onChange={()=>{}} className="primary-btn w-full" />
                     </fieldset>
                 </form>
             </div>
