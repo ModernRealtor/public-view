@@ -40,9 +40,9 @@ let LeadForm = ({className}) => {
     let emailRequired = pref === "email";
     return (<section className={`${className}`}>
         <div className="flex flex-col tablet:flex-row place-content-center laptop:place-content-around laptop:gap-4">
-            <div className="flex-none flex-col-reverse place-content-start gap-4 tablet:basis-2/5 desktop:basis-1/3 tablet:pr-12 tablet:flex">
-                <div className="relative w-full overflow-clip tablet:overflow-visible max-w-xs" style={{height: "45vw", maxHeight: "11rem"}}>
-                    <div className="absolute top-0">
+            <div className="flex-none flex-col-reverse justify-between gap-4 tablet:basis-2/5 desktop:basis-1/3 tablet:pr-12 tablet:flex">
+                <div className="relative w-full overflow-clip tablet:overflow-visible max-w-xs tablet:h-max" style={{height: "45vw", maxHeight: "11rem"}}>
+                    <div className="absolute top-0 tablet:top-auto tablet:bottom-0">
                         <HouseSelect className="w-full h-fit"/>
                     </div>
                 </div>
