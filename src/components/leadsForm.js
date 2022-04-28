@@ -36,7 +36,7 @@ let LeadForm = ({className}) => {
             await submitLeadForm({name, email, tel, pref, comments, subscribe, clientPlans, propertyTypes})
             resetForm()
         }catch(err){
-
+            console.log(err)
         }finally {
             setLoading(false)
         }

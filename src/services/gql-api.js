@@ -39,13 +39,16 @@ export async function submitLeadForm({name, email, tel, pref, comments, subscrib
             addLead(name: $name, comment: $comment, email: $email, tel: $tel, contactMethod: $contactMethod, mailingList: $mailingList)
         }
     `
-    await client.mutate({mutation, variables: {
+    return await client.mutate({mutation, variables: {
         name,
         comment,
         email,
         tel,
         contactMethod,
         mailingList
-    }}).then(ret => {console.log(ret)})
-    return Promise.resolve()
+    }})
+    .then(({data: addLead}) => {
+        if(addLead) return Promise.resolve()
+        return Promise.reject(new Error("Unable to submit request"))
+    })
 }
