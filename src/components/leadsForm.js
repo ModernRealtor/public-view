@@ -16,7 +16,7 @@ let LeadForm = ({className}) => {
     let [comments, setComments] = useState("")
     let [subscribe, setSubscribe] = useState(false)
     let [clientPlans, setClientPlans] = useState({"buying": false, "selling": false, "investing": false, "leasing": false})
-    let [propTypes, setPropTypes] = useState({"residential": false, "commercial": false})
+    let [propertyTypes, setPropertyTypes] = useState({"residential": false, "commercial": false})
 
     function resetForm(){
         setName("")
@@ -26,13 +26,13 @@ let LeadForm = ({className}) => {
         setComments("")
         setSubscribe(false)
         setClientPlans({"buying": false, "selling": false, "investing": false, "leasing": false})
-        setPropTypes({"residential": false, "commercial": false})
+        setPropertyTypes({"residential": false, "commercial": false})
     }
 
     async function submitForm(event){
         event.preventDefault();
         setLoading(true)
-        await submitLeadForm({name, email, tel, pref, comments, subscribe, clientPlans, propTypes})
+        await submitLeadForm({name, email, tel, pref, comments, subscribe, clientPlans, propertyTypes})
         resetForm()
         setLoading(false)
     }
@@ -70,12 +70,12 @@ let LeadForm = ({className}) => {
                             <div className="col-span-3 desktop:col-span-1">
                                 <span className="font-medium cursor-default">Property Type</span>
                                 <div className="flex flex-wrap gap-x-6 justify-start">
-                                    {Object.keys(propTypes).map((type, i) => (
+                                    {Object.keys(propertyTypes).map((type, i) => (
                                     <label key={i} className="cursor-pointer">
-                                        <input type="checkbox" value={type} checked={propTypes[type]} onChange={({target: {value, checked}}) => {
-                                            let newState = Object.assign({}, propTypes)
+                                        <input type="checkbox" value={type} checked={propertyTypes[type]} onChange={({target: {value, checked}}) => {
+                                            let newState = Object.assign({}, propertyTypes)
                                             newState[value] = (checked === true)
-                                            setPropTypes(newState)
+                                            setPropertyTypes(newState)
                                         }} className={`${inputClass} ${checkClass}`}/>
                                         <span className="capitalize align-middle">{type}</span>
                                     </label>

@@ -17,15 +17,35 @@ const client = new ApolloClient({
     link
 });
 
-export async function submitLeadForm(data){
-    console.log(data)
+export async function submitLeadForm({name, email, tel, pref, comments, subscribe, clientPlans, propertyTypes}){
+    // Clean inputs
+    name = name || "anonymous"
+    comments = comments || "n/a"
+    let clientSelection = Object.keys(clientPlans).filter(key => clientPlans[key]).join(", ")
+    let propertySelection = Object.keys(propertyTypes).filter(key => propertyTypes[key]).join(", ")
+    let comment = `
+    Interested in: ${clientSelection || "n/a"}
+    Property types: ${propertySelection || "n/a"}
+
+    Additional Comments: 
+    ${comments}
+    `
+    email = email || null
+    tel = tel || null
+    let contactMethod = pref || null
+    let mailingList = subscribe || false
     let mutation = gql`
-        mutation Test(vars.....) {
-            submitNewLead(vars....) {
-                id
-            }
+        mutation SubmitLead($name: String!, $comment: String!, $email: String, $tel: String, $contactMethod: String!, $mailingList: Boolean!) {
+            addLead(name: $name, comment: $comment, email: $email, tel: $tel, contactMethod: $contactMethod, mailingList: $mailingList)
         }
     `
-    await client.mutate({mutation, variables: {}}).then(ret => {console.log(ret)})
+    await client.mutate({mutation, variables: {
+        name,
+        comment,
+        email,
+        tel,
+        contactMethod,
+        mailingList
+    }}).then(ret => {console.log(ret)})
     return Promise.resolve()
 }
