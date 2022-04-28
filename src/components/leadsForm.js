@@ -1,10 +1,22 @@
 import React, {useState} from "react"
+import { toast } from 'react-toastify';
 
 import {HouseSelect} from "../assets/icons/undraw"
 import {submitLeadForm} from "../services/gql-api"
 
 let inputClass = "form-input mt-1 block w-full rounded-md border-secondary-400 focus:border-primary-500 focus:ring focus:ring-primary-300 focus:ring-opacity-25 placeholder:font-thin placeholder:opacity-75 "
 let checkClass = "form-checkbox w-5 h-5 inline-block float-left mr-1 cursor-pointer checked:bg-primary-500 checked:focus:bg-primary-500 checked:focus:ring-1 checked:focus:ring-primary-500 hover:border-primary-500 checked:hover:bg-primary-500 checked:hover:ring checked:hover:ring-primary-300 checked:hover:ring-opacity-25"
+
+let toastProps = {
+    position: "bottom-right",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  }
 
 
 let LeadForm = ({className}) => {
@@ -32,14 +44,14 @@ let LeadForm = ({className}) => {
     async function submitForm(event){
         event.preventDefault();
         setLoading(true)
-        try{
-            await submitLeadForm({name, email, tel, pref, comments, subscribe, clientPlans, propertyTypes})
-            resetForm()
-        }catch(err){
-            console.log(err)
-        }finally {
-            setLoading(false)
-        }
+        toast.promise(submitLeadForm({name, email, tel, pref, comments, subscribe, clientPlans, propertyTypes}), {
+            pending: "Submitting Information",
+            success: "Submission successful 👍",
+            error: "Submission failed 😨"
+        }, toastProps)
+        .then(() => resetForm())
+        .catch(err => console.error(err))
+        .finally(() => setLoading(false))
     }
 
     let emailRequired = pref === "email";

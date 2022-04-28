@@ -1,5 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
+import { ToastContainer } from 'react-toastify';
+
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -54,6 +56,17 @@ export default function Layout({ title, children, path }) {
           content={`${siteUrl}/logos/main300x300.png`}
         />
       </Helmet>
+      <ToastContainer 
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={true}
+            draggable
+            pauseOnHover
+        />
       <Header />
       {children}
       <Footer path={path} />
