@@ -4,8 +4,8 @@ const { getTheme } = require("./custom-theme")
 let { primary, secondary } = getTheme()
 
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "media", // or 'class'. media is the same as false
   theme: {
     screens: {
       tablet: "640px",
@@ -24,4 +24,7 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

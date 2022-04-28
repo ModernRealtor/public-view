@@ -12,6 +12,8 @@ const cmsURL =
   process.env["CMS_URL"] ||
   `https://api${process.env.SUB_URL}modernrealtor.dev/graphql`
 const gaId = process.env["GA_ID"]
+process.env.GATSBY_API_URL = cmsURL
+process.env.GATSBY_API_TOKEN = process.env.API_ACCESS_TOKEN
 
 module.exports = {
   siteMetadata: {
