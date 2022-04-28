@@ -41,7 +41,7 @@ let LeadForm = ({className}) => {
     return (<section className={`${className}`}>
         <div className="flex flex-col tablet:flex-row place-content-center laptop:place-content-around laptop:gap-4">
             <div className="flex-none flex-col-reverse place-content-start gap-4 tablet:basis-2/5 desktop:basis-1/3 tablet:pr-12 tablet:flex">
-                <div className="relative w-full overflow-clip tablet:overflow-visible" style={{paddingTop: "55%"}}>
+                <div className="relative w-full overflow-clip tablet:overflow-visible max-w-xs" style={{height: "45vw", maxHeight: "11rem"}}>
                     <div className="absolute top-0">
                         <HouseSelect className="w-full h-fit"/>
                     </div>
