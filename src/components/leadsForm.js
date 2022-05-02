@@ -76,8 +76,8 @@ let LeadForm = ({className, id}) => {
                     <fieldset className={`flex flex-col gap-2 desktop:gap-4 disabled:pointer-events-none`} disabled={loading}>
                         <div className="grid grid-cols-3 desktop:grid-flow-col gap-2">
                             <div className="col-span-3 desktop:col-span-1">
-                                <span className="font-medium cursor-default">Interested In</span>
-                                <div className="flex flex-wrap gap-x-6 justify-start">
+                                <span className="font-medium cursor-default">Interested In</span> <span className="text-gray-400 italic text-sm pl-2">Optional</span>
+                                <div className="py-1 flex flex-wrap gap-x-6 justify-start">
                                     {Object.keys(clientPlans).map((type, i) => (
                                     <label key={i} className="cursor-pointer">
                                         <input type="checkbox" value={type} checked={clientPlans[type]} onChange={({target: {value, checked}}) => {
@@ -91,8 +91,8 @@ let LeadForm = ({className, id}) => {
                                 </div>                        
                             </div>
                             <div className="col-span-3 desktop:col-span-1">
-                                <span className="font-medium cursor-default">Property Type</span>
-                                <div className="flex flex-wrap gap-x-6 justify-start">
+                                <span className="font-medium cursor-default">Property Type</span> <span className="text-gray-400 italic text-sm pl-2">Optional</span>
+                                <div className="py-1 flex flex-wrap gap-x-6 justify-start">
                                     {Object.keys(propertyTypes).map((type, i) => (
                                     <label key={i} className="cursor-pointer">
                                         <input type="checkbox" value={type} checked={propertyTypes[type]} onChange={({target: {value, checked}}) => {
@@ -106,21 +106,50 @@ let LeadForm = ({className, id}) => {
                                 </div>                        
                             </div>
                             <label className="block col-span-3 desktop:row-span-2 desktop:col-span-2">
-                                <span className="font-medium">Additional Comments</span>
+                                <div className="flex justify-between">
+                                    <span className="font-medium">Additional Comments</span>
+                                    <span className="text-gray-400 italic text-sm self-end">Optional</span>
+                                </div>
                                 <textarea value={comments} onChange={({target: {value}}) => setComments(value)} rows={4} className={`${inputClass} form-textarea`} placeholder="Anything extra you would like us to know?"/>
                             </label>
                         </div>
                         <label className="block">
-                            <span className="font-medium">Name</span><span className="text-red-500 pl-1">*</span>
+                            <div className="flex justify-between">
+                                <div>
+                                    <span className="font-medium">Name</span>
+                                    <span className="text-red-500 pl-1">*</span>
+                                </div>
+                                <span className="text-red-400 italic text-sm self-end">Required</span>
+                            </div>
                             <input type="text" value={name} placeholder="e.g. John Smith" onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
                         </label>
                         <div className="grid grid-cols-4 gap-2 desktop:gap-4">
                             <label className="block col-span-4">
-                                <span className="font-medium">Email</span><span className={`text-red-500 pl-1 ${emailRequired? "" : "hidden"}`}>*</span>
+                                <div className="flex justify-between">
+                                    <div>
+                                        <span className="font-medium">Email</span>
+                                        <span className={`text-red-500 pl-1 ${emailRequired? "" : "hidden"}`}>*</span>
+                                    </div>
+                                    {emailRequired? (
+                                        <span className="text-red-400 italic text-sm self-end">Required</span>
+                                    ) : (
+                                        <span className="text-gray-400 italic text-sm self-end">Optional</span>
+                                    )}
+                                </div>
                                 <input type="email" value={email} placeholder="e.g. John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`} required={emailRequired}/>
                             </label>
                             <label className="block col-span-4 laptop:col-span-2">
-                                <span className="font-medium">Phone Number</span><span className={`text-red-500 pl-1 ${emailRequired? "hidden" : ""}`}>*</span>
+                                <div className="flex justify-between">
+                                    <div>
+                                        <span className="font-medium">Phone Number</span>
+                                        <span className={`text-red-500 pl-1 ${emailRequired? "hidden" : ""}`}>*</span>
+                                    </div>
+                                    {!emailRequired? (
+                                        <span className="text-red-400 italic text-sm self-end">Required</span>
+                                    ) : (
+                                        <span className="text-gray-400 italic text-sm self-end">Optional</span>
+                                    )}
+                                </div>
                                 <input type="tel" value={tel} placeholder="e.g. (416) 666-6666" onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`} required={!emailRequired}/>
                             </label>
                             <label className="block col-span-4 laptop:col-span-2">
