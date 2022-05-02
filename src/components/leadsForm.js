@@ -58,9 +58,9 @@ let LeadForm = ({className}) => {
     return (<section className={`${className}`}>
         <div className="flex flex-col tablet:flex-row place-content-center laptop:place-content-around laptop:gap-4">
             <div className="flex-none flex-col-reverse justify-between gap-4 tablet:basis-2/5 desktop:basis-1/3 tablet:pr-12 tablet:flex">
-                <div className="relative w-full overflow-clip tablet:overflow-visible max-w-xs tablet:h-max" style={{height: "45vw", maxHeight: "11rem"}}>
+                <div className="relative w-full overflow-hidden tablet:overflow-visible max-w-xs tablet:h-max" style={{height: "45vw", maxHeight: "11rem"}}>
                     <div className="absolute top-0 tablet:top-auto tablet:bottom-0">
-                        <HouseSelect className="w-full h-fit"/>
+                        <HouseSelect className="w-full h-auto"/>
                     </div>
                 </div>
                 <h2 className="text-primary-500 text-3xl font-semi pb-6 desktop:text-4xl">Ready to take the next step?</h2>
