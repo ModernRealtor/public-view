@@ -52,15 +52,16 @@ export default function Menu({className, path}) {
           <MenuIcon className="w-6 h-6 m-auto" />
         )}
       </button>
+      <div className={`bg-black ${isOpen? "opacity-30" : "opacity-0 pointer-events-none"} w-full h-screen overflow-hidden absolute right-0 bottom-0 translate-y-full tablet:hidden transition-opacity duration-300 ease-in-out`}></div>
       <div
-        className={`bg-secondary-50 w-full h-screen z-0 ${
-          isOpen ? "absolute" : "hidden"
-        } flex-grow flex-col-reverse flex-wrap right-0 bottom-0 translate-y-full tablet:translate-y-0 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:items-center tablet:bg-transparent gap-5 laptop:gap-10`}
+        className={`bg-secondary-50 w-2/3 tablet:w-full h-screen z-0 ${
+          isOpen ? "translate-x-0" : "translate-x-full tablet:translate-x-0"
+        } outer-layout absolute flex flex-col right-0 bottom-0 pt-10 translate-y-full tablet:translate-y-0 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:static tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:items-center tablet:bg-transparent gap-6 laptop:gap-10 transition-transform tablet:transition-none duration-300 ease-in-out`}
       >
         {menuData.entries.map(item => (
           <InternalLink
             to={item.loc}
-            className={`${item.loc === path? "selected" : ""} tablet:w-auto tablet:text-center tablet:py-0 tablet:my-0 hover:text-accent w-full py-3 mt-5 font-semibold text-left`}
+            className={`${item.loc === path? "selected" : ""} block text-left tablet:w-auto tablet:text-center tablet:p-0 tablet:m-0 hover:text-accent w-full py-3 font-semibold`}
             label={item.title}
             tag={`Menu > ${item.title}`}
           >
