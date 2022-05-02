@@ -8,7 +8,7 @@ import LeadForm from "../components/leadsForm"
 
 let heroTitle = "Your next home is a click away."
 let heroText = "Let us help you find the property of your dreams."
-let heroBtnTxt = "Learn More"
+let heroBtnTxt = "Get Started"
 
 function Hero(props) {
   return (
@@ -22,7 +22,7 @@ function Hero(props) {
           </h1>
           <p className="py-4">{heroText}</p>
           <InternalLink
-            to="/about/"
+            to="#leadForm"
             className=" primary-btn desktop:float-right"
             label={heroBtnTxt}
             tag="Hero Button"
@@ -40,7 +40,7 @@ export default function Home({ location: { pathname } }) {
   return (
     <Layout path={pathname}>
       <Hero className="outer-layout bg-secondary-50" />
-      <LeadForm className="outer-layout bg-secondary-50" />
+      <LeadForm className="outer-layout bg-secondary-50" id="leadForm" />
       {/* <AvailableListings className="outer-layout text-primary py-12" /> */}
       {/* <div className="outer-layout bg-primary text-secondary h-64">
           <p>buy section</p>

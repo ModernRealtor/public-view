@@ -19,7 +19,7 @@ let toastProps = {
   }
 
 
-let LeadForm = ({className}) => {
+let LeadForm = ({className, id}) => {
     let [loading, setLoading] = useState(false)
     let [name, setName] = useState("")
     let [email, setEmail] = useState("")
@@ -63,7 +63,10 @@ let LeadForm = ({className}) => {
                         <HouseSelect className="w-full h-auto"/>
                     </div>
                 </div>
-                <h2 className="text-primary-500 text-3xl font-semi pb-6 desktop:text-4xl">Ready to take the next step?</h2>
+                <h2 className="text-primary-500 text-3xl font-semi pb-6 desktop:text-4xl relative">        
+                    <span className="w-6 h-1 absolute -top-24 invisible" id={id}></span>
+                    Ready to take the next step?
+                </h2>
             </div>
             <div className="relative laptop:w-full">
                 <form onSubmit={submitForm} className={`${loading? "cursor-wait animate-pulse" : ""}`}>
