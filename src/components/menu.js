@@ -55,7 +55,7 @@ export default function Menu({className, path}) {
       <div
         className={`bg-secondary-50 w-full h-screen z-0 ${
           isOpen ? "absolute" : "hidden"
-        } flex-grow flex-col-reverse flex-wrap right-0 bottom-0 translate-y-full tablet:translate-y-0 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:static tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:items-center tablet:bg-transparent gap-5 laptop:gap-10`}
+        } flex-grow flex-col-reverse flex-wrap right-0 bottom-0 translate-y-full tablet:translate-y-0 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:items-center tablet:bg-transparent gap-5 laptop:gap-10`}
       >
         {menuData.entries.map(item => (
           <InternalLink
