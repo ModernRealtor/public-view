@@ -63,10 +63,13 @@ let LeadForm = ({className, id}) => {
                         <HouseSelect className="w-full h-auto"/>
                     </div>
                 </div>
-                <h2 className="text-primary-500 text-3xl font-semi pb-6 desktop:text-4xl relative">        
-                    <span className="w-6 h-1 absolute -top-24 invisible" id={id}></span>
-                    Ready to take the next step?
-                </h2>
+                <div className="pb-6">
+                    <h2 className="text-primary-500 text-3xl font-semi pb-2 desktop:text-4xl relative">        
+                        <span className="w-6 h-1 absolute -top-24 invisible" id={id}></span>
+                        Ready to take the next step?
+                    </h2>
+                    <p>Fill out the form and we'll be happy to reach out</p>
+                </div>
             </div>
             <div className="relative laptop:w-full">
                 <form onSubmit={submitForm} className={`${loading? "cursor-wait animate-pulse" : ""}`}>
