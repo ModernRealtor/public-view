@@ -54,7 +54,7 @@ function Affiliates(props) {
 
 export default function Footer(props) {
   return (
-    <>
+    <footer>
       <div className="outer-layout  py-12 mt-20">
         <div className="place-content-center tablet:flex-row tablet:place-content-between flex flex-col flex-wrap gap-10 text-center">
           <LogoIcon
@@ -89,6 +89,6 @@ export default function Footer(props) {
           </div>
         </span>
       </div>
-    </>
+    </footer>
   )
 }

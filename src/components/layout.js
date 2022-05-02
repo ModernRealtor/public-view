@@ -67,7 +67,7 @@ export default function Layout({ title, children, path }) {
             draggable
             pauseOnHover
         />
-      <Header />
+      <Header path={path} />
       {children}
       <Footer path={path} />
     </div>
