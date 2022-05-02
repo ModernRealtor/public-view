@@ -124,19 +124,13 @@ let LeadForm = ({className, id}) => {
                             <input type="text" value={name} placeholder="e.g. John Smith" onChange={({target: {value}}) => setName(value)} className={`${inputClass}`} required/>
                         </label>
                         <div className="grid grid-cols-4 gap-2 desktop:gap-4">
-                            <label className="block col-span-4">
-                                <div className="flex justify-between">
-                                    <div>
-                                        <span className="font-medium">Email</span>
-                                        <span className={`text-red-500 pl-1 ${emailRequired? "" : "hidden"}`}>*</span>
-                                    </div>
-                                    {emailRequired? (
-                                        <span className="text-red-400 italic text-sm self-end">Required</span>
-                                    ) : (
-                                        <span className="text-gray-400 italic text-sm self-end">Optional</span>
-                                    )}
-                                </div>
-                                <input type="email" value={email} placeholder="e.g. John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`} required={emailRequired}/>
+                            <label className="block col-span-4 laptop:col-span-2">
+                                <span className="font-medium">Preferred Contact Method</span>
+                                <select value={pref} onChange={({target: {value}}) => setPref(value)} className={`${inputClass} form-select`}>
+                                    <option value="email">Email</option>
+                                    <option value="call">Phone Call</option>
+                                    <option value="text">Text</option>
+                                </select>
                             </label>
                             <label className="block col-span-4 laptop:col-span-2">
                                 <div className="flex justify-between">
@@ -152,13 +146,19 @@ let LeadForm = ({className, id}) => {
                                 </div>
                                 <input type="tel" value={tel} placeholder="e.g. (416) 666-6666" onChange={({target: {value}}) => setTel(value)} className={`${inputClass}`} required={!emailRequired}/>
                             </label>
-                            <label className="block col-span-4 laptop:col-span-2">
-                                <span className="font-medium">Preferred Contact Method</span>
-                                <select value={pref} onChange={({target: {value}}) => setPref(value)} className={`${inputClass} form-select`}>
-                                    <option value="email">Email</option>
-                                    <option value="call">Phone Call</option>
-                                    <option value="text">Text</option>
-                                </select>
+                            <label className="block col-span-4">
+                                <div className="flex justify-between">
+                                    <div>
+                                        <span className="font-medium">Email</span>
+                                        <span className={`text-red-500 pl-1 ${emailRequired? "" : "hidden"}`}>*</span>
+                                    </div>
+                                    {emailRequired? (
+                                        <span className="text-red-400 italic text-sm self-end">Required</span>
+                                    ) : (
+                                        <span className="text-gray-400 italic text-sm self-end">Optional</span>
+                                    )}
+                                </div>
+                                <input type="email" value={email} placeholder="e.g. John.Smith@email.com" onChange={({target: {value}}) => setEmail(value)} className={`${inputClass}`} required={emailRequired}/>
                             </label>
                         </div>
                         <label className="block cursor-pointer">
