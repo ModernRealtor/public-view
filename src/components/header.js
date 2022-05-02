@@ -8,10 +8,10 @@ export default function Header({path}) {
       <nav className="flex justify-between py-5 relative">
         <Logo
           gaTag="Header"
-          className="text-secondary-900 z-30 flex-auto w-1/3 gap-4"
-          logoClassName="w-16"
+          className="text-secondary-900 z-30 flex-auto w-3/4 tablet:1/3 gap-4"
+          logoClassName="w-16 shrink-0"
         />
-        <Menu className="flex-auto w-1/3" path={path} />
+        <Menu className="flex-auto w-1/4 tablet:w-1/3" path={path} />
       </nav>
     </header>
   )
