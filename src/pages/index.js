@@ -13,7 +13,7 @@ let heroBtnTxt = "Get Started"
 function Hero(props) {
   return (
     <div
-      className={`${props.className}  py-16 text-secondary-900 tablet:py-24 laptop:py-32 desktop:py-48`}
+      className={`${props.className}  py-16 text-secondary-900 tablet:pb-24 laptop:pb-32 desktop:pb-48 desktop:pt-28`}
     >
       <div className="tablet:flex-row tablet:gap-12 place-items-center flex flex-col gap-0">
         <div className="tablet:pb-10 desktop:pt-0 tablet:text-left desktop:text-right py-5 text-center">
