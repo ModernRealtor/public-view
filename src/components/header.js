@@ -9,6 +9,7 @@ export default function Header({path}) {
         <Logo
           gaTag="Header"
           className="text-secondary-900 z-30 flex-auto w-1/3 gap-4"
+          logoClassName="w-16"
         />
         <Menu className="flex-auto w-1/3" path={path} />
       </nav>

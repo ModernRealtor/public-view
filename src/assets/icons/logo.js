@@ -5,7 +5,7 @@ import LogoSvg from "/static/logos/main.svg"
 import { InternalLink } from "../../components/gaLink"
 
 function LogoIcon(props) {
-  return <img src={LogoSvg} alt="Company Logo" className="w-64 h-auto" />
+  return <img src={LogoSvg} alt="Company Logo" className="w-full h-auto" />
 }
 
 export default function Logo(props) {
@@ -29,7 +29,7 @@ export default function Logo(props) {
   return (
     <div className={`${props.className} flex flex-nowrap`}>
       <InternalLink
-        className={`w-16 hover:text-accent ${props.logoClassName}`}
+        className={`hover:text-accent ${props.logoClassName}`}
         label="Home"
         to="/"
         tag={props.gaTag}
