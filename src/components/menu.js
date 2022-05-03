@@ -11,10 +11,6 @@ const menuData = {
     {
       title: "About",
       loc: "/about/"
-    },
-    {
-      title: "Abodfut",
-      loc: "/aboufdgdt/"
     }
     // {
     //   title: "Careers",
