@@ -61,7 +61,7 @@ export default function Menu({className, path}) {
         {menuData.entries.map(item => (
           <InternalLink
             to={item.loc}
-            className={`${item.loc === path? "selected" : ""} block text-left tablet:w-auto tablet:text-center tablet:p-0 tablet:m-0 hover:text-accent w-full py-3 font-semibold`}
+            className={`${item.loc === path? "selected" : ""} block text-left ml-2 tablet:w-auto tablet:text-center tablet:p-0 tablet:m-0 hover:text-accent w-full py-2 font-semibold tablet:border-none border-secondary-400 border-l-2 hover:border-primary-500 duration-75`}
             label={item.title}
             tag={`Menu > ${item.title}`}
           >

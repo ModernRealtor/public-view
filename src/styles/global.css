@@ -33,8 +33,13 @@
         @apply text-primary-500 pr-2 font-black;
     }
 
-    header a.selected{
-        @apply underline underline-offset-4 decoration-primary-400 decoration-2;
+    header a.selected {
+        @apply border-primary-500
+    }
+
+    header a.selected::after{
+        content: "<";
+        @apply text-primary-500 pl-6 font-black;
     }
 
     .outer-layout > * {
@@ -48,6 +53,10 @@
     @screen tablet {
         .outer-layout > * {
             @apply max-w-2xl  mx-auto
+        }
+    
+        header a.selected{
+            @apply border-none underline underline-offset-4 decoration-primary-400 decoration-2 after:content-none;
         }
     }
 
