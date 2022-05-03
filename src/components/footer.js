@@ -1,5 +1,6 @@
 import React from "react"
 import { LightningBoltIcon } from "@heroicons/react/solid"
+import { useStaticQuery, graphql } from "gatsby"
 
 import MLSIcon from "../assets/icons/mls"
 import RealtorIcon from "../assets/icons/realtor"
@@ -7,12 +8,6 @@ import LogoIcon from "../assets/icons/logo"
 import Socials from "../assets/icons/socials"
 import { InternalLink } from "./gaLink"
 
-let links = [
-  {
-    title: "About",
-    value: "/about/",
-  },
-]
 
 let affiliations = {
   title: "Affiliates",
@@ -53,6 +48,33 @@ function Affiliates(props) {
 }
 
 export default function Footer(props) {
+  let {cms: {curOrg: {staff}}} = useStaticQuery(graphql`
+    query{
+      cms{
+        curOrg{
+          staff {
+            displayOnPv
+            user {
+              name
+            }
+          }
+        }
+      }
+    }
+  `)
+  let displayStaff = (staff || []).filter(({displayOnPv}) => displayOnPv)
+  let links = {
+    "Brokerage": [
+      {
+        title: "About",
+        value: "/about/",
+      },
+    ],
+    "Team": displayStaff.map(({user: {name}})=> ({
+      title: name,
+      value: `/team/${name.replace(/\s+/g, "")}`
+    }))
+  }
   return (
     <footer>
       <div className="outer-layout  py-12 mt-20">
@@ -63,20 +85,27 @@ export default function Footer(props) {
             logoClassName="w-48 tablet:-ml-2"
             showTagline={true}
           />
-          <ul className="flex flex-col w-auto pt-2 gap-1.5 font-medium tablet:text-right">
-            {links.map((link, i) => (
-              <li key={i}>
-                <InternalLink
-                  to={link.value}
-                  className={link.value === props.path ? "selected" : ""}
-                  tag="Footer"
-                  label={link.title}
-                >
-                  {link.title}
-                </InternalLink>
-              </li>
+          <div className="flex flex-col gap-6 laptop:flex-row laptop:gap-16 desktop:gap-24">
+            {Object.entries(links).map(([linkTitle, linkData]) => (
+              <div key={linkTitle} className="tablet:text-right">
+                <span className="uppercase text-sm font-light inline-block w-28 border-b">{linkTitle}</span>
+                <ul className="flex flex-col w-auto pt-2 gap-1.5 font-medium">
+                  {linkData.map((link, i) => (
+                    <li key={i}>
+                      <InternalLink
+                        to={link.value}
+                        className={link.value === props.path ? "selected" : ""}
+                        tag="Footer"
+                        label={link.title}
+                      >
+                        {link.title}
+                      </InternalLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
         <Affiliates />
       </div>
