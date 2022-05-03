@@ -34,7 +34,7 @@
     }
 
     header a.selected {
-        @apply border-primary-500
+        @apply border-primary-500 text-primary-500
     }
 
     header a.selected::after{
@@ -56,7 +56,7 @@
         }
     
         header a.selected{
-            @apply border-none underline underline-offset-4 decoration-primary-400 decoration-2 after:content-none;
+            @apply border-none underline underline-offset-4 decoration-primary-500 decoration-2 after:content-none;
         }
     }
 
