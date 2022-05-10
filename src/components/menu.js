@@ -54,13 +54,13 @@ export default function Menu({className, path}) {
       <div
         className={`bg-secondary-50 w-full h-fit pb-12 transition-opacity ease-out ${
           isOpen ? "opacity-100" : "opacity-0"
-        } outer-layout absolute flex flex-col right-0 bottom-0 pt-10 translate-y-full tablet:translate-y-0 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:flex tablet:static tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:items-center tablet:bg-transparent gap-6 laptop:gap-10 overflow-hidden`}
+        } outer-layout tablet:opacity-100 absolute flex flex-col right-0 bottom-0 pt-10 translate-y-full tablet:translate-y-0 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:relative tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:items-center tablet:bg-transparent gap-6 laptop:gap-10 overflow-hidden`}
       >
         {menuData.entries.map((item, i) => (
           <InternalLink
             key={i}
             to={item.loc}
-            className={`${item.loc === path? "selected" : ""} ${isOpen? "" : "-translate-x-full"} transition-transform duration-200 ease-in-out text-left ml-2 tablet:w-auto tablet:text-center tablet:p-0 tablet:m-0 hover:text-accent w-full py-2 font-semibold tablet:border-none border-secondary-400 border-l-2 hover:border-primary-500`}
+            className={`${item.loc === path? "selected" : ""} ${isOpen? "" : "-translate-x-full"} tablet:translate-x-0 transition-transform duration-200 ease-in-out text-left ml-2 tablet:w-auto tablet:text-center tablet:p-0 tablet:m-0 hover:text-accent w-full py-2 font-semibold tablet:border-none border-secondary-400 border-l-2 hover:border-primary-500`}
             label={item.title}
             tag={`Menu > ${item.title}`}
           >
