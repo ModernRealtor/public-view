@@ -42,6 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
         curOrg {
           id
           name
+          imageUrl
           tagline
           dominantColor
           complimentColor
@@ -83,9 +84,18 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Copy logo SVG into main.svg
   let logoDir = Path.join(__dirname, "static", "logos")
-  let logoIn = Path.join(logoDir, `${org.id}.svg`)
   let logoOut = Path.join(logoDir, "main.svg")
-  proms.push(fs.copyFile(logoIn, logoOut))
+  proms.push(downloadImg(org.imageUrl, logoOut).then(() => (
+    // Generate OG Image
+    generateOG({
+      primaryColor: org.dominantColor,
+      secondaryColor: org.complimentColor,
+      imgPath: logoOut,
+      name: org.name,
+      tagline: org.tagline || "",
+      outPath: Path.join(logoDir, "main300x300.png"),
+    })
+  )))
 
   // If org address provided, download map image
   if (org.contact?.addr) {
@@ -110,18 +120,6 @@ exports.createPages = async ({ graphql, actions }) => {
       themePath,
       `${org.dominantColor},${org.complimentColor}`
     )
-  )
-
-  // Generate OG Image
-  proms.push(
-    generateOG({
-      primaryColor: org.dominantColor,
-      secondaryColor: org.complimentColor,
-      imgPath: logoIn,
-      name: org.name,
-      tagline: org.tagline || "",
-      outPath: Path.join(logoDir, "main300x300.png"),
-    })
   )
 
   // Create team member pages
