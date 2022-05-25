@@ -3,12 +3,10 @@ var fs = require("fs")
 var path = require("path")
 
 class FtpClient {
-  host
   user
   pass
 
-  constructor(host, user, password) {
-    this.host = host
+  constructor(user, password) {
     this.user = user
     this.pass = password
   }
@@ -16,19 +14,28 @@ class FtpClient {
   // Returns a promise
   // Precondition: outDir is a valid directory
   downloadImg(fpath, outDir) {
-    let i = fpath.lastIndexOf("/")
-    if (i === -1) {
+    let iName = fpath.lastIndexOf("/")
+    let iHost = fpath.indexOf("/")
+    if (iName === -1) {
       return Promise.reject(new Error(`Could not parse name from ${fpath}`))
     }
-    let fname = path.join(outDir, fpath.substring(i))
+    if(iHost === -1){
+      return Promise.reject(new Error(`Could not parse host from ${fpath}`))
+    }
+    let host = fpath.substring(0, iHost)
+    let getPath = fpath.substring(iHost)
+    let fname = path.join(outDir, fpath.substring(iName))
     let client = new PromiseFtp()
     let fileProm = client
-      .connect({ host: this.host, user: this.user, password: this.pass })
-      .then(msg => client.get(fpath))
+      .connect({ host, user: this.user, password: this.pass })
+      .then(msg => client.get(getPath))
       .then(stream => {
         return new Promise(function (resolve, reject) {
           stream.once("close", resolve)
-          stream.once("error", reject)
+          stream.once("error", (err) => {
+            console.error(`Error downloading ${getPath}: ${err}`)
+            return reject()
+          })
           stream.pipe(fs.createWriteStream(fname))
         })
       })

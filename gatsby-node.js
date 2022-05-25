@@ -5,6 +5,7 @@ const colors = require("tailwindcss/colors")
 
 const downloadImg = require("./download-img")
 const generateOG = require("./create-OGimage")
+const FtpClient = require("./ftp-client")
 
 const MAP_TOKEN = process.env["MAP_TOKEN"]
 
@@ -46,6 +47,8 @@ exports.createPages = async ({ graphql, actions }) => {
           tagline
           dominantColor
           complimentColor
+          trrebUser
+          trrebPass
           contact {
             addr
           }
@@ -68,6 +71,161 @@ exports.createPages = async ({ graphql, actions }) => {
                 email
                 addr
               }
+            }
+          }
+          listings {
+            a_c
+            ad_text
+            addr
+            appts
+            apt_num
+            area_infl1_out
+            area_infl2_out
+            ass_year
+            bath_tot
+            board
+            bph_num
+            bsmt1_out
+            cctd
+            cd
+            class
+            cldt
+            cndsold_xd
+            co_lagt_ph
+            co_list
+            com_coopb
+            comments
+            cond
+            coop_s2
+            country
+            county
+            cross_st
+            dom
+            dt_sus
+            dt_ter
+            elevator
+            esc_clause
+            esc_flag
+            extras
+            gar_type
+            heating
+            holdover
+            inc_list
+            inc_sale
+            input_date
+            internet
+            lagt_ph
+            ld
+            list_agent
+            lp_dol
+            lsc
+            lse_terms
+            lud
+            map_col
+            map_page
+            map_row
+            ml_num
+            mort_amt
+            mort_comm
+            mort_freq
+            mort_inc
+            mort_ir
+            mort_lendr
+            mort_mdt
+            mort_pay
+            occ
+            occupancy
+            oenc
+            oenc_freq
+            oenc_inc
+            oenc_ir
+            oenc_lendr
+            oenc_mdt
+            oenc_pay
+            oenc_type
+            orig_dol
+            outof_area
+            parcel_id
+            park_spcs
+            pctd
+            perc_dif
+            pix
+            pix_img
+            pix_ts
+            pr_lp_dol
+            pr_lsc
+            redt
+            rltr
+            rr
+            rr_edt
+            s_r
+            scdt
+            sec
+            sell_agt
+            sp_dol
+            srchst_num
+            srltr
+            st
+            st_dir
+            st_num
+            st_sfx
+            status
+            susdt
+            taxes
+            td
+            timestamp
+            tour_flag
+            tour_url
+            town
+            township
+            tv
+            type_own1_out
+            uctd
+            uffi
+            unavail_dt
+            vend_pis
+            vtour_upby
+            vtour_updt
+            wrtd
+            xd
+            xdtd
+            yr
+            yr_built
+            zip
+            zn
+            code_treb
+            agent_id
+            co_lagt_id
+            disp_addr
+            mmap_col
+            mmap_page
+            mmap_row
+            perm_adv
+            contac_exp
+            parking_spots
+            area_code
+            municipality_code
+            community_code
+            area
+            municipality
+            community
+            municipality_district
+            handi_equipped
+            energy_cert
+            green_pis
+            cert_lvl
+            alt_feature_sheet
+            sound_bite_url
+            sales_brochure_url
+            addl_pix_url
+            map_loc_url
+            lcdt
+            ddf_idx
+            images{
+              path
+              imgNum
+              comment
+              updatedAt
             }
           }
         }
@@ -150,39 +308,37 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // Temporary since listings is not implemented on backend yet
-  if (false && org.listings?.listings?.totalCount > 0) {
+  if ((org.listings || []).length > 0) {
     let ftpClient = new FtpClient(
-      org.listings.imgHost,
-      `${org.listings.user}@photos`,
-      org.listings.pass
+      `${org.trrebUser}@photos`,
+      org.trrebPass
     )
 
-    org.listings.listings.edges
-      .filter(
-        ({
-          node: {
-            images: { totalCount },
-          },
-        }) => totalCount > 0
-      )
-      .forEach(({ node }) => {
+    org.listings.filter(listn => (listn.images || []).length > 0)
+      .forEach((listn) => {
         let newDir = Path.join(
           __dirname,
           "dynamicImages",
           "listings",
-          node.ml_num
+          listn.ml_num
         )
         proms.push(
           fs
             .mkdir(newDir, { recursive: true })
             .then(ret =>
               Promise.all(
-                node.images.edges.map(({ node: { path } }) =>
+                listn.images
+                .filter(({imgNum}) => listn.status === "A" || imgNum === 1) // If listing is unavailable, only download/use 1 image
+                .map(({ path }) =>
                   ftpClient.downloadImg(path, newDir)
                 )
               )
             )
+            .then(ret => createPage({
+              path: `/listing/${listn.ml_num}`,
+              component: Path.resolve(`src/dynamicPages/listing.js`),
+              context: { listing: listn, mlNum: listn.ml_num},
+            }))
         )
       })
   }
