@@ -13,12 +13,11 @@ let statusOpts = {
   "New": "New"
 }
 
-let Template = ({mlNum, status, lsc, lud, children, pathname, title}) => {
-  let avail = status === "U"? "Unavailable" : "Available"
+let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
   return (
     <Layout title={`Listing ${mlNum}`} path={pathname}>
       <div className="outer-layout py-8">
-        <h1 className="py-2 text-xs uppercase">&#8212;&#8212; {avail}</h1>
+        <h1 className="py-2 text-xs uppercase">&#8212; MLS Number: {mlNum}</h1>
         <h2 className="pt-4 text-4xl font-extrabold text-primary-500">{title}</h2>
         <h2 className="py-2 text-sm font-thin"><span className="font-semibold">{statusOpts[lsc] || "Updated"}</span> as of {(new Date(lud)).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h2>
         {children}
@@ -39,7 +38,6 @@ export default function Listing({
     mlNum={mlNum}
     pathname={pathname} 
     title={listing.status === "U"? "Listing is no longer available" : (listing["s_r"]? `For ${listing["s_r"]}` : "Listing is Available")}
-    status={listing.status}
     lsc={listing.lsc}
     lud={listing.lud}
   >
