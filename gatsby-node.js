@@ -5,7 +5,6 @@ const colors = require("tailwindcss/colors")
 
 const downloadImg = require("./download-img")
 const generateOG = require("./create-OGimage")
-const FtpClient = require("./ftp-client")
 
 const MAP_TOKEN = process.env["MAP_TOKEN"]
 
@@ -47,8 +46,6 @@ exports.createPages = async ({ graphql, actions }) => {
           tagline
           dominantColor
           complimentColor
-          trrebUser
-          trrebPass
           contact {
             addr
           }
