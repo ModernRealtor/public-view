@@ -305,26 +305,30 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  org.listings.filter(listn => (listn.images || []).length > 0)
-    .forEach((listn) => {
-      let newDir = Path.join(
-        __dirname,
-        "dynamicImages",
-        "listings",
-        listn.ml_num
-      )
-      proms.push(fs
-        .mkdir(newDir, { recursive: true })
-        .then(ret => Promise.all(
-          listn.images.map(({ path, imgNum }) => downloadImg(path, Path.join(newDir, `${imgNum}.jpg`)))
-        ))
-        .then(ret => createPage({
-          path: `/listing/${listn.ml_num}`,
-          component: Path.resolve(`src/dynamicPages/listing.js`),
-          context: { listing: listn, mlNum: listn.ml_num},
-        }))
-      )
-    })
+  org.listings.forEach((listn) => {
+    let newDir = Path.join(
+      __dirname,
+      "dynamicImages",
+      "listings",
+      listn.ml_num
+    )
+    // Don't download images/create folder if there are none
+    let retProm = ((listn.images || []).length <= 0) ? (Promise.resolve()) : (
+      fs
+      .mkdir(newDir, { recursive: true })
+      .then(ret => Promise.all(
+        listn.images.map(({ path, imgNum }) => downloadImg(path, Path.join(newDir, `${imgNum}.jpg`)))
+      ))
+    )
+    // Whether or not there are images, still create the page
+    proms.push(retProm.then(() => (
+      createPage({
+        path: `/listing/${listn.ml_num}`,
+        component: Path.resolve(`src/dynamicPages/listing.js`),
+        context: { listing: listn, mlNum: listn.ml_num},
+      })
+    ))) 
+  })
 
   return Promise.all(proms)
 }
