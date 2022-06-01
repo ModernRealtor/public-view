@@ -17,6 +17,12 @@ let statusOpts = {
   "New": "New"
 }
 
+let types = {
+  "free": "Freehold",
+  "condo": "Condo",
+  "com": "Commercial"
+}
+
 let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
   return (
     <Layout title={`Listing ${mlNum}`} path={pathname}>
@@ -38,6 +44,7 @@ export default function Listing({
   let {listing, mlNum} = pageContext
   console.log(listing)
   let addr = listing.disp_addr === "Y" ? listing.addr : listing.cross_st;
+  let type = types[(listing.class || "").toLowerCase()] || "Unknown"
   // console.log(data.allFile)
   let images = data.allFile?.nodes.map(img => getImage(img))
   return (<Template 
@@ -63,9 +70,14 @@ export default function Listing({
         </div>
         <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
         <p className="uppercase font-light leading-tight">{listing.zip}</p>
-        <div className="w-full py-[30%] bg-blue-400 relative">
+        <div className="w-full py-[30%] bg-blue-400 relative my-10">
           <p className="absolute top-[50%]">Images go here</p>
         </div>
+        <p className="font-light"><span className="font-semibold">Type:</span> {type}</p>
+        <p className="font-semibold pt-4">Description:</p>
+        <p className="font-light">{listing.ad_text}</p>
+        <p className="font-semibold pt-4">Extras:</p>
+        <p className="font-light">{listing.extras}</p>
       </div>
     )}
     <div className="mt-32">
@@ -75,7 +87,7 @@ export default function Listing({
         tag={`${mlNum} > See Avail Listings`}
         className="secondary-btn text-center"
       >
-        See Available Listings &rarr;
+        See All Available Listings &rarr;
       </InternalLink>
     </div>
     </Template>
