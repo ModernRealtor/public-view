@@ -224,6 +224,14 @@ exports.createPages = async ({ graphql, actions }) => {
               comment
               updatedAt
             }
+            agent {
+              id
+              title
+              displayOnPv
+              user {
+                name
+              }
+            }
           }
         }
       }
