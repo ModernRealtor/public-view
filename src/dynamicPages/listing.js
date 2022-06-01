@@ -5,7 +5,7 @@ import { LocationMarkerIcon } from "@heroicons/react/solid"
 
 
 import Layout from "../components/layout"
-import { InternalLink } from "../components/gaLink"
+import { InternalLink, ExternalLink } from "../components/gaLink"
 
 
 let statusOpts = {
@@ -19,7 +19,7 @@ let statusOpts = {
 
 let types = {
   "free": "Freehold",
-  "condo": "Condo",
+  "condo": "Condominium",
   "com": "Commercial"
 }
 
@@ -78,6 +78,16 @@ export default function Listing({
         <p className="font-light">{listing.ad_text}</p>
         <p className="font-semibold pt-4">Extras:</p>
         <p className="font-light">{listing.extras}</p>
+        <div className="mt-3">
+          <ExternalLink
+            href={`https://onlistings.trreb.ca/listings/TREB-${mlNum}`}
+            label="See Full Listing Details on TRREB"
+            tag={`${mlNum} > See TRREB Details`}
+            className="tertiary-btn"
+          >
+            See Full Listing Details on TRREB &rarr;
+          </ExternalLink>
+        </div>
       </div>
     )}
     <div className="mt-32">
