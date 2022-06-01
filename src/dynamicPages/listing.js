@@ -1,9 +1,12 @@
 import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
+import { LocationMarkerIcon } from "@heroicons/react/solid"
+
 
 import Layout from "../components/layout"
 import { InternalLink } from "../components/gaLink"
+
 
 let statusOpts = {
   "Lsd": "Leased",
@@ -33,6 +36,8 @@ export default function Listing({
   location: { pathname },
 }) {
   let {listing, mlNum} = pageContext
+  console.log(listing)
+  let addr = listing.disp_addr === "Y" ? listing.addr : listing.cross_st;
   // console.log(data.allFile)
   let images = data.allFile?.nodes.map(img => getImage(img))
   return (<Template 
@@ -43,7 +48,7 @@ export default function Listing({
     lud={listing.lud}
   >
     {listing.status === "U" ? <></> : (
-      <div className="laptop:flex-row laptop:gap-24 desktop:gap-28 flex flex-col gap-16 py-8">
+      <div className="flex flex-col py-6">
         {/* <div className="place-items-center tablet:place-content-around tablet:flex-row laptop:flex-col laptop:place-content-start flex flex-col flex-shrink-0 gap-10">
           <GatsbyImage
             image={image}
@@ -51,8 +56,14 @@ export default function Listing({
             className=" rounded-b-full"
           />
         </div> */}
-
-        <div className="w-full py-[40%] bg-blue-400 relative">
+        <p className="text-4xl font-light capitalize tabular-nums pb-2">{listing.lp_dol ? listing.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : ""}</p>
+        <div className="flex place-items-end">
+          <span className="w-6 text-secondary-400 -ml-1"><LocationMarkerIcon/></span>
+          <p className="capitalize font-light leading-tight">{addr}</p>
+        </div>
+        <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
+        <p className="uppercase font-light leading-tight">{listing.zip}</p>
+        <div className="w-full py-[30%] bg-blue-400 relative">
           <p className="absolute top-[50%]">Images go here</p>
         </div>
       </div>
