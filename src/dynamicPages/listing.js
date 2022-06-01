@@ -28,8 +28,8 @@ let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
     <Layout title={`Listing ${mlNum}`} path={pathname}>
       <div className="outer-layout py-8">
         <h1 className="py-2 text-xs uppercase">&#8212; MLS Number: {mlNum}</h1>
-        <h2 className="pt-4 text-4xl font-extrabold text-primary-500 capitalize">{title}</h2>
-        <h2 className="py-2 text-sm font-thin"><span className="font-semibold">{statusOpts[lsc] || "Updated"}</span> as of {(new Date(lud)).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h2>
+        <h2 className="py-2 text-4xl font-extrabold text-primary-500 capitalize">{title}</h2>
+        <h2 className="pb-6 text-sm font-thin"><span className="font-semibold">{statusOpts[lsc] || "Updated"}</span> as of {(new Date(lud)).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h2>
         {children}
       </div>
     </Layout>
@@ -70,7 +70,7 @@ export default function Listing({
         </div>
         <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
         <p className="uppercase font-light leading-tight">{listing.zip}</p>
-        <div className="w-full py-[30%] bg-blue-400 relative my-10">
+        <div className="w-full py-[30%] bg-blue-400 relative my-6">
           <p className="absolute top-[50%]">Images go here</p>
         </div>
         <p className="font-light"><span className="font-semibold">Type:</span> {type}</p>
