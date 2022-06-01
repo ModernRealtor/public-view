@@ -57,7 +57,7 @@ async function generateOG({
     tagline,
   })
   let browser, page
-  puppeteer
+  return puppeteer
     .launch({ args: ["--no-sandbox"] })
     .then(brows => {
       browser = brows
