@@ -6,7 +6,14 @@ export default function Listings({ location: { pathname } }) {
   return (
     <Layout path={pathname} title="Browse Listings">
       <div className="outer-layout">
-        TBD
+        <h1 className="text-4xl font-medium text-primary-500 py-10">
+          Available Listings
+        </h1>
+        <h2 className="capitalize text-secondary-600 w-full pb-2">
+          Brokerage's Featured Listings
+          <span className="w-full block border-b"></span>
+        </h2>
+        <p className="text-sm italic font-thin">There are currently none to display</p>
       </div>
     </Layout>
   )
