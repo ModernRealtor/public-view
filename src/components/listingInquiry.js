@@ -128,7 +128,7 @@ let InquiryContainer = ({mlNum, addr}) => {
     let [isOpen, setIsOpen] = useState(false)
 
     function toggleOpen(){
-        document.body.classList.toggle("scroll")
+        document.body.classList.toggle("!overflow-hidden")
         setIsOpen(!isOpen)
     }
 
