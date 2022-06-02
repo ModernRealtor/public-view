@@ -53,7 +53,7 @@ export default function Menu({className, path}) {
       </div>
       <div
         className={`bg-secondary-50 w-full h-fit pb-12 transition-opacity ease-out ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none tablet:pointer-events-auto"
         } outer-layout tablet:opacity-100 absolute flex flex-col right-0 bottom-0 pt-10 translate-y-full tablet:translate-y-0 tablet:w-auto tablet:h-auto tablet:m-0 tablet:p-0 tablet:relative tablet:flex-row-reverse tablet:flex-nowrap tablet:justify-start tablet:items-center tablet:bg-transparent gap-6 laptop:gap-10 overflow-hidden`}
       >
         {menuData.entries.map((item, i) => (
