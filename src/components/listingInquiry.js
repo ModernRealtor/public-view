@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import { toast } from 'react-toastify';
+import {XIcon} from "@heroicons/react/solid"
 
 import {submitListingInquiry} from "../services/gql-api"
 
@@ -18,7 +19,7 @@ let toastProps = {
 
 
 export let InquiryForm = ({className, mlNum, addr, closeForm}) => {
-    let initMessage = `Hello,\n\n I was hoping to get more information on listing ${mlNum} located at ${addr}.\n\n Thanks!`;
+    let initMessage = `Hello,\n\nI was hoping to get more information on listing ${mlNum} located at ${addr}.\n\n Thanks!`;
     let [loading, setLoading] = useState(false)
     let [name, setName] = useState("")
     let [email, setEmail] = useState("")
@@ -50,13 +51,22 @@ export let InquiryForm = ({className, mlNum, addr, closeForm}) => {
     }
 
     let emailRequired = pref === "email";
-    return (<section className={`${className} py-12`}>
-    <div className="flex place-content-between place-items-end mb-6 flex-wrap">
+    return (<section className={`${className} py-4 px-8 desktop:px-10 laptop:max-w-lg desktop:max-w-2xl laptop:h-fit`}>
+    <div className="pt-4 w-full absolute right-0 top-0 flex justify-end">
+        <button
+            aria-label="Close form"
+            title="Close form"
+            onClick={()=>resetForm()}
+        >
+            <XIcon className="w-5 h-5"/>
+        </button>
+    </div>
+    <div className="flex place-content-between place-items-end my-6 flex-wrap">
         <h1 className="text-3xl ">Listing Inquiry</h1>
         <p className="font-thin">MLS#{mlNum}</p>
     </div>
     <form onSubmit={submitForm} className={`${loading? "cursor-wait animate-pulse" : ""}`}>
-        <fieldset className={`flex flex-col gap-1.5 desktop:gap-4 disabled:pointer-events-none`} disabled={loading}>
+        <fieldset className={`flex flex-col gap-1.5 disabled:pointer-events-none`} disabled={loading}>
             <label className="block">
                 <div className="flex justify-between">
                     <div>
@@ -106,7 +116,7 @@ export let InquiryForm = ({className, mlNum, addr, closeForm}) => {
                 </label>
             </div>
             <div className="grid grid-cols-3 desktop:grid-flow-col gap-2">
-                <label className="block col-span-3 desktop:row-span-2 desktop:col-span-2">
+                <label className="block col-span-3 desktop:row-span-2">
                     <div className="flex justify-between">
                         <span className="font-semibold text-sm">Message</span>
                         <span className="text-red-400 italic text-sm self-end">Required</span>
@@ -116,7 +126,7 @@ export let InquiryForm = ({className, mlNum, addr, closeForm}) => {
             </div>
             <div className="mt-2 flex flex-row-reverse place-content-between">
                 <input type="Submit" value="Submit" onChange={()=>{}} className="primary-btn px-8" />
-                <button onClick={() => closeForm()} className="secondary-btn" formnovalidate>
+                <button onClick={() => resetForm()} className="secondary-btn" formnovalidate>
                     Cancel
                 </button>
             </div>
@@ -134,7 +144,7 @@ let InquiryContainer = ({mlNum, addr}) => {
 
     return (<div className="relative">
     <div className={`${isOpen? "" : "hidden"} fixed z-30 w-screen h-screen bg-gray-900 bg-opacity-30 top-0 left-0`}>
-        <InquiryForm mlNum={mlNum} addr={addr} className="absolute bg-secondary-50 w-screen h-screen top-0 left-0 outer-layout" closeForm={()=> toggleOpen()} />
+        <InquiryForm mlNum={mlNum} addr={addr} className="absolute bg-secondary-50 w-screen h-screen top-0 left-0 laptop:left-[50%] laptop:top-[50%] laptop:-translate-y-1/2 laptop:-translate-x-1/2 outer-layout" closeForm={()=> toggleOpen()} />
     </div>
     <button 
         className="primary-btn w-full" 
