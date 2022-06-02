@@ -65,34 +65,42 @@ export default function Listing({
             className=" rounded-b-full"
           />
         </div> */}
-        <p className="text-4xl font-light capitalize tabular-nums pb-2">{listing.lp_dol ? listing.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : ""}</p>
-        <p className="capitalize font-light leading-tight">{addr}</p>
-        <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
-        <p className="uppercase font-light leading-tight">{listing.zip}</p>
-        <div className="w-full py-[30%] bg-blue-400 relative my-6">
-          <p className="absolute top-[50%]">Images go here</p>
-        </div>
-        <p className="font-light"><span className="font-semibold">Type:</span> {type}</p>
-        <p className="font-semibold pt-4">Description:</p>
-        <p className="font-light">{listing.ad_text}</p>
-        <p className="font-semibold pt-4">Extras:</p>
-        <p className="font-light">{listing.extras}</p>
-        <div className="mt-3">
-          <ExternalLink
-            href={`https://onlistings.trreb.ca/listings/TREB-${mlNum}`}
-            label="See Full Listing Details on TRREB"
-            tag={`${mlNum} > See TRREB Details`}
-            className="tertiary-btn"
-          >
-            See Full Listing Details on TRREB &rarr;
-          </ExternalLink>
+        <div className="my-2 grid grid-cols-1 laptop:grid-cols-2 gap-x-8 gap-y-2">
+          <div className="w-full mb-4">
+            <p className="text-4xl font-light capitalize tabular-nums pb-2">{listing.lp_dol ? listing.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : ""}</p>
+            <p className="capitalize font-light leading-tight">{addr}</p>
+            <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
+            <p className="uppercase font-light leading-tight">{listing.zip}</p>
+          </div>
+          <div className="w-full aspect-[4/3] bg-blue-400 relative laptop:row-span-2 desktop:row-span-3">
+            <p className="absolute top-[50%]">Images go here</p>
+          </div>
+          <div className="w-full">
+            <p className="font-light"><span className="font-semibold">Type:</span> {type}</p>
+            <p className="font-semibold pt-4">Description:</p>
+            <p className="font-light">{listing.ad_text}</p>
+          </div>
+          <div className="w-full laptop:col-span-2 desktop:col-span-1">
+            <p className="font-semibold">Extras:</p>
+            <p className="font-light">{listing.extras}</p>
+            <div className="mt-3">
+              <ExternalLink
+                href={`https://onlistings.trreb.ca/listings/TREB-${mlNum}`}
+                label="See Full Listing Details on TRREB"
+                tag={`${mlNum} > See TRREB Details`}
+                className="tertiary-btn"
+              >
+                See Full Listing Details on TRREB &rarr;
+              </ExternalLink>
+            </div>
+          </div>
         </div>
         {listing.agent?.displayOnPv ? (
-          <div className="w-full flex mt-20">
+          <div className="w-full flex mt-20 tablet:gap-x-4">
             <GatsbyImage
               image={staffImg}
               alt="Listing Agent's Headshot"
-              className="w-1/2 rounded-full"
+              className="w-1/2 h-fit rounded-full tablet:w-64"
             />
             <div className="flex flex-col place-content-end w-full">
               <div className="flex flex-col pb-6">
