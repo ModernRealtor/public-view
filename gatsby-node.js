@@ -333,7 +333,7 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: `/listing/${listn.ml_num}`,
         component: Path.resolve(`src/dynamicPages/listing.js`),
-        context: { listing: listn, mlNum: listn.ml_num},
+        context: { listing: listn, mlNum: listn.ml_num, staffId: String(listn.agent?.id || "")},
       })
     ))) 
   })
