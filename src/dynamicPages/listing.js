@@ -5,6 +5,7 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import { InternalLink, ExternalLink } from "../components/gaLink"
+import ListingInquiry from "../components/listingInquiry"
 
 
 let statusOpts = {
@@ -93,7 +94,7 @@ export default function Listing({
               alt="Listing Agent's Headshot"
               className="w-1/2 rounded-full"
             />
-            <div className="flex flex-col place-content-end">
+            <div className="flex flex-col place-content-end w-full">
               <div className="flex flex-col pb-6">
                 <p className="font-semibold">{listing.agent.user.name}</p>
                 <p className="italic">{listing.agent.title}</p>
@@ -106,10 +107,7 @@ export default function Listing({
               >
                 About this agent
               </InternalLink>
-              <button 
-                className="primary-btn" 
-                onClick={() => {console.log("Inquiry btn pressed")}}
-              >Send Inquiry</button>
+              <ListingInquiry mlNum={mlNum} addr={`${addr} ${listing.municipality}, ${listing.county} ${listing.country}`}/>
             </div>
           </div>
         ) : <></>}

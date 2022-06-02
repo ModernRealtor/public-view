@@ -52,3 +52,8 @@ export async function submitLeadForm({name, email, tel, pref, comments, subscrib
         return Promise.reject(new Error("Unable to submit request"))
     })
 }
+
+export async function submitListingInquiry({name, email, tel, pref, message, mlNum}){
+    console.log("here")
+    return Promise.resolve() // For now
+}
