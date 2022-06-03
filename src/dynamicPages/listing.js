@@ -38,18 +38,30 @@ let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
 
 let ImageCarousel = ({imageData, videoUrl}) => {
   let [imgIdx, setImgIdx] = useState(0)
-  let [autoPlay, setAutoPlay] = useState(true)
   return(
   <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
     <div className="feature-container aspect-[3/2] bg-pink-500 w-full"></div>
     <div className="w-full  flex flex-col gap-0.5 grow">
-      <div className="flex w-full justify-between">
-        <div className="w-20 gap-2 flex my-0.5">
+      <div className="flex w-full justify-evenly my-0.5">
+        <button
+          aria-label="Previous Image"
+          title="Previous Image"
+          onClick={()=> setImgIdx(imgIdx-1)}
+          disabled={imgIdx===0}
+          className={`${imgIdx===0 ? "text-secondary-500" : "text-secondary-900"} w-6`}
+        >
           <ArrowCircleLeftIcon/>
-          <PlayIcon/>
-          <ArrowCircleRightIcon/>
-        </div>
+        </button>
         <div className="text-sm">{imgIdx+1} / {imageData.length}</div>
+        <button
+          aria-label="Next Image"
+          title="Next Image"
+          onClick={()=> setImgIdx(imgIdx+1)}
+          disabled={imgIdx===imageData.length-1}
+          className={`${imgIdx===imageData.length-1 ? "text-secondary-500" : "text-secondary-900"} w-6`}
+        >
+          <ArrowCircleRightIcon/>
+        </button>
       </div>
 
       <div className="thumbnail-container w-full h-14 flex gap-1">
@@ -60,6 +72,7 @@ let ImageCarousel = ({imageData, videoUrl}) => {
               key={idx}
               className="h-14 aspect-square"
               aria-label={`Listing image #${idx+1}`}
+              onClick={() => setImgIdx(idx)}
             >
               <GatsbyImage
                 image={image}
