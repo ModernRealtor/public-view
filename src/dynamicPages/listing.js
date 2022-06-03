@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 
@@ -36,6 +36,23 @@ let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
   )
 }
 
+let ImageCarousel = ({imageData, videoUrl}) => {
+  let [imgIdx, setImgIdx] = useState(0)
+  let [autoPlay, setAutoPlay] = useState(true)
+  return(
+  <div className="w-full aspect-[4/3] bg-yellow-300 laptop:row-span-2 desktop:row-span-3 flex flex-col gap-1">
+    <div className="feature-container bg-pink-500 w-full h-auto basis-3/4"></div>
+    <div className="w-full h-auto basis-1/4 flex flex-col gap-0.5">
+      <div className="control-container border border-green-700 h-6 w-24"></div>
+      <div className="thumbnail-container w-full h-full flex gap-1">
+        <div className="video-thumbnail h-full w-24 border border-red-500"></div>
+        <div className="img-thumbnails h-full w-full border border-blue-700"></div>
+      </div>
+    </div>
+  </div>
+  )
+}
+
 export default function Listing({
   pageContext,
   data,
@@ -44,9 +61,13 @@ export default function Listing({
   let {listing, mlNum} = pageContext
   let addr = listing.disp_addr === "Y" ? listing.addr : listing.cross_st;
   let type = types[(listing.class || "").toLowerCase()] || "Unknown"
-  let images = data.allFile?.nodes.map(img => ({
+  let images = {};
+  (listing?.images || []).forEach(({imgNum, comment, updatedAt}) => {
+    images[imgNum] = {comment, updatedAt}
+  })
+  let imageData = data.allFile?.nodes.map(img => ({
     image: getImage(img),
-    imageNum: Number(img.name)
+    ...(images[Number(img.name)]) // Add comment and timestamp
   }))
   let staffImg = getImage(data.file)
   return (<Template 
@@ -72,9 +93,7 @@ export default function Listing({
             <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
             <p className="uppercase font-light leading-tight">{listing.zip}</p>
           </div>
-          <div className="w-full aspect-[4/3] bg-blue-400 relative laptop:row-span-2 desktop:row-span-3">
-            <p className="absolute top-[50%]">Images go here</p>
-          </div>
+          <ImageCarousel imageData={imageData} videoUrl={listing.tour_url || null} />
           <div className="w-full">
             <p className="font-light"><span className="font-semibold">Type:</span> {type}</p>
             <p className="font-semibold pt-4">Description:</p>

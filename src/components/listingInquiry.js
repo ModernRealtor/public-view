@@ -126,7 +126,7 @@ export let InquiryForm = ({className, mlNum, addr, closeForm}) => {
             </div>
             <div className="mt-2 flex flex-row-reverse place-content-between">
                 <input type="Submit" value="Submit" onChange={()=>{}} className="primary-btn px-8" />
-                <button onClick={() => resetForm()} className="secondary-btn" formnovalidate>
+                <button onClick={() => resetForm()} className="secondary-btn" formNoValidate>
                     Cancel
                 </button>
             </div>
