@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
-
+import {PauseIcon, PlayIcon, ArrowCircleLeftIcon, ArrowCircleRightIcon} from "@heroicons/react/solid"
 
 import Layout from "../components/layout"
 import { InternalLink, ExternalLink } from "../components/gaLink"
@@ -40,10 +40,18 @@ let ImageCarousel = ({imageData, videoUrl}) => {
   let [imgIdx, setImgIdx] = useState(0)
   let [autoPlay, setAutoPlay] = useState(true)
   return(
-  <div className="w-full aspect-[4/3] laptop:row-span-2 desktop:row-span-3 flex flex-col gap-1">
-    <div className="feature-container bg-pink-500 w-full h-3/4"></div>
-    <div className="w-full h-1/4 flex flex-col gap-0.5">
-      <div className="control-container border border-green-700 h-4 w-24"></div>
+  <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
+    <div className="feature-container aspect-[3/2] bg-pink-500 w-full"></div>
+    <div className="w-full  flex flex-col gap-0.5 grow">
+      <div className="flex w-full justify-between">
+        <div className="w-20 gap-2 flex my-0.5">
+          <ArrowCircleLeftIcon/>
+          <PlayIcon/>
+          <ArrowCircleRightIcon/>
+        </div>
+        <div className="text-sm">{imgIdx+1} / {imageData.length}</div>
+      </div>
+
       <div className="thumbnail-container w-full h-14 flex gap-1">
         <div className="video-thumbnail h-full w-24 border border-red-500"></div>
         <div className="img-thumbnails h-full w-full  overflow-x-scroll flex flex-nowrap gap-1">
@@ -93,13 +101,6 @@ export default function Listing({
   >
     {listing.status === "U" ? <></> : (
       <div className="flex flex-col py-6">
-        {/* <div className="place-items-center tablet:place-content-around tablet:flex-row laptop:flex-col laptop:place-content-start flex flex-col flex-shrink-0 gap-10">
-          <GatsbyImage
-            image={image}
-            alt={`${name}'s Headshot`}
-            className=" rounded-b-full"
-          />
-        </div> */}
         <div className="my-2 grid grid-cols-1 laptop:grid-cols-2 gap-x-8 gap-y-2">
           <div className="w-full mb-4">
             <p className="text-4xl font-light capitalize tabular-nums pb-2">{listing.lp_dol ? listing.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : ""}</p>
