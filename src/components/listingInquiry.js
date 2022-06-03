@@ -19,7 +19,7 @@ let toastProps = {
 
 
 export let InquiryForm = ({className, mlNum, addr, closeForm}) => {
-    let initMessage = `Hello,\n\nI was hoping to get more information on listing ${mlNum} located at ${addr}.\n\n Thanks!`;
+    let initMessage = `Hello,\n\nI was hoping to get more information on listing ${mlNum} located at ${addr}.\n\nThanks!`;
     let [loading, setLoading] = useState(false)
     let [name, setName] = useState("")
     let [email, setEmail] = useState("")

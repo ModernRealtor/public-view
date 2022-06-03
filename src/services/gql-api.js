@@ -23,13 +23,8 @@ export async function submitLeadForm({name, email, tel, pref, comments, subscrib
     comments = comments || "n/a"
     let clientSelection = Object.keys(clientPlans).filter(key => clientPlans[key]).join(", ")
     let propertySelection = Object.keys(propertyTypes).filter(key => propertyTypes[key]).join(", ")
-    let comment = `
-    Interested in: ${clientSelection || "n/a"}
-    Property types: ${propertySelection || "n/a"}
+    let comment = `Interested in: ${clientSelection || "n/a"}\nProperty types: ${propertySelection || "n/a"}\n\nAdditional Comments:\n${comments}`
 
-    Additional Comments: 
-    ${comments}
-    `
     email = email || null
     tel = tel || null
     let contactMethod = pref || null
@@ -54,6 +49,26 @@ export async function submitLeadForm({name, email, tel, pref, comments, subscrib
 }
 
 export async function submitListingInquiry({name, email, tel, pref, message, mlNum}){
-    console.log("here")
-    return Promise.resolve() // For now
+    // Clean inputs
+    name = name || "anonymous"
+    email = email || null
+    tel = tel || null
+    let contactMethod = pref || null
+    let mutation = gql`
+        mutation SubmitInquiry($name: String!, $message: String!, $email: String, $tel: String, $contactMethod: String!, $mlNum: String!) {
+            submitListingInquiry(name: $name, message: $message, email: $email, tel: $tel, contactMethod: $contactMethod, mlNum: $mlNum)
+        }
+    `
+    return await client.mutate({mutation, variables: {
+        name,
+        message,
+        email,
+        tel,
+        contactMethod,
+        mlNum
+    }})
+    .then(({data: addLead}) => {
+        if(addLead) return Promise.resolve()
+        return Promise.reject(new Error("Unable to submit request"))
+    })
 }
