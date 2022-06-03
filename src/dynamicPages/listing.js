@@ -40,13 +40,27 @@ let ImageCarousel = ({imageData, videoUrl}) => {
   let [imgIdx, setImgIdx] = useState(0)
   let [autoPlay, setAutoPlay] = useState(true)
   return(
-  <div className="w-full aspect-[4/3] bg-yellow-300 laptop:row-span-2 desktop:row-span-3 flex flex-col gap-1">
-    <div className="feature-container bg-pink-500 w-full h-auto basis-3/4"></div>
-    <div className="w-full h-auto basis-1/4 flex flex-col gap-0.5">
-      <div className="control-container border border-green-700 h-6 w-24"></div>
-      <div className="thumbnail-container w-full h-full flex gap-1">
+  <div className="w-full aspect-[4/3] laptop:row-span-2 desktop:row-span-3 flex flex-col gap-1">
+    <div className="feature-container bg-pink-500 w-full h-3/4"></div>
+    <div className="w-full h-1/4 flex flex-col gap-0.5">
+      <div className="control-container border border-green-700 h-4 w-24"></div>
+      <div className="thumbnail-container w-full h-14 flex gap-1">
         <div className="video-thumbnail h-full w-24 border border-red-500"></div>
-        <div className="img-thumbnails h-full w-full border border-blue-700"></div>
+        <div className="img-thumbnails h-full w-full  overflow-x-scroll flex flex-nowrap gap-1">
+          {imageData.map(({image}, idx) => (
+            <button
+              key={idx}
+              className="h-14 aspect-square"
+              aria-label={`Listing image #${idx+1}`}
+            >
+              <GatsbyImage
+                image={image}
+                alt={`Listing image #${idx+1}`}
+                className={`h-full w-auto aspect-auto object-cover rounded-sm ${imgIdx === idx? "opacity-100 shadow" : "opacity-60 shadow-sm"} hover:opacity-100 transition-opacity`}
+              />
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   </div>
