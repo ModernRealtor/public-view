@@ -31,6 +31,8 @@ export function ExternalLink({ tag, href, className, label, children }) {
       className={className || ""}
       aria-label={linkLabel}
       title={linkLabel}
+      target="_blank"
+      rel="noreferrer"
       onClick={() => {
         typeof window?.gtag !== "undefined" &&
           window.gtag("event", "click", {
