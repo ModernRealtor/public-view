@@ -36,7 +36,7 @@ let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
   )
 }
 
-let ImageCarousel = ({imageData, videoUrl}) => {
+let ImageCarousel = ({imageData}) => {
   let [imgIdx, setImgIdx] = useState(0)
   return(
   <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
@@ -126,11 +126,24 @@ export default function Listing({
     {listing.status === "U" ? <></> : (
       <div className="flex flex-col py-6">
         <div className="my-2 grid grid-cols-1 laptop:grid-cols-2 gap-x-8 gap-y-2">
-          <div className="w-full mb-4">
-            <p className="text-4xl font-light capitalize tabular-nums pb-2">{listing.lp_dol ? listing.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : ""}</p>
-            <p className="capitalize font-light leading-tight">{addr}</p>
-            <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
-            <p className="uppercase font-light leading-tight">{listing.zip}</p>
+          <div className="w-full mb-4 flex justify-between">
+            <div className="w-fit">
+              <p className="text-4xl font-light capitalize tabular-nums pb-2">{listing.lp_dol ? listing.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : ""}</p>
+              <p className="capitalize font-light leading-tight">{addr}</p>
+              <p className="capitalize font-light leading-tight">{listing.municipality}, {listing.county} {listing.country}</p>
+              <p className="uppercase font-light leading-tight">{listing.zip}</p>
+            </div>
+            {listing.tour_url? (
+              <ExternalLink
+                href={listing.tour_url}
+                label="See Video Tour"
+                tag={`${mlNum} > Video Tour`}
+                className="secondary-btn h-fit w-max my-0 px-3.5 flex flex-nowrap items-center gap-2 self-end"
+              >
+                <PlayIcon className="w-6"/>
+                <span className="leading-none h-min pb-0.5">Video Tour</span>
+              </ExternalLink>
+            ) : <></>}
           </div>
           <ImageCarousel imageData={imageData} videoUrl={listing.tour_url || null} />
           <div className="w-full">
