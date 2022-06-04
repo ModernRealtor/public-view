@@ -38,18 +38,15 @@ let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
 
 let ImageCarousel = ({imageData, videoUrl}) => {
   let [imgIdx, setImgIdx] = useState(0)
-  let [videoSelected, setVideoSelected] = useState(false)
   return(
   <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
     <div className="relative aspect-[3/2] bg-zinc-200 w-full flex justify-center">
-      {videoSelected? (<></>) : (
-        <GatsbyImage
-          image={imageData[imgIdx].image}
-          alt={`Listing image #${imgIdx+1}`}
-          className={`h-full w-auto aspect-auto object-cover`}
-        />
-      )}
-      <div className={`absolute text-secondary-50 text-xs bottom-0 left-0 w-full h-fit px-4 pb-2 pt-12 ${videoSelected? "" : "hover:opacity-80 active:opacity-80"} opacity-0 transition-opacity bg-gradient-to-t from-zinc-900 via-zinc-600 to-transparent`}>
+      <GatsbyImage
+        image={imageData[imgIdx].image}
+        alt={`Listing image #${imgIdx+1}`}
+        className={`h-full w-auto aspect-auto object-cover`}
+      />
+      <div className={`absolute text-secondary-50 text-xs bottom-0 left-0 w-full h-fit px-4 pb-2 pt-12 hover:opacity-80 active:opacity-80 opacity-0 transition-opacity bg-gradient-to-t from-zinc-900 via-zinc-600 to-transparent`}>
         <p>{imageData[imgIdx].comment || ""}</p>
         <p className="font-thin py-1.5">
         Last Updated: {(new Date(imageData[imgIdx].updatedAt)).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
@@ -63,48 +60,35 @@ let ImageCarousel = ({imageData, videoUrl}) => {
           title="Previous Image"
           onClick={()=> setImgIdx(imgIdx-1)}
           disabled={imgIdx===0}
-          className={`${imgIdx===0 ? "text-secondary-500" : "text-secondary-900"} ${videoSelected? "hidden" : ""} w-6`}
+          className={`${imgIdx===0 ? "text-secondary-500" : "text-secondary-900"} w-6`}
         >
           <ArrowCircleLeftIcon/>
         </button>
-        <div className="text-sm">{videoSelected? "Video Tour" : `${imgIdx+1} / ${imageData.length}`}</div>
+        <div className="text-sm">{imgIdx+1} / {imageData.length}</div>
         <button
           aria-label="Next Image"
           title="Next Image"
           onClick={()=> setImgIdx(imgIdx+1)}
           disabled={imgIdx===imageData.length-1}
-          className={`${imgIdx===imageData.length-1 ? "text-secondary-500" : "text-secondary-900"} ${videoSelected? "hidden" : ""} w-6`}
+          className={`${imgIdx===imageData.length-1 ? "text-secondary-500" : "text-secondary-900"} w-6`}
         >
           <ArrowCircleRightIcon/>
         </button>
       </div>
 
       <div className="thumbnail-container w-full h-14 flex gap-2">
-        <div className={`h-full flex items-center w-20 ${videoUrl? "" : "hidden"}`}>
-          <button
-            aria-label="Video Tour"
-            title="Video Tour"
-            className={`border-2 rounded w-full h-full  ${videoSelected? "text-secondary-900 border-secondary-800" : "border-secondary-400 text-secondary-500"} transition-colors hover:text-secondary-900 hover:border-secondary-700`}
-            onClick={()=>setVideoSelected(true)}
-          >
-            <PlayIcon className={`w-8 mx-auto `}/>
-          </button>
-        </div>
         <div className="img-thumbnails h-full w-full  overflow-x-scroll flex flex-nowrap gap-1">
           {imageData.map(({image}, idx) => (
             <button
               key={idx}
               className="h-14 aspect-square"
               aria-label={`Listing image #${idx+1}`}
-              onClick={() => {
-                setImgIdx(idx)
-                setVideoSelected(false)
-              }}
+              onClick={() => setImgIdx(idx)}
             >
               <GatsbyImage
                 image={image}
                 alt={`Listing image #${idx+1}`}
-                className={`h-full w-auto aspect-auto object-cover rounded-sm ${(imgIdx === idx && !videoSelected)? "opacity-100 shadow" : "opacity-60 shadow-sm"} hover:opacity-100 transition-opacity`}
+                className={`h-full w-auto aspect-auto object-cover rounded-sm ${(imgIdx === idx)? "opacity-100 shadow" : "opacity-60 shadow-sm"} hover:opacity-100 transition-opacity`}
               />
             </button>
           ))}
