@@ -41,7 +41,21 @@ let ImageCarousel = ({imageData, videoUrl}) => {
   let [videoSelected, setVideoSelected] = useState(false)
   return(
   <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
-    <div className="feature-container aspect-[3/2] bg-pink-500 w-full"></div>
+    <div className="relative aspect-[3/2] bg-zinc-200 w-full flex justify-center">
+      {videoSelected? (<></>) : (
+        <GatsbyImage
+          image={imageData[imgIdx].image}
+          alt={`Listing image #${imgIdx+1}`}
+          className={`h-full w-auto aspect-auto object-cover`}
+        />
+      )}
+      <div className={`absolute text-secondary-50 text-xs bottom-0 left-0 w-full h-fit px-4 pb-2 pt-12 ${videoSelected? "" : "hover:opacity-80 active:opacity-80"} opacity-0 transition-opacity bg-gradient-to-t from-zinc-900 via-zinc-600 to-transparent`}>
+        <p>{imageData[imgIdx].comment || ""}</p>
+        <p className="font-thin py-1.5">
+        Last Updated: {(new Date(imageData[imgIdx].updatedAt)).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      </div>
+    </div>
     <div className="w-full  flex flex-col gap-0.5 grow">
       <div className="flex w-full justify-evenly my-0.5 h-6">
         <button
