@@ -43,7 +43,7 @@ let ImageCarousel = ({imageData, videoUrl}) => {
   <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
     <div className="feature-container aspect-[3/2] bg-pink-500 w-full"></div>
     <div className="w-full  flex flex-col gap-0.5 grow">
-      <div className="flex w-full justify-evenly my-0.5">
+      <div className="flex w-full justify-evenly my-0.5 h-6">
         <button
           aria-label="Previous Image"
           title="Previous Image"
@@ -71,6 +71,7 @@ let ImageCarousel = ({imageData, videoUrl}) => {
             aria-label="Video Tour"
             title="Video Tour"
             className={`border-2 rounded w-full h-full  ${videoSelected? "text-secondary-900 border-secondary-800" : "border-secondary-400 text-secondary-500"} transition-colors hover:text-secondary-900 hover:border-secondary-700`}
+            onClick={()=>setVideoSelected(true)}
           >
             <PlayIcon className={`w-8 mx-auto `}/>
           </button>
@@ -81,12 +82,15 @@ let ImageCarousel = ({imageData, videoUrl}) => {
               key={idx}
               className="h-14 aspect-square"
               aria-label={`Listing image #${idx+1}`}
-              onClick={() => setImgIdx(idx)}
+              onClick={() => {
+                setImgIdx(idx)
+                setVideoSelected(false)
+              }}
             >
               <GatsbyImage
                 image={image}
                 alt={`Listing image #${idx+1}`}
-                className={`h-full w-auto aspect-auto object-cover rounded-sm ${imgIdx === idx? "opacity-100 shadow" : "opacity-60 shadow-sm"} hover:opacity-100 transition-opacity`}
+                className={`h-full w-auto aspect-auto object-cover rounded-sm ${(imgIdx === idx && !videoSelected)? "opacity-100 shadow" : "opacity-60 shadow-sm"} hover:opacity-100 transition-opacity`}
               />
             </button>
           ))}
