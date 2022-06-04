@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
-import {PauseIcon, PlayIcon, ArrowCircleLeftIcon, ArrowCircleRightIcon} from "@heroicons/react/solid"
+import {PlayIcon, ArrowCircleLeftIcon, ArrowCircleRightIcon} from "@heroicons/react/solid"
 
 import Layout from "../components/layout"
 import { InternalLink, ExternalLink } from "../components/gaLink"
@@ -38,6 +38,7 @@ let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
 
 let ImageCarousel = ({imageData, videoUrl}) => {
   let [imgIdx, setImgIdx] = useState(0)
+  let [videoSelected, setVideoSelected] = useState(false)
   return(
   <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
     <div className="feature-container aspect-[3/2] bg-pink-500 w-full"></div>
@@ -48,24 +49,32 @@ let ImageCarousel = ({imageData, videoUrl}) => {
           title="Previous Image"
           onClick={()=> setImgIdx(imgIdx-1)}
           disabled={imgIdx===0}
-          className={`${imgIdx===0 ? "text-secondary-500" : "text-secondary-900"} w-6`}
+          className={`${imgIdx===0 ? "text-secondary-500" : "text-secondary-900"} ${videoSelected? "hidden" : ""} w-6`}
         >
           <ArrowCircleLeftIcon/>
         </button>
-        <div className="text-sm">{imgIdx+1} / {imageData.length}</div>
+        <div className="text-sm">{videoSelected? "Video Tour" : `${imgIdx+1} / ${imageData.length}`}</div>
         <button
           aria-label="Next Image"
           title="Next Image"
           onClick={()=> setImgIdx(imgIdx+1)}
           disabled={imgIdx===imageData.length-1}
-          className={`${imgIdx===imageData.length-1 ? "text-secondary-500" : "text-secondary-900"} w-6`}
+          className={`${imgIdx===imageData.length-1 ? "text-secondary-500" : "text-secondary-900"} ${videoSelected? "hidden" : ""} w-6`}
         >
           <ArrowCircleRightIcon/>
         </button>
       </div>
 
-      <div className="thumbnail-container w-full h-14 flex gap-1">
-        <div className="video-thumbnail h-full w-24 border border-red-500"></div>
+      <div className="thumbnail-container w-full h-14 flex gap-2">
+        <div className={`h-full flex items-center w-20 ${videoUrl? "" : "hidden"}`}>
+          <button
+            aria-label="Video Tour"
+            title="Video Tour"
+            className={`border-2 rounded w-full h-full  ${videoSelected? "text-secondary-900 border-secondary-800" : "border-secondary-400 text-secondary-500"} transition-colors hover:text-secondary-900 hover:border-secondary-700`}
+          >
+            <PlayIcon className={`w-8 mx-auto `}/>
+          </button>
+        </div>
         <div className="img-thumbnails h-full w-full  overflow-x-scroll flex flex-nowrap gap-1">
           {imageData.map(({image}, idx) => (
             <button
