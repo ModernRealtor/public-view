@@ -51,9 +51,9 @@ export function BathIcon(props) {
 export default function ListingCard({img, numBath, numBed, sqft, addr, price, status}) {
   let image = getImage(img)
   return (
-    <div className="h-72 text-secondary-700 w-64 text-xs bg-gradient-to-b from-gray-300 to-transparent overflow-hidden rounded-t hover:shadow transition-shadow">
-      <div className="h-3/5 w-full">
-        {false? (
+    <div className="h-72 text-secondary-700 w-64 text-xs bg-gradient-to-b from-zinc-200 to-transparent overflow-hidden rounded-t hover:shadow transition-shadow">
+      <div className="h-3/5 w-full relative">
+        {img? (
         <GatsbyImage
           image={image}
           alt="Primary photo for the listing"
@@ -65,6 +65,7 @@ export default function ListingCard({img, numBath, numBed, sqft, addr, price, st
             No Image Available
           </span>
         </div>)}
+        <div className={`absolute top-0 right-0 px-2 py-1 bg-rose-500 text-secondary-50 text-xs font-bold rounded opacity-90 mt-2 mr-2 ${status==="New"? "" : "hidden"}`}>New</div>
       </div>
       <div className="h-2/5 bg-secondary justify-items-stretch flex flex-col w-full gap-3 p-3 rounded-b-sm">
         <div className="w-full font-extrabold text-base">
