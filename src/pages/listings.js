@@ -16,7 +16,8 @@ export default function Listings({ location: { pathname }, data }) {
         sqft: listn.sqft,
         addr: listn.disp_addr === "Y" ? listn.addr : listn.cross_st,
         price: listn.lp_dol? listn.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : "",
-        status: listn.lsc
+        status: listn.lsc,
+        mlNum: listn.ml_num
       }
     })
   group.forEach(({nodes: [imgInfo]}) => {
