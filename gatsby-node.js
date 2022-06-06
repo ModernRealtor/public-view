@@ -79,6 +79,8 @@ exports.createPages = async ({ graphql, actions }) => {
             area_infl1_out
             area_infl2_out
             ass_year
+            br
+            br_plus
             bath_tot
             board
             bph_num
@@ -155,6 +157,7 @@ exports.createPages = async ({ graphql, actions }) => {
             rltr
             rr
             rr_edt
+            sqft
             s_r
             scdt
             sec

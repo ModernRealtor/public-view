@@ -2,7 +2,7 @@ import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { LocationMarkerIcon, ArrowsExpandIcon } from "@heroicons/react/solid"
 
-function BedIcon(props) {
+export function BedIcon(props) {
   return (
     <svg
       version="1.1"
@@ -13,6 +13,7 @@ function BedIcon(props) {
       viewBox="0 0 122.88 78.63"
       style={{ enableBackground: "new 0 0 122.88 78.63" }}
       className={props.className}
+      fill="currentColor"
     >
       <g>
         <path
@@ -24,7 +25,7 @@ function BedIcon(props) {
   )
 }
 
-function BathIcon(props) {
+export function BathIcon(props) {
   return (
     <svg
       version="1.1"
@@ -35,6 +36,7 @@ function BathIcon(props) {
       viewBox="0 0 89.19 122.88"
       style={{ enableBackground: "new 0 0 89.19 122.88" }}
       className={props.className}
+      fill="currentColor"
     >
       <g>
         <path

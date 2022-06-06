@@ -1,12 +1,12 @@
 import React, {useState} from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
-import {PlayIcon, ArrowCircleLeftIcon, ArrowCircleRightIcon} from "@heroicons/react/solid"
+import {PlayIcon, ArrowCircleLeftIcon, ArrowCircleRightIcon, ArrowsExpandIcon} from "@heroicons/react/solid"
 
 import Layout from "../components/layout"
 import { InternalLink, ExternalLink } from "../components/gaLink"
 import ListingInquiry from "../components/listingInquiry"
-
+import {BathIcon, BedIcon} from "../components/listingCard"
 
 let statusOpts = {
   "Lsd": "Leased",
@@ -103,6 +103,7 @@ export default function Listing({
   location: { pathname },
 }) {
   let {listing, mlNum} = pageContext
+  console.log(listing)
   let addr = listing.disp_addr === "Y" ? listing.addr : listing.cross_st;
   let type = types[(listing.class || "").toLowerCase()] || "Unknown"
   let images = {};
@@ -145,6 +146,29 @@ export default function Listing({
           </div>
           <ImageCarousel imageData={imageData} videoUrl={listing.tour_url || null} />
           <div className="w-full">
+            <div className="w-full py-4 flex text-secondary-800 tracking-tighter justify-between tablet:justify-start tablet:py-6 tablet:gap-10 laptop:justify-end">
+                <div 
+                  className={`${((listing.br || 0)+(listing.br_plus || 0) > 0)? "" : "hidden"} flex items-center gap-1`}
+                  title="Number of bedrooms"
+                >
+                  <BedIcon className="h-4 "/>
+                  {listing.br || 0}{listing.br_plus ? `+${listing.br_plus}` : ""} 
+                </div>
+                <div 
+                  className={`${(listing.bath_tot !== null)? "" : "hidden"} flex items-center gap-1`}
+                  title="Number of bathrooms"
+                >
+                  <BathIcon className="h-4 "/> 
+                  {listing.br}
+                </div>
+                <div 
+                  className={`${(listing.sqft)? "" : "hidden"} flex items-center`}
+                  title="Approx Square Footage"
+                >
+                  <ArrowsExpandIcon className="h-6"/> 
+                  {listing.sqft}
+                </div>
+            </div>
             <p className="font-light"><span className="font-semibold">Type:</span> {type}</p>
             <p className="font-semibold pt-4">Description:</p>
             <p className="font-light">{listing.ad_text}</p>
