@@ -38,6 +38,7 @@ let Template = ({mlNum, lsc, lud, children, pathname, title}) => {
 
 let ImageCarousel = ({imageData}) => {
   let [imgIdx, setImgIdx] = useState(0)
+  if((imageData || []).length === 0) return <></>;
   return(
   <div className="w-full h-auto laptop:row-span-2 desktop:row-span-3 flex flex-col">
     <div className="relative aspect-[3/2] bg-zinc-200 w-full flex justify-center">
@@ -53,7 +54,7 @@ let ImageCarousel = ({imageData}) => {
         </p>
       </div>
     </div>
-    <div className="w-full  flex flex-col gap-0.5 grow">
+    <div className={`w-full  flex flex-col gap-0.5 grow ${imageData.length > 1 ? ""  :"hidden"}`}>
       <div className="flex w-full justify-evenly my-0.5 h-6">
         <button
           aria-label="Previous Image"
@@ -75,24 +76,21 @@ let ImageCarousel = ({imageData}) => {
           <ArrowCircleRightIcon/>
         </button>
       </div>
-
-      <div className="thumbnail-container w-full h-14 flex gap-2">
-        <div className="img-thumbnails h-full w-full  overflow-x-scroll flex flex-nowrap gap-1">
-          {imageData.map(({image}, idx) => (
-            <button
-              key={idx}
-              className="h-14 aspect-square"
-              aria-label={`Listing image #${idx+1}`}
-              onClick={() => setImgIdx(idx)}
-            >
-              <GatsbyImage
-                image={image}
-                alt={`Listing image #${idx+1}`}
-                className={`h-full w-auto aspect-auto object-cover rounded-sm ${(imgIdx === idx)? "opacity-100 shadow" : "opacity-60 shadow-sm"} hover:opacity-100 transition-opacity`}
-              />
-            </button>
-          ))}
-        </div>
+      <div className="img-thumbnails h-full w-full  overflow-x-scroll flex flex-nowrap gap-1">
+        {imageData.map(({image}, idx) => (
+          <button
+            key={idx}
+            className="h-14 aspect-square"
+            aria-label={`Listing image #${idx+1}`}
+            onClick={() => setImgIdx(idx)}
+          >
+            <GatsbyImage
+              image={image}
+              alt={`Listing image #${idx+1}`}
+              className={`h-full w-auto aspect-auto object-cover rounded-sm ${(imgIdx === idx)? "opacity-100 shadow" : "opacity-60 shadow-sm"} hover:opacity-100 transition-opacity`}
+            />
+          </button>
+        ))}
       </div>
     </div>
   </div>
