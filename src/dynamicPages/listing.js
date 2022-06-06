@@ -76,7 +76,7 @@ let ImageCarousel = ({imageData}) => {
           <ArrowCircleRightIcon/>
         </button>
       </div>
-      <div className="img-thumbnails h-full w-full  overflow-x-scroll flex flex-nowrap gap-1">
+      <div className="img-thumbnails h-fit w-full  overflow-x-scroll flex flex-nowrap gap-1">
         {imageData.map(({image}, idx) => (
           <button
             key={idx}
