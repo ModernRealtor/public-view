@@ -166,7 +166,7 @@ export default function Listing({
                   title="Approx Square Footage"
                 >
                   <ArrowsExpandIcon className="h-6"/> 
-                  {listing.sqft}
+                  {listing.sqft}ft<sup>2</sup>
                 </div>
             </div>
             <p className="font-light"><span className="font-semibold">Type:</span> {type}</p>

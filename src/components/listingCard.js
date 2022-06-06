@@ -48,42 +48,44 @@ export function BathIcon(props) {
   )
 }
 
-export function ListingCard(props) {
-  let image = getImage(props.image)
+export default function ListingCard({img, numBath, numBed, sqft, addr, price, status}) {
+  let image = getImage(img)
   return (
-    <div className="h-72 text-primary w-64 text-xs">
-      <div className="h-3/5 bg-gradient-to-t from-secondary to-primary  w-full rounded-t-sm">
+    <div className="h-72 text-secondary-700 w-64 text-xs bg-gradient-to-b from-gray-300 to-transparent overflow-hidden rounded-t hover:shadow transition-shadow">
+      <div className="h-3/5 w-full">
+        {false? (
         <GatsbyImage
           image={image}
-          alt="Primary listing photo for the listing"
+          alt="Primary photo for the listing"
           className="w-full h-full"
         />
+        ) : (
+        <div className="w-full h-full bg-gray-300 flex place-items-center place-content-center"> 
+          <span className="block">
+            No Image Available
+          </span>
+        </div>)}
       </div>
       <div className="h-2/5 bg-secondary justify-items-stretch flex flex-col w-full gap-3 p-3 rounded-b-sm">
+        <div className="w-full font-extrabold text-base">
+          {price}
+        </div>
         <div className="font-thin align-middle">
           <LocationMarkerIcon className="h-4 mr-2 -ml-0.5 float-left" />{" "}
-          {props.info.address}
+          {addr}
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between gap-4 flex-wrap">
           <div className="flex content-center">
-            <BedIcon className="self-center w-4 mr-2" /> {props.info.numBed} bed
+            <BedIcon className="self-center w-4 mr-2" /> {numBed} bed
           </div>
           <div className="flex">
             <BathIcon className="h-3 mr-2" />
-            {props.info.numBath} bath
+            {numBath} bath
           </div>
           <div className="flex">
             <ArrowsExpandIcon className="self-center h-4 mr-2" />
-            {props.info.size} m <sup className="top-1 relative">2</sup>
+            {sqft} ft <sup className="top-1 relative">2</sup>
           </div>
-        </div>
-        <div className="flex flex-grow">
-          <button className="border-primary hover:border-accent hover:text-accent  w-2/5 text-sm font-normal border-2 rounded">
-            Book Now
-          </button>
-          <p className="self-center w-3/5 text-base font-bold text-center">
-            ${props.info.price.toLocaleString()}
-          </p>
         </div>
       </div>
     </div>
