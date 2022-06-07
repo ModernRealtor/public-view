@@ -1,97 +1,69 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { ListingCard } from "../components/listingCard"
+import { graphql, useStaticQuery } from "gatsby"
 
-const defaultInfo = {
-  address: "123 Fake Addr Lane, Toronto",
-  numBed: 3,
-  numBath: 2,
-  size: 2000,
-  price: 1200000,
+import ListingCard from "../components/listingCard"
+
+export default function Listings({className, limit}) {
+  let {allFile: {group}, 
+    cms: {curOrg: {listings}}
+  } = useStaticQuery(query)
+  let listingData = {}
+  listings
+    .filter(({status}) => status === "A")
+    .forEach(listn => {
+      listingData[listn.ml_num] = {
+        numBath: listn.bath_tot,
+        numBed: `${listn.br || 0}${listn.br_plus? `+${listn.br_plus}` : ""}`,
+        sqft: listn.sqft,
+        addr: listn.disp_addr === "Y" ? listn.addr : listn.cross_st,
+        price: listn.lp_dol? listn.lp_dol.toLocaleString('en-US', {style: "currency", currency: "USD", maximumFractionDigits: 0}) : "",
+        status: listn.lsc,
+        mlNum: listn.ml_num
+      }
+    })
+  group.forEach(({nodes: [imgInfo]}) => {
+    listingData[imgInfo.relativeDirectory].img = imgInfo 
+  })
+  return (
+  <div className={`py-4 flex gap-8 ${className || ""}`}>
+    {Object.keys(listingData).length > 0 ? (Object.keys(listingData)
+    .slice(0, limit || undefined)
+    .map((mlNum, i) => (
+      <ListingCard key={i} {...listingData[mlNum]} />
+    ))) : (<p className="text-sm italic font-thin">There are currently none to display</p>)}
+  </div>
+  )
 }
 
-// Temp not using
 
-// export function AvailableListings(props) {
-//   let { cms, allFile } = useStaticQuery(graphql`
-//     query {
-//       cms {
-//         org {
-//           listings {
-//             listings {
-//               edges {
-//                 node {
-//                   ml_num
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//       allFile(filter: { sourceInstanceName: { eq: "listingImages" } }) {
-//         nodes {
-//           name
-//           childImageSharp {
-//             gatsbyImageData(placeholder: BLURRED)
-//           }
-//         }
-//       }
-//     }
-//   `)
-//   let listings = cms.org?.listings?.listings?.edges
-//   if (listings.length === 0) {
-//     return <></>
-//   }
-
-//   // Convert mlnum grouping list of images to a dictionary
-//   let mlImages = {}
-//   allFile?.nodes?.forEach(imgNode => {
-//     // name is either MLSNUM or MLSNUM_#
-//     let idx = imgNode.name.lastIndexOf("_")
-//     let mlsNum = idx === -1 ? imgNode.name : imgNode.name.slice(0, idx - 1)
-//     if (!mlImages[mlsNum]) mlImages[mlsNum] = []
-//     mlImages[mlsNum].push(imgNode)
-//   })
-//   let thresh = 3
-//   return (
-//     <div className={props.className}>
-//       <div className="text-xs uppercase">&#8212;&#8212; Available</div>
-//       <div className="flex justify-between mt-2 mb-20">
-//         <h2 className="text-3xl font-semibold">Available Listings</h2>
-//         <a href="#" className="text-sm">
-//           Explore All &rarr;
-//         </a>
-//       </div>
-//       <div
-//         className={`flex w-full gap-5 ${
-//           listings.length > thresh ? "flex-col" : "flex-row"
-//         }`}
-//       >
-//         <div
-//           className={`flex justify-between ${
-//             listings.length > thresh ? "w-full" : "w-1/2"
-//           }`}
-//         >
-//           {listings.map(({ node: { ml_num } }, i) => (
-//             <ListingCard
-//               key={i}
-//               info={defaultInfo}
-//               image={mlImages[ml_num][0]}
-//             />
-//           ))}
-//         </div>
-//         <div
-//           className={`text-secondary ${
-//             listings.length > thresh ? "w-full" : "w-1/2 self-end"
-//           }`}
-//         >
-//           Extra text about the available listings
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-export default () => {
-  return <></>
+export const query = graphql`
+{
+  cms {
+    curOrg {
+      listings {
+        status
+        lsc
+        lp_dol
+        ml_num
+        bath_tot
+        br
+        br_plus
+        sqft
+        disp_addr
+        addr
+        cross_st
+      }
+    }
+  }
+  allFile(filter: {sourceInstanceName: {eq: "listingImages"}}, sort: {fields: name}) {
+    group(field:relativeDirectory, limit:1){
+      nodes {
+        relativeDirectory
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED)
+        }
+      }
+    }
+  }
 }
+`
