@@ -2,7 +2,6 @@ import React from "react"
 
 import Layout from "../components/layout"
 import AvailableListings from "../components/availableListings"
-import ListingCard from "../components/listingCard"
 import { HouseSearching } from "../assets/icons/undraw"
 import { InternalLink } from "../components/gaLink"
 import LeadForm from "../components/leadsForm"
@@ -44,17 +43,22 @@ function Listings(){
   <div className="outer-layout mb-8">
     <div className="flex justify-between items-end">
       <span className="text-xs uppercase">&#8212;&#8212; Available</span>
-      <a href="#" className="text-sm font-semibold">
+      <InternalLink
+        to="/listings/"
+        className="text-sm font-semibold"
+        label="Explore All"
+        tag="Home > Listings > Explore all"
+      >
         Explore All &rarr;
-      </a>
+      </InternalLink>
     </div>
     <div className="flex justify-between mb-2 mt-4">
-      <h2 className="text-3xl">Available Listings</h2>
+      <h2 className="text-2xl">Available Listings</h2>
     </div>
     <div className="overflow-clip w-full">
-      <div className={`py-4 flex gap-8 flex-wrap justify-evenly`}>
+      <div className={`py-4 flex gap-8 flex-wrap justify-evenly `}>
         {Listings
-        .slice(0,5).map(Listing => Listing)}
+        .slice(0,4).map(Listing => Listing)}
       </div>
     </div>
   </div>)
