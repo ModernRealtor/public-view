@@ -84,14 +84,14 @@ export default function ListingCard({img, numBath, numBed, sqft, addr, price, st
             {addr}
           </div>
           <div className="flex justify-between gap-4 flex-wrap">
-            <div className="flex content-center">
+            <div className={`flex content-center ${numBed? "" : "hidden"}`}>
               <BedIcon className="self-center w-4 mr-2" /> {numBed} bed
             </div>
-            <div className="flex">
+            <div className={`flex ${numBath? "" : "hidden"}`}>
               <BathIcon className="h-3 mr-2" />
               {numBath} bath
             </div>
-            <div className="flex">
+            <div className={`flex ${sqft? "" : "hidden"}`}>
               <ArrowsExpandIcon className="self-center h-4 mr-2" />
               {sqft} ft <sup className="top-1 relative">2</sup>
             </div>
