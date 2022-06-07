@@ -33,7 +33,7 @@ export default function Listings({ location: { pathname }, data }) {
           Brokerage's Featured Listings
           <span className="w-full block border-b"></span>
         </h2>
-        <div className="py-4">
+        <div className="py-4 flex flex-wrap justify-evenly gap-8">
           {Object.keys(listingData).length > 0 ? (Object.keys(listingData).map((mlNum, i) => (
             <ListingCard key={i} {...listingData[mlNum]} />
           ))) : (<p className="text-sm italic font-thin">There are currently none to display</p>)}

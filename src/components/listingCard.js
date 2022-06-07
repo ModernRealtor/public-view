@@ -76,14 +76,14 @@ export default function ListingCard({img, numBath, numBed, sqft, addr, price, st
           <div className={`absolute top-0 right-0 px-2 py-1 bg-rose-500 text-secondary-50 text-xs font-bold rounded opacity-90 mt-2 mr-2 ${status==="New"? "" : "hidden"}`}>New</div>
         </div>
         <div className="h-2/5 bg-secondary justify-items-stretch flex flex-col w-full gap-3 p-3 rounded-b-sm">
-          <div className="w-full font-extrabold text-base">
-            {price}
+          <div className="flex flex-col gap-0.5">
+            <span className="w-full font-extrabold text-base">{price}</span>
+            <span className="font-thin align-middle">
+              <LocationMarkerIcon className="h-4 mr-2 -ml-0.5 float-left" />{" "}
+              {addr}
+            </span>
           </div>
-          <div className="font-thin align-middle">
-            <LocationMarkerIcon className="h-4 mr-2 -ml-0.5 float-left" />{" "}
-            {addr}
-          </div>
-          <div className="flex justify-between gap-4 flex-wrap">
+          <div className="flex justify-between gap-x-4 gap-y-0  flex-wrap">
             <div className={`flex content-center ${numBed? "" : "hidden"}`}>
               <BedIcon className="self-center w-4 mr-2" /> {numBed} bed
             </div>
