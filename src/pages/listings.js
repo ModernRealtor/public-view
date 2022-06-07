@@ -30,7 +30,10 @@ export default function Listings({ location: { pathname }, data }) {
           Available Listings
         </h1>
         <h2 className="capitalize text-secondary-600 w-full pb-2">
-          Brokerage's Featured Listings
+          <div className="flex flex-wrap justify-between items-end">
+            <span>Brokerage's Featured Listings</span>
+            <span className="text-xs font-thin">Displaying {Object.keys(listingData).length} item(s)</span>
+          </div> 
           <span className="w-full block border-b"></span>
         </h2>
         <div className="py-4 flex flex-wrap justify-evenly gap-8">
