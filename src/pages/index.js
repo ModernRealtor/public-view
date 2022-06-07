@@ -1,7 +1,8 @@
 import React from "react"
 
 import Layout from "../components/layout"
-// import { AvailableListings } from "../components/availableListings"
+import AvailableListings from "../components/availableListings"
+import ListingCard from "../components/listingCard"
 import { HouseSearching } from "../assets/icons/undraw"
 import { InternalLink } from "../components/gaLink"
 import LeadForm from "../components/leadsForm"
@@ -13,7 +14,7 @@ let heroBtnTxt = "Get Started"
 function Hero(props) {
   return (
     <div
-      className={`${props.className}  py-16 text-secondary-900 tablet:pb-24 laptop:pb-32 desktop:pb-48 desktop:pt-28`}
+      className={`${props.className}  pt-12 pb-0 text-secondary-900 tablet:pb-24 laptop:pb-32 desktop:pb-48 desktop:pt-28`}
     >
       <div className="tablet:flex-row tablet:gap-12 place-items-center flex flex-col gap-0">
         <div className="tablet:pb-10 desktop:pt-0 tablet:text-left desktop:text-right py-5 text-center">
@@ -36,12 +37,35 @@ function Hero(props) {
   )
 }
 
+function Listings(){
+  let Listings = AvailableListings()
+  if((Listings || []).length === 0) return <></>
+  return (
+  <div className="outer-layout mb-8">
+    <div className="flex justify-between items-end">
+      <span className="text-xs uppercase">&#8212;&#8212; Available</span>
+      <a href="#" className="text-sm font-semibold">
+        Explore All &rarr;
+      </a>
+    </div>
+    <div className="flex justify-between mb-2 mt-4">
+      <h2 className="text-3xl">Available Listings</h2>
+    </div>
+    <div className="overflow-clip w-full">
+      <div className={`py-4 flex gap-8 flex-wrap justify-evenly`}>
+        {Listings
+        .slice(0,5).map(Listing => Listing)}
+      </div>
+    </div>
+  </div>)
+}
+
 export default function Home({ location: { pathname } }) {
   return (
     <Layout path={pathname}>
       <Hero className="outer-layout bg-secondary-50" />
+      <Listings/>
       <LeadForm className="outer-layout bg-secondary-50" id="leadForm" />
-      {/* <AvailableListings className="outer-layout text-primary py-12" /> */}
       {/* <div className="outer-layout bg-primary text-secondary h-64">
           <p>buy section</p>
           <p>No matter what kind of property you dream of, we will help make that dream a realty</p> 

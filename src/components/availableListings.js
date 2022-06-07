@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-
 import ListingCard from "../components/listingCard"
 
-export default function Listings({className, limit}) {
+
+export default function GetListings(){
   let {allFile: {group}, 
-    cms: {curOrg: {listings}}
-  } = useStaticQuery(query)
+  cms: {curOrg: {listings}}
+} = useStaticQuery(query)
   let listingData = {}
   listings
     .filter(({status}) => status === "A")
@@ -24,17 +24,11 @@ export default function Listings({className, limit}) {
   group.forEach(({nodes: [imgInfo]}) => {
     listingData[imgInfo.relativeDirectory].img = imgInfo 
   })
-  return (
-  <div className={`py-4 flex gap-8 ${className || ""}`}>
-    {Object.keys(listingData).length > 0 ? (Object.keys(listingData)
-    .slice(0, limit || undefined)
+  return  Object.keys(listingData)
     .map((mlNum, i) => (
       <ListingCard key={i} {...listingData[mlNum]} />
-    ))) : (<p className="text-sm italic font-thin">There are currently none to display</p>)}
-  </div>
-  )
+    ))
 }
-
 
 export const query = graphql`
 {
