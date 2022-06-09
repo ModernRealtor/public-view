@@ -40,7 +40,6 @@ function Listings(){
   let Listings = AvailableListings()
   let [idx, setIdx] = useState(0)
   if((Listings || []).length === 0) return <></>
-  Listings = Listings.concat(...Listings).concat(...Listings).concat(...Listings).concat(...Listings)
   return (
   <div className="mb-8 tablet:mb-12 laptop:mb-20 desktop:mb-36">
     <div className="outer-layout ">
@@ -62,10 +61,10 @@ function Listings(){
         <span className="text-xs font-thin">
           Displaying 
           <span className="px-1">
-            <span className={`tablet:hidden`}>1</span>
-            <span className={`hidden ${Listings.length<2? "" : "tablet:inline-block"} laptop:hidden`}>2</span>
-            <span className={`hidden ${Listings.length<3? "" : "laptop:inline-block"} desktop:hidden`}>3</span>
-            <span className={`hidden ${Listings.length<4? "" : "desktop:inline-block"}`}>4</span>
+            <span className={`inline-block tablet:hidden`}>1</span>
+            <span className={`hidden tablet:inline-block laptop:hidden`}>{Math.min(2, Listings.length)}</span>
+            <span className={`hidden laptop:inline-block desktop:hidden`}>{Math.min(3, Listings.length)}</span>
+            <span className={`hidden desktop:inline-block`}>{Math.min(4, Listings.length)}</span>
           </span>
           of {Listings.length} Listings
         </span>

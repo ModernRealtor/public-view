@@ -103,7 +103,6 @@ export default function Listing({
   location: { pathname },
 }) {
   let {listing, mlNum} = pageContext
-  console.log(listing)
   let addr = listing.disp_addr === "Y" ? listing.addr : listing.cross_st;
   let type = types[(listing.class || "").toLowerCase()] || "Unknown"
   let images = {};
