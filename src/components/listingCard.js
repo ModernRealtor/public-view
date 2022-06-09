@@ -53,7 +53,7 @@ export function BathIcon(props) {
 export default function ListingCard({img, numBath, numBed, sqft, addr, price, status, mlNum}) {
   let image = getImage(img)
   return (
-    <div className="h-72 text-secondary-700 w-64 text-xs bg-gradient-to-b from-zinc-200 to-transparent overflow-hidden rounded-t hover:shadow transition-shadow">
+    <div className="h-72 text-secondary-700 w-64 text-xs bg-gradient-to-b from-zinc-200 to-secondary-50 overflow-hidden rounded-t hover:shadow transition-shadow">
       <InternalLink
         label="See more details"
         tag={`Available Listings > ${mlNum} Details`}
