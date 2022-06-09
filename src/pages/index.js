@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 
 import Layout from "../components/layout"
 import AvailableListings from "../components/availableListings"
@@ -38,7 +38,9 @@ function Hero(props) {
 
 function Listings(){
   let Listings = AvailableListings()
+  let [idx, setIdx] = useState(0)
   if((Listings || []).length === 0) return <></>
+  Listings = Listings.concat(...Listings).concat(...Listings).concat(...Listings).concat(...Listings)
   return (
   <div className="outer-layout mb-8">
     <div className="flex justify-between items-end">
@@ -55,11 +57,37 @@ function Listings(){
     <div className="flex justify-between mb-2 mt-4">
       <h2 className="text-2xl">Available Listings</h2>
     </div>
-    <div className="overflow-clip w-full">
-      <div className={`py-4 flex gap-8 flex-wrap justify-evenly `}>
-        {Listings
-        .slice(0,4).map(Listing => Listing)}
+    <div className="w-full relative">
+      <div className={`py-4 overflow-y-hidden max-h-min flex flex-nowrap justify-items-center justify-evenly`}>
+        <div>
+          {Listings[idx%Listings.length]}
+        </div>
+        <div className={`${Listings.length >=2 ? "tablet:block" : ""} hidden`}>
+          {Listings[(idx+1)%Listings.length]}
+        </div>
+        <div className={`${Listings.length >=3 ? "laptop:block" : ""} hidden`}>
+          {Listings[(idx+2)%Listings.length]}
+        </div>
+        <div className={`${Listings.length >=4 ? "desktop:block" : ""} hidden`}>
+          {Listings[(idx+3)%Listings.length]}
+        </div>
       </div>
+      <button 
+        className="absolute h-full font-black text-9xl left-0 top-0"
+        aria-label="Previous Listings"
+        title="Previous"
+        onClick={()=>setIdx(idx-1)}
+      >
+        &#10092;
+      </button>
+      <button 
+        className="absolute h-full font-black text-9xl right-0 top-0"
+        aria-label="Next Listings"
+        title="Next"
+        onClick={()=>setIdx(idx+1)}
+      >
+        &#10093;
+      </button>
     </div>
   </div>)
 }
