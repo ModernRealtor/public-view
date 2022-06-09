@@ -54,10 +54,20 @@ function Listings(){
         Explore All &rarr;
       </InternalLink>
     </div>
-    <div className="flex justify-between mb-2 mt-4">
+    <div className="flex justify-between flex-wrap items-end mt-4 py-4 bg-secondary-900 text-secondary-50">
       <h2 className="text-2xl">Available Listings</h2>
+      <span className="text-xs font-thin">
+        Displaying 
+        <span className="px-1">
+          <span className={`tablet:hidden`}>1</span>
+          <span className={`hidden ${Listings.length<2? "" : "tablet:inline-block"} laptop:hidden`}>2</span>
+          <span className={`hidden ${Listings.length<3? "" : "laptop:inline-block"} desktop:hidden`}>3</span>
+          <span className={`hidden ${Listings.length<4? "" : "desktop:inline-block"}`}>4</span>
+        </span>
+        of {Listings.length} listings
+      </span>
     </div>
-    <div className="w-full relative">
+    <div className="w-full relative bg-secondary-900 pb-12 pt-6">
       <div className={`py-4 overflow-y-hidden max-h-min flex flex-nowrap justify-items-center justify-evenly`}>
         <div>
           {Listings[idx%Listings.length]}
@@ -73,7 +83,7 @@ function Listings(){
         </div>
       </div>
       <button 
-        className="absolute h-full font-black text-9xl left-0 top-0"
+        className="absolute h-full text-9xl left-0 top-0 text-secondary-300 opacity-60 hover:opacity-100 transition-opacity"
         aria-label="Previous Listings"
         title="Previous"
         onClick={()=>setIdx(idx-1)}
@@ -81,7 +91,7 @@ function Listings(){
         &#10092;
       </button>
       <button 
-        className="absolute h-full font-black text-9xl right-0 top-0"
+        className="absolute h-full text-9xl right-0 top-0 text-secondary-300 opacity-60 hover:opacity-100 transition-opacity"
         aria-label="Next Listings"
         title="Next"
         onClick={()=>setIdx(idx+1)}
