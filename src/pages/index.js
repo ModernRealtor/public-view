@@ -42,62 +42,66 @@ function Listings(){
   if((Listings || []).length === 0) return <></>
   Listings = Listings.concat(...Listings).concat(...Listings).concat(...Listings).concat(...Listings)
   return (
-  <div className="outer-layout mb-8">
-    <div className="flex justify-between items-end">
-      <span className="text-xs uppercase">&#8212;&#8212; Available</span>
-      <InternalLink
-        to="/listings/"
-        className="text-sm font-semibold"
-        label="Explore All"
-        tag="Home > Listings > Explore all"
-      >
-        Explore All &rarr;
-      </InternalLink>
-    </div>
-    <div className="flex justify-between flex-wrap items-end mt-4 py-4 bg-secondary-900 text-secondary-50">
-      <h2 className="text-2xl">Available Listings</h2>
-      <span className="text-xs font-thin">
-        Displaying 
-        <span className="px-1">
-          <span className={`tablet:hidden`}>1</span>
-          <span className={`hidden ${Listings.length<2? "" : "tablet:inline-block"} laptop:hidden`}>2</span>
-          <span className={`hidden ${Listings.length<3? "" : "laptop:inline-block"} desktop:hidden`}>3</span>
-          <span className={`hidden ${Listings.length<4? "" : "desktop:inline-block"}`}>4</span>
-        </span>
-        of {Listings.length} listings
-      </span>
-    </div>
-    <div className="w-full relative bg-secondary-900 pb-12 pt-6">
-      <div className={`py-4 overflow-y-hidden max-h-min flex flex-nowrap justify-items-center justify-evenly`}>
-        <div>
-          {Listings[idx%Listings.length]}
-        </div>
-        <div className={`${Listings.length >=2 ? "tablet:block" : ""} hidden`}>
-          {Listings[(idx+1)%Listings.length]}
-        </div>
-        <div className={`${Listings.length >=3 ? "laptop:block" : ""} hidden`}>
-          {Listings[(idx+2)%Listings.length]}
-        </div>
-        <div className={`${Listings.length >=4 ? "desktop:block" : ""} hidden`}>
-          {Listings[(idx+3)%Listings.length]}
-        </div>
+  <div className="mb-8 tablet:mb-12 laptop:mb-20 desktop:mb-36">
+    <div className="outer-layout ">
+      <div className="flex justify-between items-end">
+        <span className="text-xs uppercase">&#8212;&#8212; Available</span>
+        <InternalLink
+          to="/listings/"
+          className="text-sm font-semibold"
+          label="Explore All"
+          tag="Home > Listings > Explore all"
+        >
+          Explore All &rarr;
+        </InternalLink>
       </div>
-      <button 
-        className="absolute h-full text-9xl left-0 top-0 text-secondary-300 opacity-60 hover:opacity-100 transition-opacity"
-        aria-label="Previous Listings"
-        title="Previous"
-        onClick={()=>setIdx(idx-1)}
-      >
-        &#10092;
-      </button>
-      <button 
-        className="absolute h-full text-9xl right-0 top-0 text-secondary-300 opacity-60 hover:opacity-100 transition-opacity"
-        aria-label="Next Listings"
-        title="Next"
-        onClick={()=>setIdx(idx+1)}
-      >
-        &#10093;
-      </button>
+    </div>
+    <div className="outer-layout bg-secondary-900 ">
+      <div className="flex justify-between flex-wrap items-end mt-4 py-4 text-secondary-50">
+        <h2 className="text-2xl">Available Listings</h2>
+        <span className="text-xs font-thin">
+          Displaying 
+          <span className="px-1">
+            <span className={`tablet:hidden`}>1</span>
+            <span className={`hidden ${Listings.length<2? "" : "tablet:inline-block"} laptop:hidden`}>2</span>
+            <span className={`hidden ${Listings.length<3? "" : "laptop:inline-block"} desktop:hidden`}>3</span>
+            <span className={`hidden ${Listings.length<4? "" : "desktop:inline-block"}`}>4</span>
+          </span>
+          of {Listings.length} Listings
+        </span>
+      </div>
+      <div className="w-full relative bg-secondary-900 pb-12 pt-6 desktop:pb-16 desktop:pt-12">
+        <div className={`py-4 overflow-y-hidden max-h-min flex flex-nowrap justify-items-center justify-evenly`}>
+          <div>
+            {Listings[idx%Listings.length]}
+          </div>
+          <div className={`${Listings.length >=2 ? "tablet:block" : ""} hidden`}>
+            {Listings[(idx+1)%Listings.length]}
+          </div>
+          <div className={`${Listings.length >=3 ? "laptop:block" : ""} hidden`}>
+            {Listings[(idx+2)%Listings.length]}
+          </div>
+          <div className={`${Listings.length >=4 ? "desktop:block" : ""} hidden`}>
+            {Listings[(idx+3)%Listings.length]}
+          </div>
+        </div>
+        <button 
+          className="absolute h-full text-9xl left-0 top-0 text-secondary-300 opacity-60 hover:opacity-100 transition-opacity"
+          aria-label="Previous Listings"
+          title="Previous"
+          onClick={()=>setIdx(idx-1)}
+        >
+          &#10092;
+        </button>
+        <button 
+          className="absolute h-full text-9xl right-0 top-0 text-secondary-300 opacity-60 hover:opacity-100 transition-opacity"
+          aria-label="Next Listings"
+          title="Next"
+          onClick={()=>setIdx(idx+1)}
+        >
+          &#10093;
+        </button>
+      </div>
     </div>
   </div>)
 }
