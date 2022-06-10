@@ -3,6 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import { OutboundLink } from "gatsby-plugin-google-gtag"
 
+import {GetListings, ListingCarousel} from "../components/availableListings"
 import Layout from "../components/layout"
 import { contactIcons } from "../assets/icons/socials"
 
@@ -15,13 +16,15 @@ export default function TeamMember({
     staff: {
       title,
       about,
+      listings,
       user: {
         name,
         contact
-      }
+      },
     }
   } = pageContext
   let image = getImage(data.file)
+  let Listings = GetListings(listings)
   return (
     <Layout title={name} path={pathname}>
       <div className="outer-layout tablet:py-16 laptop:py-20 py-10">
@@ -61,6 +64,7 @@ export default function TeamMember({
             <div className="text-justify whitespace-pre-wrap">{about}</div>
           </div>
         </div>
+        <ListingCarousel subListings={Listings} />
       </div>
     </Layout>
   )

@@ -69,6 +69,19 @@ exports.createPages = async ({ graphql, actions }) => {
                 addr
               }
             }
+            listings {
+              status
+              lsc
+              lp_dol
+              ml_num
+              bath_tot
+              br
+              br_plus
+              sqft
+              disp_addr
+              addr
+              cross_st,
+            }
           }
           listings {
             a_c

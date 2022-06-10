@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import AvailableListings from "../components/availableListings"
+import {GetListings as AvailableListings} from "../components/availableListings"
 
 export default function Listings({ location: { pathname } }) {
   let Listings = AvailableListings()
