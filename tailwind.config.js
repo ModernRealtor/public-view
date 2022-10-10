@@ -1,7 +1,7 @@
 const colors = require("tailwindcss/colors")
-const { getTheme } = require("./custom-theme")
+// const { getTheme } = require("./custom-theme")
 
-let { primary, secondary } = getTheme()
+// let { primary, secondary } = getTheme()
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -19,8 +19,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: colors[primary],
-        secondary: colors[secondary],
+        primary: colors["amber"],
+        secondary: colors["gray"],
       },
     },
   },
