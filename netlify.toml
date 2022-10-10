@@ -4,3 +4,11 @@
 
 [[plugins]]
     package = "@netlify/plugin-gatsby"
+
+
+## Temporary
+[[redirects]]
+  from = "/"
+  to = "https://realty100plus.com/"
+  status = 200
+  force = true
