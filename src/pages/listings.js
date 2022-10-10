@@ -29,5 +29,5 @@ import React from "react"
 
 
 export default function Temp() {
-  <div>Temp</div>
+  return (<div>Temp</div>)
 }
